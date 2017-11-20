@@ -578,42 +578,15 @@ function init()
 
 	addGMFunction("Mars Politik", function() -- Öffnet die Optionen für Fraktionsweite Befehle, Mars und Piraten.
 		addGMFunction("Krieg", function()
-		--if marsstation1 ~= nil then
 			marsstation1:setFaction("Mars Tech Union (Krieg)")
-		--marsstation1 = nil
-		--end
-		--if mtu_01 ~= nil then
 			mtu_01:setFaction("Mars Tech Union (Krieg)")
-		--mtu_01 = nil
-		--end
-		--if mtu_02 ~= nil then
 			mtu_02:setFaction("Mars Tech Union (Krieg)")
-		--mtu_02 = nil
-		--end
-		--if mtu_03 ~= nil then
 			mtu_03:setFaction("Mars Tech Union (Krieg)")
-		--mtu_03 = nil
-		--end
-		--if mtu_04 ~= nil then
 			mtu_04:setFaction("Mars Tech Union (Krieg)")
-		--mtu_04 = nil
-		--end
-		--if mtu_05 ~= nil then
 			mtu_05:setFaction("Mars Tech Union (Krieg)")
-		--mtu_05 = nil
-		--end
-		--if mtu_06 ~= nil then
 			mtu_06:setFaction("Mars Tech Union (Krieg)")
-		--mtu_06 = nil
-		--end
-		--if mtu_07 ~= nil then
 			mtu_07:setFaction("Mars Tech Union (Krieg)")
-		--mtu_07 = nil
-		--end
-		--if mtu_08 ~= nil then
 			mtu_08:setFaction("Mars Tech Union (Krieg)")
-		--mtu_08 = nil
-		--end
 		end)
 	
 		addGMFunction("Friede", function()
@@ -640,35 +613,43 @@ function init()
 			mtu_08:setFaction("Terranische Navy")
 		end)
 	
-	addGMFunction("P-Alliierte", function()
-		marsstation1:setFaction("Piraten (Alliierte)")
-		pirat_01:setFaction("Piraten (Alliierte)")
-		pirat_02:setFaction("Piraten (Alliierte)")
-		pirat_03:setFaction("Piraten (Alliierte)")
-		pirat_04:setFaction("Piraten (Alliierte)")
-		pirat_05:setFaction("Piraten (Alliierte)")
-		pirat_06:setFaction("Piraten (Alliierte)")
-		pirat_07:setFaction("Piraten (Alliierte)")
-		pirat_08:setFaction("Piraten (Alliierte)")
-		pirat_09:setFaction("Piraten (Alliierte)")
-		pirat_10:setFaction("Piraten (Alliierte)")
+		addGMFunction("P-Alliierte", function()
+			marsstation1:setFaction("Piraten (Alliierte)")
+			pirat_01:setFaction("Piraten (Alliierte)")
+			pirat_02:setFaction("Piraten (Alliierte)")
+			pirat_03:setFaction("Piraten (Alliierte)")
+			pirat_04:setFaction("Piraten (Alliierte)")
+			pirat_05:setFaction("Piraten (Alliierte)")
+			pirat_06:setFaction("Piraten (Alliierte)")
+			pirat_07:setFaction("Piraten (Alliierte)")
+			pirat_08:setFaction("Piraten (Alliierte)")
+			pirat_09:setFaction("Piraten (Alliierte)")
+			pirat_10:setFaction("Piraten (Alliierte)")
+		end)
+	
+		addGMFunction("P-ExAlliierte", function()
+			marsstation1:setFaction("Piraten")
+			pirat_01:setFaction("Piraten")
+			pirat_02:setFaction("Piraten")
+			pirat_03:setFaction("Piraten")
+			pirat_04:setFaction("Piraten")
+			pirat_05:setFaction("Piraten")
+			pirat_06:setFaction("Piraten")
+			pirat_07:setFaction("Piraten")
+			pirat_08:setFaction("Piraten")
+			pirat_09:setFaction("Piraten")
+			pirat_10:setFaction("Piraten")
+		end)
 	end)
 	
-	addGMFunction("P-ExAlliierte", function()
-		marsstation1:setFaction("Piraten")
-		pirat_01:setFaction("Piraten")
-		pirat_02:setFaction("Piraten")
-		pirat_03:setFaction("Piraten")
-		pirat_04:setFaction("Piraten")
-		pirat_05:setFaction("Piraten")
-		pirat_06:setFaction("Piraten")
-		pirat_07:setFaction("Piraten")
-		pirat_08:setFaction("Piraten")
-		pirat_09:setFaction("Piraten")
-		pirat_10:setFaction("Piraten")
+	addGMFunction("Kühlmittel", function()
+		addGMFunction("KMA erlauben", coolant_f) -- Kühlmittelaustoß erlauben
+		addGMFunction("KM Reset", function() -- Reset Kühlmittel
+		coolant = 0
+		coolant_lvl = nil
+		end)		
 	end)
-end)
-	
+
 	addGMFunction("Säubern", function() -- löscht die Bergbau und Politik Befehle um das GM Menü übersichtlich zu halten.
 	removeGMFunction("Krieg")
 	removeGMFunction("Friede")
@@ -678,15 +659,60 @@ end)
 	removeGMFunction("Erz +")
 	removeGMFunction("Erz + SP")
 	removeGMFunction("Erz -")
-end)
-	
-	addGMFunction("Coolant", function() -- Reset Coolant
-		coolant = 0
-		coolant_lvl = nil
+	removeGMFunction("KMA erlauben")
+	removeGMFunction("KM Reset")
 	end)
 	-- GM Befehle Ende --
-	
 end
+
+
+function coolant_f()
+-- Kühlmittel Ausstoß --
+	--player:addCustomButton("engineering", "Coolant_Venting", "EKA", function() -- Engineering muss Scince die Erlaubnis erteilen Kühlmittel abzulassen.
+	coolant = 0 -- Werte für das Kühlmittelscript am Ende
+	coolant_lvl = nil
+
+	player:addCustomButton("science", "Coolant_Override", "Kühlmittel ausstoßen", function()
+		if coolant == nil then coolant = 0 end
+		coolant = coolant + 1
+		if coolant == 1 then					
+			for _, system in ipairs({"reactor", "beamweapons", "missilesystem", "maneuver", "impulse", "warp", "jumpdrive", "frontshield", "rearshield"}) do
+			player:setSystemHeat(system, 0.0)
+			end
+			player:removeCustom("Coolant_Info0")
+			player:addCustomInfo("engineering","Coolant_Info1","Coolant: 70%")
+			x_player, y_player = player:getPosition()
+			neb1 = Nebula():setPosition(x_player, y_player)
+			coolant_lvl = 3
+		end
+			--player:removeCustom("Coolant_Override")
+		if coolant == 2 then
+			coolant_lvl = 6
+			for _, system in ipairs({"reactor", "beamweapons", "missilesystem", "maneuver", "impulse", "warp", "jumpdrive", "frontshield", "rearshield"}) do
+			player:setSystemHeat(system, 0.0)
+			end
+			player:removeCustom("Coolant_Info1")
+			player:addCustomInfo("engineering","Coolant_Info2","Coolant: 40%")
+			x_player, y_player = player:getPosition()
+			neb2 = Nebula():setPosition(x_player, y_player)
+			--player:removeCustom("Coolant_Override")
+		end
+		if coolant == 3 then
+			coolant_lvl = 9
+			for _, system in ipairs({"reactor", "beamweapons", "missilesystem", "maneuver", "impulse", "warp", "jumpdrive", "frontshield", "rearshield"}) do
+			player:setSystemHeat(system, 0.0)
+			end
+			player:removeCustom("Coolant_Info2")
+			player:addCustomInfo("engineering","Coolant_Info3","Coolant: 10%")
+			x_player, y_player = player:getPosition()
+			neb3 = Nebula():setPosition(x_player, y_player)
+			--player:removeCustom("Coolant_Override")
+		end
+	end)
+	--end)
+-- Ende Kühlmittel Ausstoß --
+end
+
 
 
 function update (delta)
@@ -807,48 +833,41 @@ function update (delta)
 	end
 -- Ende Details über Planeten
 
--- Kühlmittel Ausstoß --
---player:addCustomButton("engineering", "Coolant_Venting", "EKA", function() -- Engineering muss Scince die Erlaubnis erteilen Kühlmittel abzulassen.
-		player:addCustomButton("science", "Coolant_Override", "Kühlmittel ausstoßen", function()
-			if coolant == nil then coolant = 0 end
-			coolant = coolant + 1
-			if coolant == 1 then
-				coolant_lvl = 3
-				for _, system in ipairs({"reactor", "beamweapons", "missilesystem", "maneuver", "impulse", "warp", "jumpdrive", "frontshield", "rearshield"}) do
-				player:setSystemHeat(system, 0.0)
-				end
-				player:removeCustom("Coolant_Info0")
-				player:addCustomInfo("engineering","Coolant_Info1","Coolant: 70%")
-				x_player, y_player = player:getPosition()
-				Nebula():setPosition(x_player, y_player)
-				--player:removeCustom("Coolant_Override")
-			end
-			if coolant == 2 then
-				coolant_lvl = 6
-				for _, system in ipairs({"reactor", "beamweapons", "missilesystem", "maneuver", "impulse", "warp", "jumpdrive", "frontshield", "rearshield"}) do
-				player:setSystemHeat(system, 0.0)
-				end
-				player:removeCustom("Coolant_Info1")
-				player:addCustomInfo("engineering","Coolant_Info2","Coolant: 40%")
-				x_player, y_player = player:getPosition()
-				Nebula():setPosition(x_player, y_player)
-				--player:removeCustom("Coolant_Override")
-			end
-			if coolant == 3 then
-				coolant_lvl = 9
-				for _, system in ipairs({"reactor", "beamweapons", "missilesystem", "maneuver", "impulse", "warp", "jumpdrive", "frontshield", "rearshield"}) do
-				player:setSystemHeat(system, 0.0)
-				end
-				player:removeCustom("Coolant_Info2")
-				player:addCustomInfo("engineering","Coolant_Info3","Coolant: 10%")
-				x_player, y_player = player:getPosition()
-				Nebula():setPosition(x_player, y_player)
-				--player:removeCustom("Coolant_Override")
-			end
-		end)
-	--end)	
+
+	-- Entscheidung welches "nicht vorhandene" Schiffssystem zum Kühlmittel abzug benutzt wird. --
+	if player:hasJumpDrive() then
 	player:commandSetSystemCoolantRequest("warp", coolant_lvl)
+	else
+	player:commandSetSystemCoolantRequest("jumpdrive", coolant_lvl)
+	end	
+	-- Ende der Entscheidung --
 	
+	-- Tarnnebelvernichtung --
+	if coolant_lvl == 3 then
+		if timer_neb1 == nil then timer_neb1 = 0 end
+		timer_neb1 = timer_neb1 + delta
+		if timer_neb1 > 5 then
+			neb1:destroy()
+			timer_neb1 = nil
+		end
+	elseif coolant_lvl == 6 then
+			if timer_neb2 == nil then timer_neb2 = 0 end
+		timer_neb2 = timer_neb2 + delta
+		if timer_neb2 > 5 then
+			neb2:destroy()
+			timer_neb2 = nil
+		end
+	elseif coolant_lvl == 9 then
+			if timer_neb3 == nil then timer_neb3 = 0 end
+		timer_neb3 = timer_neb3 + delta
+		if timer_neb3 > 5 then
+			neb3:destroy()
+			timer_neb3 = nil
+		end
+	end
+	-- Ende Tarnnebelvernichtung --
+	
+	-- Kühlmittel aufnahme --
 	if coolant > 0 then
 		local x0,y0 = player:getPosition()
 		local dummy_station = 0
@@ -857,6 +876,8 @@ function update (delta)
 		end
 		if dummy_station == 1 then
 			player:addCustomButton("relay","Coolant_Intake", "Kühlmittel aufnehmen", function()
+				player:removeCustom("Coolant_Info1")
+				player:removeCustom("Coolant_Info2")
 				player:removeCustom("Coolant_Info3")
 				player:addCustomInfo("engineering","Coolant_Info0","Coolant: 100%")
 				coolant = 0
@@ -865,5 +886,5 @@ function update (delta)
 			end)
 		end
 	end
--- Ende Kühlmittel Ausstoß --
+	-- Ende Kühlmittel aufnahme --
 end
