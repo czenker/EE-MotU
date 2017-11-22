@@ -5,13 +5,13 @@ require("utils.lua")
 function init()
 	player = PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Atlantis"):setPosition(82464, 294):setCallSign("TN Verdandi")
 	    for _, system in ipairs({"reactor", "beamweapons", "missilesystem", "maneuver", "impulse", "warp", "jumpdrive", "frontshield", "rearshield"}) do
-        --player:setSystemPower(system, 0.0) -- Diese beiden Zeilen setzen die "Leistung" der Systeme auf 0.0, Engineering muss quasi den Motor erstmal starten.
-        --player:commandSetSystemPowerRequest(system, 0.0)
+        player:setSystemPower(system, 0.0) -- Diese beiden Zeilen setzen die "Leistung" der Systeme auf 0.0, Engineering muss quasi den Motor erstmal starten.
+        player:commandSetSystemPowerRequest(system, 0.0)
 		end
 	Script():run("Solarer_Sektor.lua")
 	
 	-- SOL-SYSTEM
-	-- Stern und Planeten -- Die Artefakte dienen zur sichtbarmachung auf den Radarschirmen.
+	-- Stern und Planeten -- Die Artefakte dienen zur lesbarkeit auf den Radarschirmen.
 	sun1 = Planet():setPosition(120000, 0):setPlanetRadius(10000):setDistanceFromMovementPlane(-3000):setPlanetSurfaceTexture("planets/sun-1.png"):setPlanetAtmosphereTexture("planets/star-1.png"):setPlanetAtmosphereColor(1,0.5,0):setAxialRotationTime(1000)
 		sun2 = Artifact():setPosition(120000, 0):setModel("SensorBuoyMKI"):setCallSign("Sol"):setDescription("Stern: Sol. Im allgemeinen auch als Sonne bezeichnet."):setScanningParameters(1, 1):setFaction("Unabhängige")
 	merkur1 = Planet():setPosition(111664, -13005):setPlanetRadius(500):setDistanceFromMovementPlane(-50):setPlanetSurfaceTexture("planets/merkur-2.png")
@@ -644,15 +644,18 @@ mission_state = missionStartState
 		end)
 	end)
 	
-	addGMFunction("Kühlmittel", function()
-		addGMFunction("KMA erlauben", coolant_f) -- Kühlmittelaustoß erlauben
+	addGMFunction("Kühlmittel", function() -- Öffnet die Optionen für Kühlmittelausstoß
+		addGMFunction("KMA erlauben", coolant_f) -- Kühlmittelausstoß erlauben
+		addGMFunction("KMA entziehen", function() -- Kühlmittelausstoß entziehen
+			player:removeCustom("Coolant_Override")
+		end)		
 		addGMFunction("KM Reset", function() -- Reset Kühlmittel
-		coolant = 0
-		coolant_lvl = nil
+			coolant = 0
+			coolant_lvl = nil
 		end)		
 	end)
 
-	addGMFunction("Säubern", function() -- löscht die Bergbau und Politik Befehle um das GM Menü übersichtlich zu halten.
+	addGMFunction("Säubern", function() -- löscht alle Optionen mit außnahme der Startoptionen.
 	removeGMFunction("Krieg")
 	removeGMFunction("Friede")
 	removeGMFunction("Solare Allianz")
@@ -663,6 +666,7 @@ mission_state = missionStartState
 	removeGMFunction("Erz -")
 	removeGMFunction("KMA erlauben")
 	removeGMFunction("KM Reset")
+	removeGMFunction("KMA entziehen")
 	end)
 	-- GM Befehle Ende --
 end
