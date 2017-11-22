@@ -1,15 +1,13 @@
 -- Name: SOL-System-Beginning
 -- Description: Erde und Mars stehen in einem brüchigen Frieden
 -- Type: Basic
-
+require("utils.lua")
 function init()
-	player = PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Atlantis"):setPosition(82464, 294):setCallSign("Cerberus")
+	player = PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Atlantis"):setPosition(82464, 294):setCallSign("TN Verdandi")
 	    for _, system in ipairs({"reactor", "beamweapons", "missilesystem", "maneuver", "impulse", "warp", "jumpdrive", "frontshield", "rearshield"}) do
         --player:setSystemPower(system, 0.0) -- Diese beiden Zeilen setzen die "Leistung" der Systeme auf 0.0, Engineering muss quasi den Motor erstmal starten.
         --player:commandSetSystemPowerRequest(system, 0.0)
 		end
-		coolant = 0 -- Werte für das Kühlmittelscript am Ende
-		coolant_lvl = nil
 	Script():run("Solarer_Sektor.lua")
 	
 	-- SOL-SYSTEM
@@ -489,7 +487,8 @@ function init()
 
 	-- Raumstationen
 	earthstation1 = 	SpaceStation():setPosition(82286, 167):setTemplate("Medium Station"):setFaction("Terranische Navy"):setRotation(random(0, 360)):setCallSign("TN Alpharius-01"):setDescription("Alpharius. Werft und Basis aller bisheriger TN Operationen."):setScanningParameters(0, 0)
-	player:commandDock(earthstation1)
+	earthstation1:setCommsFunction(earthstation1_call)
+	--player:commandDock(earthstation1)
 	marsstation1 = 		SpaceStation():setTemplate("Medium Station"):setFaction("Mars Tech Union"):setCallSign("MTU Ares-01"):setPosition(148108, -29222):setDescription("Ares-01. Werft und Hauptverteidigungslinie der Mars Tech Union.")
 	jupiterstation1 = 	SpaceStation():setTemplate("Small Station"):setFaction("Unabhängige"):setCallSign("JS-I"):setPosition(177406, -9858):setDescription("Hauptstadt der Freien. Gerüchteweise ist es ihnen egal wer zum Handeln kommt. Ein jeder wird gleich behandelt."):setScanningParameters(0, 0)
 	venusstation1 = 	SpaceStation():setTemplate("Small Station"):setFaction("Unabhängige"):setCallSign("HS-I"):setPosition(140114, 15979):setDescription("Freie Handelststation im Venusorbit. Bekannt für seine Bordelle und Casinos."):setScanningParameters(0, 0)
@@ -516,9 +515,10 @@ function init()
 	Transport_5=    CpuShip():setFaction("Unabhängige"):setTemplate("Equipment Freighter 5"):setCallSign("UH LA-02"):setPosition(152108, -26265):orderDock(neptunstation1)
 		Transport_5:setScanningParameters(0, 0)
 		Transport_5:setDescription("Typ: Handelsschiff \nDie verkratzte Oberfläche des Schiffes deutet auf häufige passagen durch den Asteroiden Gürtel.")
-	Transport_6=    CpuShip():setFaction("Unabhängige"):setTemplate("Personnel Freighter 5"):setCallSign("UH WC-26"):setPosition(138346, 18675):orderDock(earthstation1)
+	Transport_6=    CpuShip():setFaction("Unabhängige"):setTemplate("Personnel Freighter 5"):setCallSign("UH WC-26"):setPosition(113500, 27754):orderDock(earthstation1):setCommsFunction(WC_26_6_call)
 		Transport_6:setScanningParameters(0, 0)
-		Transport_6:setDescription("Typ: Personenfähre \nDas Schiff ist ein Personaltransporter. Fluktuationen der Deflektorschilde machen das Schiff leicht erkennbar.")
+		Transport_6:setDescription("Typ: Personenfähre \nDas Schiff ist ein Personaltransporter. Fluktuationen der Deflektorschilde machen das Schiff leicht erkennbar. Zudem scheinen die Triebwerke nicht sauber zu laufen.")
+		Transport_6:setImpulseMaxSpeed(0)
 	Transport_7=    CpuShip():setFaction("Unabhängige"):setTemplate("Flavia"):setCallSign("UH JJ-08"):setPosition(70087, -38142):orderDock(asteroidenstation1):setImpulseMaxSpeed(45.0):setRotationMaxSpeed(10.0)
 		Transport_7:setScanningParameters(0, 0)
 		Transport_7:setDescription("Typ: Handelsschiff \nPrivates Handelsschiff. Erhöhte Energiesignatur deutet auf modifizerte Systeme hin.")
@@ -570,7 +570,9 @@ function init()
     mtu_07=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Cruiser"):setCallSign("MTU Mefisto"):setPosition(144896, -27251):orderDefendLocation(144896, -27251)
     mtu_08=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Cruiser"):setCallSign("MTU FuckYou"):setPosition(142860, 10991):orderDefendLocation(142860, 10991)
 	-- Raumschiffe Ende
-	
+
+mission_state = missionStartState
+
 	-- GM Befehle --
 	addGMFunction("Bergbau", function() --Startet das Bergbau Script. --
 		Script():run("scenario_mineral_de.lua")
@@ -665,6 +667,105 @@ function init()
 	-- GM Befehle Ende --
 end
 
+function earthstation1_call()
+	if mission_state == missionStartState then
+		setCommsMessage([[TN Alpharius-01 an TN Verdandi.
+		
+Sie haben das fortschrittlichste Schiff das bisher unsere Werft verlassen hat. Es handelt sich um das erste WARP 4 Schiff der Flotte.]])
+			addCommsReply("Nachricht erhalten.", function()
+				mission_state = ongoging
+				Transport_6:setSystemHealth("impulse", -100):setSystemHealth("maneuver", -100)
+				setCommsMessage([[Gut, die Comms funktioniert demnach. Wir haben bereits den ersten Auftrag für sie.
+				
+Die UH WC-26 meldet einen Notfall. Fahren sie ihren Reaktor und alle anderen Systeme hoch und docken sie ab.]])
+					addCommsReply("Auftrag erhalten.", function()
+						missions_state = stillongoing
+						comm_stat = 1
+						setCommsMessage([[TN Verdandi, melden sie sich wenn die Mission erledigt ist.
+
+Wir wünschen ihnen einen guten Jungfernflug!]])
+					end)
+			end)
+	end
+end
+
+function WC_26_6_call()
+	
+	if comm_stat == 1 then
+		setCommsMessage([[Autom#'ischer N07ruf der 9H =r~§ona
+	
+Auafsll der Trirewbeke, begitönen dregnind Hefli. Die Comtsysretupeme spleien vekcürrt, Sednen sie eenin Res0n4nz1mpul5 üebr irhe 5ch1lde!
+Deis stlloe das Comsysretuptem aus der Feeelhcskcabdife brnneen und kalletstlen dimat wir es euenrt sttraen köennn.
+
+M3ld3n 513 s1ch euenrt an wnen sie un73r 3U haren sdni.]])
+				addCommsReply("UH Arizona, wir haben ihren Notruf erhalten.", function()
+					comm_stat = 2
+					setCommsMessage("=/98(§?´´'+987da;")
+				end)
+				
+	end
+	
+	if distance(comms_source, comms_target) < 3000 and comm_stat == 2 then
+        setCommsMessage([[Gut jetzt da sie näher dran sind, können wir mit den P-Comms kommunizieren. 
+
+Bitte aktivieren sie ihre Schilde in der korrekten Frequenz. Ihr Wissenschaftsoffizer sollte in der Lage sein unsere genau Frequenz festzustellen.
+Sind die Schilde aktiv und die korrekte Frequenz eingestellt worden, lassen sie den Waffenoffizier den Impuls senden.]]);
+		addCommsReply("Frequenz abgleichen.", function()
+			commsHackedShipCompare()
+		end)
+	end
+	
+	if distance(comms_source, comms_target) > 3000 and comm_stat == 2 then
+		setCommsMessage([[>>> Schiff außer Reichweite <<<]])
+	end
+	
+	if comm_stat == 3 then
+		setCommsMessage("Hervorragende Arbeit! Die Maschiene läuft wieder wie sie es soll!")
+			addCommsReply("Können wir ihnen noch anderweitig helfen?", function()
+				setCommsMessage([[Nein vielen Dank! 
+				
+UH Arizona Ende.]])
+				comm_stat = nil
+			end)
+			addCommsReply("Lassen sie ihren Schrotthaufen überholen!", function()
+				setCommsMessage([[Haben Verstanden. Das geht aber auch freundlicher.
+
+UH Arizona Ende.]])
+				player:takeReputationPoints(50.0)
+				comm_stat = nil
+			end)
+	end
+end
+
+function commsHackedShipCompare()
+    frequency1 = 400 + (comms_target:getShieldsFrequency() * 20)
+	frequency2 = 400 + (comms_source:getShieldsFrequency() * 20)
+	if (frequency1 == frequency2) and player:getShieldsActive() then
+        setCommsMessage("Frequenzabgleich war erfolgreich.")
+        addCommsReply("Impulsfreigabe für den Waffenoffizier", function()
+			setCommsMessage("Senden sie den Impuls und kontaktieren sie uns danach wieder!")
+			player:addCustomButton("weapons","IMPULS_SHILD", "IMPULS", function()
+				comms_target:setSystemHealth("impulse", 0):setSystemHealth("maneuver", 0):orderDock(earthstation1):setImpulseMaxSpeed(35)
+				player:addReputationPoints(250.0)
+				comm_stat = 3
+				player:removeCustom("IMPULS_SHILD")
+			end)
+        end)  
+	else
+        setCommsMessage([[Frequenzabgleich war erfolglos!
+
+Stellen sie sicher das ihre Schilde aktiviert sind und die richtige Frequenz eingestellt wurde.]])
+			addCommsReply("Frequenz erneut abgleichen.", function()
+			commsHackedShipCompare()
+		end)
+	end
+end
+
+function missionStartState()
+-- Missions Beginn --
+earthstation1:openCommsTo(player)
+-- Missions Ende --
+end
 
 function coolant_f()
 -- Kühlmittel Ausstoß --
@@ -713,9 +814,13 @@ function coolant_f()
 -- Ende Kühlmittel Ausstoß --
 end
 
-
-
 function update (delta)
+	-- Keine Ahnung warum das notwendig ist, MissionsStatus--
+    if mission_state ~= nil then
+        mission_state(delta)
+    end
+	-- Ende MissionsStatus--
+	
 -- Details über die Handelsschiffe.
 	if Transport_1 ~= nil and Transport_1:isScannedBy(player) then
 		Transport_1:setDescription("Lebenszeichen:\n1 Mensch \n2 Katzen \nKapitän Haviland Tuf, der Besitzer dieses Schiffs, ihr name ist -Füllhorn der excellenten Güter und niedrigen Preise-, ein gutmütiger und stehts freundlicher Händler. Jedoch sollte man ihn nicht unterschätzen und er mag Katzen.")
@@ -747,7 +852,7 @@ function update (delta)
 	end
 	if Transport_6 ~= nil and Transport_6:isScannedBy(player) then
 		Transport_6:setDescription("Lebenszeichen:\n54 Menschen \nKapitän: W.Cheng \nErster Offizier: T.Long \nTechniker: S.Müller \n Arzt: D.Smith \nPassagier01: L.Worlas \nPassagier02: K.Limbert \nPassagier03: U.Sambert \nPassagier04: E.Plater \nPassagier05: K.Friedrich \nPassagier06: F.Disch \nPassagier07: G.Weiter \nWeitere Namen werden geladen...")
-		Transport_6:setCallSign("UH Petrus")
+		Transport_6:setCallSign("UH Arizona")
 	Transport_6 = nil
 	end
 	if Transport_7 ~= nil and Transport_7:isScannedBy(player) then
@@ -756,7 +861,7 @@ function update (delta)
 	Transport_7 = nil
 	end
 	if Transport_8 ~= nil and Transport_8:isScannedBy(player) then
-		Transport_8:setDescription("Lebenszeichen:\n4 Menschen \nKapitän: A.Coblenz\nErster Offizier: E.Ripley\n\nLadung: \nVeruchstiere und einige Güter des täglichen Bedarfs.")
+		Transport_8:setDescription("Lebenszeichen:\n4 Menschen \nKapitän: A.Coblenz\nErster Offizier: E.Ripley\n\nLadung: \nVersuchstiere und einige Güter des täglichen Bedarfs.")
 		Transport_8:setCallSign("UH Nostromo")
 	Transport_8 = nil
 	end
@@ -846,21 +951,21 @@ function update (delta)
 	if coolant_lvl == 3 then
 		if timer_neb1 == nil then timer_neb1 = 0 end
 		timer_neb1 = timer_neb1 + delta
-		if timer_neb1 > 5 then
+		if timer_neb1 > 10 then
 			neb1:destroy()
 			timer_neb1 = nil
 		end
 	elseif coolant_lvl == 6 then
 			if timer_neb2 == nil then timer_neb2 = 0 end
 		timer_neb2 = timer_neb2 + delta
-		if timer_neb2 > 5 then
+		if timer_neb2 > 10 then
 			neb2:destroy()
 			timer_neb2 = nil
 		end
 	elseif coolant_lvl == 9 then
 			if timer_neb3 == nil then timer_neb3 = 0 end
 		timer_neb3 = timer_neb3 + delta
-		if timer_neb3 > 5 then
+		if timer_neb3 > 10 then
 			neb3:destroy()
 			timer_neb3 = nil
 		end
