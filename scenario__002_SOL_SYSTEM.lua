@@ -1,5 +1,5 @@
 -- Name: SOL-System-Beginning
--- Description: Erde und Mars stehen in einem brüchigen Frieden
+-- Description: Erde und Mars stehen in einem brÃ¼chigen Frieden
 -- Type: Basic
 require("utils.lua")
 function init()
@@ -13,27 +13,27 @@ function init()
 	-- SOL-SYSTEM
 	-- Stern und Planeten -- Die Artefakte dienen zur lesbarkeit auf den Radarschirmen.
 	sun1 = Planet():setPosition(120000, 0):setPlanetRadius(10000):setDistanceFromMovementPlane(-3000):setPlanetSurfaceTexture("planets/sun-1.png"):setPlanetAtmosphereTexture("planets/star-1.png"):setPlanetAtmosphereColor(1,0.5,0):setAxialRotationTime(1000)
-		sun2 = Artifact():setPosition(120000, 0):setModel("SensorBuoyMKI"):setCallSign("Sol"):setDescription("Stern: Sol. Im allgemeinen auch als Sonne bezeichnet."):setScanningParameters(1, 1):setFaction("Unabhängige")
+		sun2 = Artifact():setPosition(120000, 0):setModel("SensorBuoyMKI"):setCallSign("Sol"):setDescription("Stern: Sol. Im allgemeinen auch als Sonne bezeichnet."):setScanningParameters(1, 1):setFaction("UnabhÃ¤ngige")
 	merkur1 = Planet():setPosition(111664, -13005):setPlanetRadius(500):setDistanceFromMovementPlane(-50):setPlanetSurfaceTexture("planets/merkur-2.png")
-		merkur2 = Artifact():setPosition(111664, -13005):setModel("SensorBuoyMKI"):setCallSign("Merkur"):setDescription("Planet: Merkur."):setScanningParameters(1, 1):setFaction("Unabhängige")
+		merkur2 = Artifact():setPosition(111664, -13005):setModel("SensorBuoyMKI"):setCallSign("Merkur"):setDescription("Planet: Merkur."):setScanningParameters(1, 1):setFaction("UnabhÃ¤ngige")
 	venus1 = Planet():setPosition(137872, 14535):setPlanetRadius(1000):setDistanceFromMovementPlane(-500):setPlanetSurfaceTexture("planets/venus-2.png"):setPlanetCloudTexture("planets/venus-2.png"):setPlanetAtmosphereTexture("planets/venus-2.png"):setPlanetAtmosphereColor(-1,-1,-1):setAxialRotationTime(2000.0)
-		venus2 = Artifact():setPosition(137872, 14535):setModel("SensorBuoyMKI"):setCallSign("Venus"):setDescription("Planet: Venus."):setScanningParameters(1, 1):setFaction("Unabhängige")
+		venus2 = Artifact():setPosition(137872, 14535):setModel("SensorBuoyMKI"):setCallSign("Venus"):setDescription("Planet: Venus."):setScanningParameters(1, 1):setFaction("UnabhÃ¤ngige")
 	earth1 = Planet():setPosition(85250, -519):setPlanetRadius(1250):setDistanceFromMovementPlane(-700):setPlanetSurfaceTexture("planets/earth-1.png"):setPlanetCloudTexture("planets/clouds-1.png"):setPlanetAtmosphereTexture("planets/atmosphere.png"):setPlanetAtmosphereColor(0.2,0.2,1.0):setAxialRotationTime(1000.0)
-		earth2 = Artifact():setPosition(85250, -519):setModel("SensorBuoyMKI"):setCallSign("Terra"):setDescription("Planet: Erde. Von manchen Religiösen auch Gaia genannt."):setScanningParameters(1, 1):setFaction("Terranische Navy")
+		earth2 = Artifact():setPosition(85250, -519):setModel("SensorBuoyMKI"):setCallSign("Terra"):setDescription("Planet: Erde. Von manchen ReligiÃ¶sen auch Gaia genannt."):setScanningParameters(1, 1):setFaction("Terranische Navy")
 	moon1 = Planet():setPosition(83526, 1936):setPlanetRadius(500):setPlanetSurfaceTexture("planets/moon-2.png")
-		moon2 = Artifact():setPosition(83526, 1936):setModel("SensorBuoyMKI"):setCallSign("TN C&C"):setDescription("Mond. \n\n Auf dem Trabanten der Erde befindet sich die ausgelagerte Basis der Terranischen Navy. Von hier steuert und überwacht die Admiralität die Terranische Flotte."):setScanningParameters(1, 0):setFaction("Terranische Navy")
+		moon2 = Artifact():setPosition(83526, 1936):setModel("SensorBuoyMKI"):setCallSign("TN C&C"):setDescription("Mond. \n\n Auf dem Trabanten der Erde befindet sich die ausgelagerte Basis der Terranischen Navy. Von hier steuert und Ã¼berwacht die AdmiralitÃ¤t die Terranische Flotte."):setScanningParameters(1, 0):setFaction("Terranische Navy")
 	mars1 = Planet():setPosition(150735, -30537):setCallSign("Mars Comm-Link-Station"):setPlanetRadius(1100):setDistanceFromMovementPlane(-700):setPlanetSurfaceTexture("planets/mars-1.png"):setPlanetAtmosphereTexture("planets/atmosphere.png"):setPlanetAtmosphereColor(0.1,0.1,0.1):setAxialRotationTime(1000.0)
 		mars2 = Artifact():setPosition(150735, -30537):setModel("SensorBuoyMKI"):setCallSign("Mars"):setDescription("Planet: Mars."):setScanningParameters(1, 1):setFaction("Mars Tech Union")
 	jupiter1 = Planet():setPosition(173499, -6871):setPlanetRadius(3000):setPlanetSurfaceTexture("planets/jupiter-1.png"):setPlanetAtmosphereTexture("planets/atmosphere.png"):setPlanetAtmosphereColor(0.1,0.1,0.1):setAxialRotationTime(25.0)
-		jupiter2 = Artifact():setPosition(173499, -6871):setModel("SensorBuoyMKI"):setCallSign("Jupiter"):setDescription("Planet: Jupiter."):setScanningParameters(1, 1):setFaction("Unabhängige")
+		jupiter2 = Artifact():setPosition(173499, -6871):setModel("SensorBuoyMKI"):setCallSign("Jupiter"):setDescription("Planet: Jupiter."):setScanningParameters(1, 1):setFaction("UnabhÃ¤ngige")
 	saturn1 = Planet():setPosition(75271, -45952):setPlanetRadius(2500):setPlanetSurfaceTexture("planets/saturn-1.png"):setPlanetAtmosphereTexture("planets/atmosphere.png"):setPlanetAtmosphereColor(0.1,0.1,0.1):setAxialRotationTime(200.0)
-		saturn2 = Artifact():setPosition(75271, -45952):setModel("SensorBuoyMKI"):setCallSign("Saturn"):setDescription("Planet: Saturn."):setScanningParameters(1, 1):setFaction("Unabhängige")
+		saturn2 = Artifact():setPosition(75271, -45952):setModel("SensorBuoyMKI"):setCallSign("Saturn"):setDescription("Planet: Saturn."):setScanningParameters(1, 1):setFaction("UnabhÃ¤ngige")
 	uranus1 = Planet():setPosition(164408, 68598):setPlanetRadius(2000):setDistanceFromMovementPlane(-1250):setPlanetSurfaceTexture("planets/uranus-1.png"):setPlanetAtmosphereTexture("planets/atmosphere.png"):setPlanetAtmosphereColor(0.1,0.1,0.1):setAxialRotationTime(200.0)
-		uranus2 = Artifact():setPosition(164408, 68598):setModel("SensorBuoyMKI"):setCallSign("Uranus"):setDescription("Planet: Uranus."):setScanningParameters(1, 1):setFaction("Unabhängige")
+		uranus2 = Artifact():setPosition(164408, 68598):setModel("SensorBuoyMKI"):setCallSign("Uranus"):setDescription("Planet: Uranus."):setScanningParameters(1, 1):setFaction("UnabhÃ¤ngige")
 	neptun1 = Planet():setPosition(47779, 72861):setPlanetRadius(2000):setDistanceFromMovementPlane(-1250):setPlanetSurfaceTexture("planets/neptun-1.png"):setPlanetAtmosphereTexture("planets/atmosphere.png"):setPlanetAtmosphereColor(0.1,0.1,0.1):setAxialRotationTime(200.0)
-		neptun2 = Artifact():setPosition(47779, 72861):setModel("SensorBuoyMKI"):setCallSign("Neptun"):setDescription("Planet: Neptun."):setScanningParameters(1, 1):setFaction("Unabhängige")
+		neptun2 = Artifact():setPosition(47779, 72861):setModel("SensorBuoyMKI"):setCallSign("Neptun"):setDescription("Planet: Neptun."):setScanningParameters(1, 1):setFaction("UnabhÃ¤ngige")
 	pluto1 = Planet():setPosition(182630, -112156):setPlanetRadius(400):setPlanetSurfaceTexture("planets/pluto-1.png"):setAxialRotationTime(100.0)
-		pluto2 = Artifact():setPosition(182630, -112156):setModel("SensorBuoyMKI"):setCallSign("Pluto"):setDescription("Planet: Pluto."):setScanningParameters(1, 1):setFaction("Unabhängige")
+		pluto2 = Artifact():setPosition(182630, -112156):setModel("SensorBuoyMKI"):setCallSign("Pluto"):setDescription("Planet: Pluto."):setScanningParameters(1, 1):setFaction("UnabhÃ¤ngige")
 	-- Stern und Planeten Ende
 	
 	-- Saturn Ring
@@ -225,7 +225,7 @@ function init()
     Asteroid():setPosition(71193, -46326)
 	-- Saturn Ring Ende
 	
-	-- Innerer Asteroidengürtel
+	-- Innerer AsteroidengÃ¼rtel
 	Asteroid():setPosition(92697, -42137)
     Asteroid():setPosition(92836, -40885)
     Asteroid():setPosition(94784, -42415)
@@ -483,63 +483,63 @@ function init()
     Asteroid():setPosition(70718, -1936)
     Asteroid():setPosition(70858, 3211)
     Asteroid():setPosition(70301, 12)
-	-- Innerer Asteroidengürtel Ende
+	-- Innerer AsteroidengÃ¼rtel Ende
 
 	-- Raumstationen
 	earthstation1 = 	SpaceStation():setPosition(82286, 167):setTemplate("Medium Station"):setFaction("Terranische Navy"):setRotation(random(0, 360)):setCallSign("TN Alpharius-01"):setDescription("Alpharius. Werft und Basis aller bisheriger TN Operationen."):setScanningParameters(0, 0)
 	earthstation1:setCommsFunction(earthstation1_call)
 	--player:commandDock(earthstation1)
 	marsstation1 = 		SpaceStation():setTemplate("Medium Station"):setFaction("Mars Tech Union"):setCallSign("MTU Ares-01"):setPosition(148108, -29222):setDescription("Ares-01. Werft und Hauptverteidigungslinie der Mars Tech Union.")
-	jupiterstation1 = 	SpaceStation():setTemplate("Small Station"):setFaction("Unabhängige"):setCallSign("JS-I"):setPosition(177406, -9858):setDescription("Hauptstadt der Freien. Gerüchteweise ist es ihnen egal wer zum Handeln kommt. Ein jeder wird gleich behandelt."):setScanningParameters(0, 0)
-	venusstation1 = 	SpaceStation():setTemplate("Small Station"):setFaction("Unabhängige"):setCallSign("HS-I"):setPosition(140114, 15979):setDescription("Freie Handelststation im Venusorbit. Bekannt für seine Bordelle und Casinos."):setScanningParameters(0, 0)
-	saturnstation1 =    SpaceStation():setTemplate("Small Station"):setFaction("Unabhängige"):setCallSign("HS-III"):setPosition(72826, -40565):setDescription("Eine der größten Mine im System. Mehr Mineralabbau gibt es nur im Asteroidengürtel."):setScanningParameters(0, 0)
+	jupiterstation1 = 	SpaceStation():setTemplate("Small Station"):setFaction("UnabhÃ¤ngige"):setCallSign("JS-I"):setPosition(177406, -9858):setDescription("Hauptstadt der Freien. GerÃ¼chteweise ist es ihnen egal wer zum Handeln kommt. Ein jeder wird gleich behandelt."):setScanningParameters(0, 0)
+	venusstation1 = 	SpaceStation():setTemplate("Small Station"):setFaction("UnabhÃ¤ngige"):setCallSign("HS-I"):setPosition(140114, 15979):setDescription("Freie Handelststation im Venusorbit. Bekannt fÃ¼r seine Bordelle und Casinos."):setScanningParameters(0, 0)
+	saturnstation1 =    SpaceStation():setTemplate("Small Station"):setFaction("UnabhÃ¤ngige"):setCallSign("HS-III"):setPosition(72826, -40565):setDescription("Eine der grÃ¶ÃŸten Mine im System. Mehr Mineralabbau gibt es nur im AsteroidengÃ¼rtel."):setScanningParameters(0, 0)
 	uranusstation1 =    SpaceStation():setTemplate("Small Station"):setFaction("Piraten"):setCallSign("Tortuga-Station"):setPosition(166434, 71341):setDescription("Es gibt hier nur Monster. Wenn du eins bist, willkommen! Setz dich, nimm einen Krug Grogg und habe einen Profitabelen Tag.")
-	neptunstation1 = 	SpaceStation():setTemplate("Small Station"):setFaction("Unabhängige"):setCallSign("HS-V"):setPosition(50693, 70482):setDescription(""):setScanningParameters(0, 0)
-	asteroidenstation1 =SpaceStation():setTemplate("Small Station"):setFaction("Unabhängige"):setCallSign("HS-IV"):setPosition(111996, 49541):setDescription(""):setScanningParameters(0, 0)
+	neptunstation1 = 	SpaceStation():setTemplate("Small Station"):setFaction("UnabhÃ¤ngige"):setCallSign("HS-V"):setPosition(50693, 70482):setDescription(""):setScanningParameters(0, 0)
+	asteroidenstation1 =SpaceStation():setTemplate("Small Station"):setFaction("UnabhÃ¤ngige"):setCallSign("HS-IV"):setPosition(111996, 49541):setDescription(""):setScanningParameters(0, 0)
 	-- Raumstation Ende
 
 	-- Raumschiffe
-	-- Unabhängige Transporter
-	Transport_1=	CpuShip():setFaction("Unabhängige"):setTemplate("Equipment Freighter 4"):setCallSign("UH HT-09"):setPosition(73503, -40404):orderDock(jupiterstation1)
+	-- UnabhÃ¤ngige Transporter
+	Transport_1=	CpuShip():setFaction("UnabhÃ¤ngige"):setTemplate("Equipment Freighter 4"):setCallSign("UH HT-09"):setPosition(73503, -40404):orderDock(jupiterstation1)
 		Transport_1:setScanningParameters(0, 0)
 		Transport_1:setDescription("Typ: Handelsschiff \nWirkt wie ein sehr heruntergekommener Frachter der Nebulon-Klasse.")
-	Transport_2=    CpuShip():setFaction("Unabhängige"):setTemplate("Equipment Freighter 4"):setCallSign("UH PR-16"):setPosition(83859, 4035):orderDock(marsstation1)
+	Transport_2=    CpuShip():setFaction("UnabhÃ¤ngige"):setTemplate("Equipment Freighter 4"):setCallSign("UH PR-16"):setPosition(83859, 4035):orderDock(marsstation1)
 		Transport_2:setScanningParameters(0, 0)
-		Transport_2:setDescription("Typ: Handelsschiff \nFrisch lackierter Frachter der Nebulon-Klasse. Wirkt als wäre es frisch aus dem Raumhafen gekommen.")
-	Transport_3=    CpuShip():setFaction("Unabhängige"):setTemplate("Fuel Freighter 1"):setCallSign("UH GB-14"):setPosition(181053, -5324):orderDock(venusstation1)
+		Transport_2:setDescription("Typ: Handelsschiff \nFrisch lackierter Frachter der Nebulon-Klasse. Wirkt als wÃ¤re es frisch aus dem Raumhafen gekommen.")
+	Transport_3=    CpuShip():setFaction("UnabhÃ¤ngige"):setTemplate("Fuel Freighter 1"):setCallSign("UH GB-14"):setPosition(181053, -5324):orderDock(venusstation1)
 		Transport_3:setScanningParameters(0, 0)
-		Transport_3:setDescription("Typ: Handelsschiff \nHochtechnisierter Frachter für Treibstoffe. Wirkt gut gewartet.")
-	Transport_4=    CpuShip():setFaction("Unabhängige"):setTemplate("Transport3x1"):setCallSign("UH XX-X4"):setPosition(143722, 17680):orderDock(uranusstation1)
+		Transport_3:setDescription("Typ: Handelsschiff \nHochtechnisierter Frachter fÃ¼r Treibstoffe. Wirkt gut gewartet.")
+	Transport_4=    CpuShip():setFaction("UnabhÃ¤ngige"):setTemplate("Transport3x1"):setCallSign("UH XX-X4"):setPosition(143722, 17680):orderDock(uranusstation1)
 		Transport_4:setScanningParameters(1, 4)
-		Transport_4:setDescription("Typ: Handelsschiff \nTransport für Nukleares Material. Die Strahlungswerte sind so stark das so zimelich alles in seiner nähe überdeckt wird.")
-	Transport_5=    CpuShip():setFaction("Unabhängige"):setTemplate("Equipment Freighter 5"):setCallSign("UH LA-02"):setPosition(152108, -26265):orderDock(neptunstation1)
+		Transport_4:setDescription("Typ: Handelsschiff \nTransport fÃ¼r Nukleares Material. Die Strahlungswerte sind so stark das so zimelich alles in seiner nÃ¤he Ã¼berdeckt wird.")
+	Transport_5=    CpuShip():setFaction("UnabhÃ¤ngige"):setTemplate("Equipment Freighter 5"):setCallSign("UH LA-02"):setPosition(152108, -26265):orderDock(neptunstation1)
 		Transport_5:setScanningParameters(0, 0)
-		Transport_5:setDescription("Typ: Handelsschiff \nDie verkratzte Oberfläche des Schiffes deutet auf häufige passagen durch den Asteroiden Gürtel.")
-	Transport_6=    CpuShip():setFaction("Unabhängige"):setTemplate("Personnel Freighter 5"):setCallSign("UH WC-26"):setPosition(113500, 27754):orderDock(earthstation1):setCommsFunction(WC_26_6_call)
+		Transport_5:setDescription("Typ: Handelsschiff \nDie verkratzte OberflÃ¤che des Schiffes deutet auf hÃ¤ufige passagen durch den Asteroiden GÃ¼rtel.")
+	Transport_6=    CpuShip():setFaction("UnabhÃ¤ngige"):setTemplate("Personnel Freighter 5"):setCallSign("UH WC-26"):setPosition(113500, 27754):orderDock(earthstation1):setCommsFunction(WC_26_6_call)
 		Transport_6:setScanningParameters(0, 0)
-		Transport_6:setDescription("Typ: Personenfähre \nDas Schiff ist ein Personaltransporter. Fluktuationen der Deflektorschilde machen das Schiff leicht erkennbar. Zudem scheinen die Triebwerke nicht sauber zu laufen.")
+		Transport_6:setDescription("Typ: PersonenfÃ¤hre \nDas Schiff ist ein Personaltransporter. Fluktuationen der Deflektorschilde machen das Schiff leicht erkennbar. Zudem scheinen die Triebwerke nicht sauber zu laufen.")
 		Transport_6:setImpulseMaxSpeed(0)
-	Transport_7=    CpuShip():setFaction("Unabhängige"):setTemplate("Flavia"):setCallSign("UH JJ-08"):setPosition(70087, -38142):orderDock(asteroidenstation1):setImpulseMaxSpeed(45.0):setRotationMaxSpeed(10.0)
+	Transport_7=    CpuShip():setFaction("UnabhÃ¤ngige"):setTemplate("Flavia"):setCallSign("UH JJ-08"):setPosition(70087, -38142):orderDock(asteroidenstation1):setImpulseMaxSpeed(45.0):setRotationMaxSpeed(10.0)
 		Transport_7:setScanningParameters(0, 0)
-		Transport_7:setDescription("Typ: Handelsschiff \nPrivates Handelsschiff. Erhöhte Energiesignatur deutet auf modifizerte Systeme hin.")
-	Transport_8=    CpuShip():setFaction("Unabhängige"):setTemplate("Goods Freighter 5"):setCallSign("UH ER-10"):setPosition(86565, -6330):orderDock(asteroidenstation1)
+		Transport_7:setDescription("Typ: Handelsschiff \nPrivates Handelsschiff. ErhÃ¶hte Energiesignatur deutet auf modifizerte Systeme hin.")
+	Transport_8=    CpuShip():setFaction("UnabhÃ¤ngige"):setTemplate("Goods Freighter 5"):setCallSign("UH ER-10"):setPosition(86565, -6330):orderDock(asteroidenstation1)
 		Transport_8:setScanningParameters(0, 0)
-		Transport_8:setDescription("Typ: Handelsschiff \nHandelsschiff eines groß Unternehmens auf der Erde. Äussere Markierungen weisen auf die >Weyland-Yutani Corporation< hin.")
-	Transport_9=    CpuShip():setFaction("Unabhängige"):setTemplate("Garbage Freighter 2"):setCallSign("UH CD-22"):setPosition(173588, 1005):orderDock(asteroidenstation1)
+		Transport_8:setDescription("Typ: Handelsschiff \nHandelsschiff eines groÃŸ Unternehmens auf der Erde. Ã„ussere Markierungen weisen auf die >Weyland-Yutani Corporation< hin.")
+	Transport_9=    CpuShip():setFaction("UnabhÃ¤ngige"):setTemplate("Garbage Freighter 2"):setCallSign("UH CD-22"):setPosition(173588, 1005):orderDock(asteroidenstation1)
 		Transport_9:setScanningParameters(0, 0)
-		Transport_9:setDescription("Typ: Wertstofffrachter \nÄußerlich keine Besonderheiten zu erkennen.")
-	Transport_10=   CpuShip():setFaction("Unabhängige"):setTemplate("Personnel Freighter 2"):setCallSign("UH PK-12"):setPosition(175992, -17068):orderDock(saturnstation1)
+		Transport_9:setDescription("Typ: Wertstofffrachter \nÃ„uÃŸerlich keine Besonderheiten zu erkennen.")
+	Transport_10=   CpuShip():setFaction("UnabhÃ¤ngige"):setTemplate("Personnel Freighter 2"):setCallSign("UH PK-12"):setPosition(175992, -17068):orderDock(saturnstation1)
 		Transport_10:setScanningParameters(0, 0)
-		Transport_10:setDescription("Typ: Personenfähre \nKleiner Personentransporter, er scheint ein paar Treffer an seiner Hülle abbekommen zu haben.")
-	Transport_11=	CpuShip():setFaction("Unabhängige"):setTemplate("Transport3x2"):setCallSign("UH SJ-11"):setPosition(172131, -34223):orderFlyTowards(78674, 3085)
+		Transport_10:setDescription("Typ: PersonenfÃ¤hre \nKleiner Personentransporter, er scheint ein paar Treffer an seiner HÃ¼lle abbekommen zu haben.")
+	Transport_11=	CpuShip():setFaction("UnabhÃ¤ngige"):setTemplate("Transport3x2"):setCallSign("UH SJ-11"):setPosition(172131, -34223):orderFlyTowards(78674, 3085)
 		Transport_11:setScanningParameters(0, 0)
-		Transport_11:setDescription("Typ: Erzschürfer \nZerbeult und an vielen Stellen verrostet.")
-	Transport_12=	CpuShip():setFaction("Unabhängige"):setTemplate("Transport3x3"):setCallSign("UH PU-06"):setPosition(145055, -30750):orderRoaming()
+		Transport_11:setDescription("Typ: ErzschÃ¼rfer \nZerbeult und an vielen Stellen verrostet.")
+	Transport_12=	CpuShip():setFaction("UnabhÃ¤ngige"):setTemplate("Transport3x3"):setCallSign("UH PU-06"):setPosition(145055, -30750):orderRoaming()
 		Transport_12:setScanningParameters(0, 0)
-		Transport_12:setDescription("Typ: Eisschürfer \nHohe Masseanzeigen deuten auf einen gut gefüllten Laderaum.")
-	Transport_13=   CpuShip():setFaction("Unabhängige"):setTemplate("Transport5x1"):setCallSign("UH LE-05"):setPosition(54738, 67403):orderDock(marsstation1)
+		Transport_12:setDescription("Typ: EisschÃ¼rfer \nHohe Masseanzeigen deuten auf einen gut gefÃ¼llten Laderaum.")
+	Transport_13=   CpuShip():setFaction("UnabhÃ¤ngige"):setTemplate("Transport5x1"):setCallSign("UH LE-05"):setPosition(54738, 67403):orderDock(marsstation1)
 		Transport_13:setScanningParameters(0, 0)
-		Transport_13:setDescription("Typ: Erzschürfer \nÄußerlich ein gewöhnlicher Erzschürfer. Keine Besonderheiten zu erkennen.")
+		Transport_13:setDescription("Typ: ErzschÃ¼rfer \nÃ„uÃŸerlich ein gewÃ¶hnlicher ErzschÃ¼rfer. Keine Besonderheiten zu erkennen.")
 	-- Piraten
     pirat_01=	CpuShip():setFaction("Piraten"):setTemplate("Adder MK6"):setCallSign("Manta"):setPosition(169496, 78635):orderDefendLocation(169496, 78635):setWeaponStorage("HVLI", 7)
     pirat_02=	CpuShip():setFaction("Piraten"):setTemplate("Adder MK6"):setCallSign("Hai"):setPosition(172687, 77739):orderDefendLocation(172687, 77739):setWeaponStorage("HVLI", 7)
@@ -571,8 +571,8 @@ function init()
     mtu_08=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Cruiser"):setCallSign("MTU FuckYou"):setPosition(142860, 10991):orderDefendLocation(142860, 10991)
 	-- Alien --
 	alien_01= CpuShip():setFaction("Alien (Friedlich)"):setTemplate("Cruiser"):setCallSign("?*'#&45/"):setPosition(183023, -112526):setHullMax(100):setHull(100):setJumpDrive(true):setBeamWeapon(2, 49, 1, 1300, 5.9, 6.0):setBeamWeaponTurret(2, 67, 1, 1)
-		alien_01:setScanningParameters(0, 0):setCommsFunction(aliencomms)
-		alien_01:setDescriptions("Schiffserkennung nicht eindeutig.\n\n Ähnlichster Typ: Cruiser. \n\n\n Unbekanntes Schiff." , "Schiff nicht aus dem Sol-System. Unbekannte Zeichen auf der Hülle.")
+		alien_01:setScanningParameters(4, 2):setCommsFunction(aliencomms)
+		alien_01:setDescriptions("Schiffserkennung nicht eindeutig.\n\n Ã„hnlichster Typ: Cruiser. \n\n\n Unbekanntes Schiff." , "Schiff nicht aus dem Sol-System. Unbekannte Zeichen auf der HÃ¼lle.")
 	-- Raumschiffe Ende
 
 mission_state = missionStartState
@@ -581,7 +581,7 @@ mission_state = missionStartState
 		Script():run("scenario_mineral_de.lua")
 	end)
 
-	addGMFunction("Mars Politik", function() -- Öffnet die Optionen für Fraktionsweite Befehle, Mars und Piraten.
+	addGMFunction("Mars Politik", function() -- Ã–ffnet die Optionen fÃ¼r Fraktionsweite Befehle, Mars und Piraten.
 		addGMFunction("Krieg", function()
 			marsstation1:setFaction("Mars Tech Union (Krieg)")
 			mtu_01:setFaction("Mars Tech Union (Krieg)")
@@ -647,18 +647,18 @@ mission_state = missionStartState
 		end)
 	end)
 	
-	addGMFunction("Kühlmittel", function() -- Öffnet die Optionen für Kühlmittelausstoß
-		addGMFunction("KMA erlauben", coolant_f) -- Kühlmittelausstoß erlauben
-		addGMFunction("KMA entziehen", function() -- Kühlmittelausstoß entziehen
+	addGMFunction("KÃ¼hlmittel", function() -- Ã–ffnet die Optionen fÃ¼r KÃ¼hlmittelausstoÃŸ
+		addGMFunction("KMA erlauben", coolant_f) -- KÃ¼hlmittelausstoÃŸ erlauben
+		addGMFunction("KMA entziehen", function() -- KÃ¼hlmittelausstoÃŸ entziehen
 			player:removeCustom("Coolant_Override")
 		end)		
-		addGMFunction("KM Reset", function() -- Reset Kühlmittel
+		addGMFunction("KM Reset", function() -- Reset KÃ¼hlmittel
 			coolant = 0
 			coolant_lvl = nil
 		end)		
 	end)
 
-	addGMFunction("Säubern", function() -- löscht alle Optionen mit außnahme der Startoptionen.
+	addGMFunction("SÃ¤ubern", function() -- lÃ¶scht alle Optionen mit auÃŸnahme der Startoptionen.
 	removeGMFunction("Krieg")
 	removeGMFunction("Friede")
 	removeGMFunction("Solare Allianz")
@@ -682,14 +682,14 @@ Testnachricht.]])
 		addCommsReply("Nachricht erhalten.", function()
 			mission_state = ongoging
 			Transport_6:setSystemHealth("impulse", -100):setSystemHealth("maneuver", -100)
-			setCommsMessage([[Sehr gut, die Comms funktioniert demnach. Wir haben bereits den ersten Auftrag für sie TN Verdandi.
+			setCommsMessage([[Sehr gut, die Comms funktioniert demnach. Wir haben bereits den ersten Auftrag fÃ¼r sie TN Verdandi.
 				
-Die UH WC-26 meldet einen Notfall. Fahren sie ihren Reaktor hoch und aktivieren sie alle Systeme. Docken sie anschließend ab und machen sie sich auf den Weg.]])
+Die UH WC-26 meldet einen Notfall. Fahren sie ihren Reaktor hoch und aktivieren sie alle Systeme. Docken sie anschlieÃŸend ab und machen sie sich auf den Weg.]])
 			addCommsReply("Auftrag erhalten.", function()
 				comm_stat = 1
 				setCommsMessage([[TN Verdandi, melden sie sich wenn die Mission erledigt ist.
 
-Wir wünschen ihnen einen guten Jungfernflug!]])
+Wir wÃ¼nschen ihnen einen guten Jungfernflug!]])
 				end)
 		end)
 	end
@@ -699,100 +699,100 @@ Wir wünschen ihnen einen guten Jungfernflug!]])
 		addCommsReply("Auftrag erledigt.", function()
 			setCommsMessage([[Sehr gut, kommen wir nun zu ihrer eigentlichen Mission.
 			
-Sie wissen wir stehen im kalten Krieges mit der "Mars Tech Union". Der kleinste Zwischenfall könnte den kalten Krieg zum heißen Krieg werden lassen.
-Es ist nicht unser Plan einen Krieg zu entfesseln der zur beiderseitigen Auslöschung führen könnte.
+Sie wissen wir stehen im kalten Krieges mit der "Mars Tech Union". Der kleinste Zwischenfall kÃ¶nnte den kalten Krieg zum heiÃŸen Krieg werden lassen.
+Es ist nicht unser Plan einen Krieg zu entfesseln der zur beiderseitigen AuslÃ¶schung fÃ¼hren kÃ¶nnte.
 
-Die Schiffe der MTU werden sie nicht aktiv angreifen wenn sie in ihre nähe kommen. Ein Angriff ihrerseits würde jedoch den Kriegszustand auslösen, daher erneut die eindringliche Warnung, verursachen sie keinen Zwischenfall!
+Die Schiffe der MTU werden sie nicht aktiv angreifen wenn sie in ihre nÃ¤he kommen. Ein Angriff ihrerseits wÃ¼rde jedoch den Kriegszustand auslÃ¶sen, daher erneut die eindringliche Warnung, verursachen sie keinen Zwischenfall!
 
 
 Um ihnen ein Aktuelles Bild der Situation zu geben:
-Die Piraten sind derzeit relativ ruhig, wir vermuten das sie nur auf eine gelegenheit warten wieder auf karperfahrt zu gehen. Aber in diesem politischen Klima können wir es nicht wagen unsere Kampfverbände zur Piraten jagt zu benutzen.
-Eventuell können sie mit ihnen in Verhandlungen treten, sollten sie auf unsere Seite wechseln wäre dies ein deutlicher Vorteil und ein starkes Druckmittel gegenüber der MTU. Sie wären gezwungen sich unseren forderungen zu beugen.
-Zuvor müssten sie allerdings die Aufmerksamkeit des Piraten Admirals erregen.
+Die Piraten sind derzeit relativ ruhig, wir vermuten das sie nur auf eine gelegenheit warten wieder auf karperfahrt zu gehen. Aber in diesem politischen Klima kÃ¶nnen wir es nicht wagen unsere KampfverbÃ¤nde zur Piraten jagt zu benutzen.
+Eventuell kÃ¶nnen sie mit ihnen in Verhandlungen treten, sollten sie auf unsere Seite wechseln wÃ¤re dies ein deutlicher Vorteil und ein starkes Druckmittel gegenÃ¼ber der MTU. Sie wÃ¤ren gezwungen sich unseren forderungen zu beugen.
+Zuvor mÃ¼ssten sie allerdings die Aufmerksamkeit des Piraten Admirals erregen.
 
 
-Die Unabhängigen Händler sind eine enorme Institution für beide Parteien, wer sie kontrolliert oder ihnen vorsteht könnte frei entscheiden wie dieser Konflikt bewältigt wird, da alle von den Händlern in gewissem maße abhängig sind.
+Die UnabhÃ¤ngigen HÃ¤ndler sind eine enorme Institution fÃ¼r beide Parteien, wer sie kontrolliert oder ihnen vorsteht kÃ¶nnte frei entscheiden wie dieser Konflikt bewÃ¤ltigt wird, da alle von den HÃ¤ndlern in gewissem maÃŸe abhÃ¤ngig sind.
 
-Unsere letzten informationen nach haben sie schwer unter den Piraten angriffen zu leiden, besonders da wir keine Eskorten mehr zur verfügung stellen. Vielleicht könnten sie auch mit ihnen in Verhandlungen treten und der Terranischen Navy einen vorteil verschaffen?
+Unsere letzten informationen nach haben sie schwer unter den Piraten angriffen zu leiden, besonders da wir keine Eskorten mehr zur verfÃ¼gung stellen. Vielleicht kÃ¶nnten sie auch mit ihnen in Verhandlungen treten und der Terranischen Navy einen vorteil verschaffen?
 
 
 Der letzte Scan des Sol-Systems zeigte keine echten Neuerungen.
-Die Signale vom Pluto sind laut unseren Wissenschaftlern natürlichen Ursprungs, irgendein, mit radiokativem Material durchsetzter, Brocken wird wohl auf den Planeten eingeschlagen sein. Kein Grund für weitere für weiter Nachforschungen.
+Die Signale vom Pluto sind laut unseren Wissenschaftlern natÃ¼rlichen Ursprungs, irgendein, mit radiokativem Material durchsetzter, Brocken wird wohl auf den Planeten eingeschlagen sein. Kein Grund fÃ¼r weitere fÃ¼r weiter Nachforschungen.
 
 
-Unser Geheimdienst hat ein paar Informationen für sie:
+Unser Geheimdienst hat ein paar Informationen fÃ¼r sie:
 Laut unbekannten Quellen ist ein Wissenschaftler, namens Peter Dex, der MTU auf der Flucht.
-Dieser soll ein neuartiges System entwickelt haben Schiffssysteme zu kühlen. Näheres ist jedoch leider nicht bekannt, ihn zu finden könnte uns einen deutlichen Vorteil bescheren.
+Dieser soll ein neuartiges System entwickelt haben Schiffssysteme zu kÃ¼hlen. NÃ¤heres ist jedoch leider nicht bekannt, ihn zu finden kÃ¶nnte uns einen deutlichen Vorteil bescheren.
 
 
-Zu guter letzt, noch Informationen zur Reputation. Jede Aktion die sie durchführen kann Reputation erbringen aber auch kosten. Sehen sie Reputation als eine Mischung aus Währung und Einfluss.]])
+Zu guter letzt, noch Informationen zur Reputation. Jede Aktion die sie durchfÃ¼hren kann Reputation erbringen aber auch kosten. Sehen sie Reputation als eine Mischung aus WÃ¤hrung und Einfluss.]])
 			mission_state = 3
 			addCommsReply("Worin bestehen die gegenseitigen Forderungen der TN und MTU?", function()
-				setCommsMessage([[Eine Einigung im Mars-Kontrakt kann erzielt werden wenn mindestens 3 der forderungen beider Seiten erfüllt wurden.
+				setCommsMessage([[Eine Einigung im Mars-Kontrakt kann erzielt werden wenn mindestens 3 der forderungen beider Seiten erfÃ¼llt wurden.
 				
 Die "Terranische Navy" fordert:
 -	Die Piraten los werden.
 -	Die eingliederung der MTU unter der Terranischen herrschaft.
--	Zugriff auf die marsianische Industriekapazität.
--	Militärische übermacht gegenüber dem Mars besitzen.
--	Erhöhte priorität bei der Belieferung durch Händler.
--	Einnehmen der Neptun-Station für die TN.
+-	Zugriff auf die marsianische IndustriekapazitÃ¤t.
+-	MilitÃ¤rische Ã¼bermacht gegenÃ¼ber dem Mars besitzen.
+-	ErhÃ¶hte prioritÃ¤t bei der Belieferung durch HÃ¤ndler.
+-	Einnehmen der Neptun-Station fÃ¼r die TN.
 
 Die "Mars Tech Union" fordert:
 -	Die Piraten los werden.
--	Unabhängigkeit von der Terranischen herrschaft.
+-	UnabhÃ¤ngigkeit von der Terranischen herrschaft.
 -	Technologie abkommen mit Terra.
--	Alle (3) untergetauchten Wissenschaftler zurückführen.
--	Erhöhte priorität bei der Belieferung durch Händler.
--	Abkaufen der Asteroiden-Station HS-IV, für die MTU.]])
+-	Alle (3) untergetauchten Wissenschaftler zurÃ¼ckfÃ¼hren.
+-	ErhÃ¶hte prioritÃ¤t bei der Belieferung durch HÃ¤ndler.
+-	Abkaufen der Asteroiden-Station HS-IV, fÃ¼r die MTU.]])
 			end)
-			addCommsReply("Haben sie genauere Informationen über die Piraten?", function()
-				setCommsMessage([[Wir Wissen lediglich das sie die Neptun-Station kürzlich eingenommen haben und über mehr als 5 Schiffe verfügen.
-Sie verstehen sicherlich, dass unsere Prioritäten derzeit woanders liegen.
+			addCommsReply("Haben sie genauere Informationen Ã¼ber die Piraten?", function()
+				setCommsMessage([[Wir Wissen lediglich das sie die Neptun-Station kÃ¼rzlich eingenommen haben und Ã¼ber mehr als 5 Schiffe verfÃ¼gen.
+Sie verstehen sicherlich, dass unsere PrioritÃ¤ten derzeit woanders liegen.
 
 Zudem Wissen wir auch nur dass, was alle wissen. Piraten respektieren nur andere Piraten.]])
 			end)
-			addCommsReply("Wer ist der Ansprechpartner der Unabhängigen Händler?",function()
-				setCommsMessage([[Prinzipiell kann man jeden der UH ansprechen. Jeder Kapitän koch sein eigenes süppchen. Sie sind eine gute Quelle um an Reputations Punkte zu kommen.]])
+			addCommsReply("Wer ist der Ansprechpartner der UnabhÃ¤ngigen HÃ¤ndler?",function()
+				setCommsMessage([[Prinzipiell kann man jeden der UH ansprechen. Jeder KapitÃ¤n koch sein eigenes sÃ¼ppchen. Sie sind eine gute Quelle um an Reputations Punkte zu kommen.]])
 			end)
-			addCommsReply("Gibt es mehr informationen über den Wissenschaftler?", function()
-				setCommsMessage([[Die letzten Informationen deuten darauf hin das er sich auf der Jupiterstation befand. Er ist angeblich einer der drei untergetauchten Wissenschaftler, welche die MTU wieder unter ihrer kontrollen wissen möchte.]])
+			addCommsReply("Gibt es mehr informationen Ã¼ber den Wissenschaftler?", function()
+				setCommsMessage([[Die letzten Informationen deuten darauf hin das er sich auf der Jupiterstation befand. Er ist angeblich einer der drei untergetauchten Wissenschaftler, welche die MTU wieder unter ihrer kontrollen wissen mÃ¶chte.]])
 			end)
 		end)
 	end
 	
 	if mission_state == 3 then
-		setCommsMessage([[Können wir ihnen weiterhelfen?]])
+		setCommsMessage([[KÃ¶nnen wir ihnen weiterhelfen?]])
 			addCommsReply("Worin bestehen die gegenseitigen Forderungen der TN und MTU?", function()
-				setCommsMessage([[Eine Einigung im Mars-Kontrakt kann erzielt werden wenn mindestens 3 der forderungen beider Seiten erfüllt wurden.
+				setCommsMessage([[Eine Einigung im Mars-Kontrakt kann erzielt werden wenn mindestens 3 der forderungen beider Seiten erfÃ¼llt wurden.
 				
 Die "Terranische Navy" fordert:
 -	Die Piraten los werden.
 -	Die eingliederung der MTU unter der Terranischen herrschaft.
--	Zugriff auf die marsianische Industriekapazität.
--	Militärische übermacht gegenüber dem Mars besitzen.
--	Erhöhte priorität bei der Belieferung durch Händler.
--	Einnehmen der Neptun-Station für die TN.
+-	Zugriff auf die marsianische IndustriekapazitÃ¤t.
+-	MilitÃ¤rische Ã¼bermacht gegenÃ¼ber dem Mars besitzen.
+-	ErhÃ¶hte prioritÃ¤t bei der Belieferung durch HÃ¤ndler.
+-	Einnehmen der Neptun-Station fÃ¼r die TN.
 
 Die "Mars Tech Union" fordert:
 -	Die Piraten los werden.
--	Unabhängigkeit von der Terranischen herrschaft.
+-	UnabhÃ¤ngigkeit von der Terranischen herrschaft.
 -	Technologie abkommen mit Terra.
--	Alle (3) untergetauchten Wissenschaftler zurückführen.
--	Erhöhte priorität bei der Belieferung durch Händler.
--	Abkaufen der Asteroiden-Station HS-IV, für die MTU.]])
+-	Alle (3) untergetauchten Wissenschaftler zurÃ¼ckfÃ¼hren.
+-	ErhÃ¶hte prioritÃ¤t bei der Belieferung durch HÃ¤ndler.
+-	Abkaufen der Asteroiden-Station HS-IV, fÃ¼r die MTU.]])
 			end)
-			addCommsReply("Haben sie genauere Informationen über die Piraten?", function()
-				setCommsMessage([[Wir Wissen lediglich das sie die Neptun-Station kürzlich eingenommen haben und über mehr als 5 Schiffe verfügen.
-Sie verstehen sicherlich, dass unsere Prioritäten derzeit woanders liegen.
+			addCommsReply("Haben sie genauere Informationen Ã¼ber die Piraten?", function()
+				setCommsMessage([[Wir Wissen lediglich das sie die Neptun-Station kÃ¼rzlich eingenommen haben und Ã¼ber mehr als 5 Schiffe verfÃ¼gen.
+Sie verstehen sicherlich, dass unsere PrioritÃ¤ten derzeit woanders liegen.
 
 Zudem Wissen wir auch nur dass, was alle wissen. Piraten respektieren nur andere Piraten.]])
 			end)
-			addCommsReply("Wer ist der Ansprechpartner der Unabhängigen Händler?",function()
-				setCommsMessage([[Prinzipiell kann man jeden der UH ansprechen. Jeder Kapitän koch sein eigenes süppchen. Sie sind eine gute Quelle um an Reputations Punkte zu kommen.]])
+			addCommsReply("Wer ist der Ansprechpartner der UnabhÃ¤ngigen HÃ¤ndler?",function()
+				setCommsMessage([[Prinzipiell kann man jeden der UH ansprechen. Jeder KapitÃ¤n koch sein eigenes sÃ¼ppchen. Sie sind eine gute Quelle um an Reputations Punkte zu kommen.]])
 			end)
-			addCommsReply("Gibt es mehr informationen über den Wissenschaftler?", function()
-				setCommsMessage([[Die letzten Informationen deuten darauf hin das er sich auf der Jupiterstation befand. Er ist angeblich einer der drei untergetauchten Wissenschaftler, welche die MTU wieder unter ihrer kontrollen wissen möchte.]])
+			addCommsReply("Gibt es mehr informationen Ã¼ber den Wissenschaftler?", function()
+				setCommsMessage([[Die letzten Informationen deuten darauf hin das er sich auf der Jupiterstation befand. Er ist angeblich einer der drei untergetauchten Wissenschaftler, welche die MTU wieder unter ihrer kontrollen wissen mÃ¶chte.]])
 			end)
 	end
 end
@@ -800,21 +800,21 @@ end
 function WC_26_6_call()
 	
 	if comm_stat == 1 then
-		setCommsMessage([[Autom#'ischer N07ruf der 9H =r~§ona
+		setCommsMessage([[Autom#'ischer N07ruf der 9H =r~Â§ona
 	
-Auafsll der Trirewbeke, begitönen dregnind Hefli. Die Comtsysretupeme spleien vekcürrt, Sednen sie eenin Res0n4nz1mpul5 üebr irhe 5ch1lde!
-Deis stlloe das Comsysretuptem aus der Feeelhcskcabdife brnneen und kalletstlen dimat wir es euenrt sttraen köennn.
+Auafsll der Trirewbeke, begitÃ¶nen dregnind Hefli. Die Comtsysretupeme spleien vekcÃ¼rrt, Sednen sie eenin Res0n4nz1mpul5 Ã¼ebr irhe 5ch1lde!
+Deis stlloe das Comsysretuptem aus der Feeelhcskcabdife brnneen und kalletstlen dimat wir es euenrt sttraen kÃ¶ennn.
 
 M3ld3n 513 s1ch euenrt an wnen sie un73r 3U haren sdni.]])
 				addCommsReply("UH Arizona, wir haben ihren Notruf erhalten.", function()
 					comm_stat = 2
-					setCommsMessage("=/98(§?´´'+987da;")
+					setCommsMessage("=/98(Â§?Â´Â´'+987da;")
 				end)
 				
 	end
 	
 	if distance(comms_source, comms_target) < 3000 and comm_stat == 2 then
-        setCommsMessage([[Gut jetzt da sie näher dran sind, können wir mit den P-Comms kommunizieren. 
+        setCommsMessage([[Gut jetzt da sie nÃ¤her dran sind, kÃ¶nnen wir mit den P-Comms kommunizieren. 
 
 Bitte aktivieren sie ihre Schilde in der korrekten Frequenz. Ihr Wissenschaftsoffizer sollte in der Lage sein unsere genau Frequenz festzustellen.
 Sind die Schilde aktiv und die korrekte Frequenz eingestellt worden, lassen sie den Waffenoffizier den Impuls senden.]]);
@@ -824,19 +824,19 @@ Sind die Schilde aktiv und die korrekte Frequenz eingestellt worden, lassen sie 
 	end
 	
 	if distance(comms_source, comms_target) > 3000 and comm_stat == 2 then
-		setCommsMessage([[>>> Schiff außer Reichweite <<<]])
+		setCommsMessage([[>>> Schiff auÃŸer Reichweite <<<]])
 	end
 	
 	if comm_stat == 3 then
-		setCommsMessage("Hervorragende Arbeit! Die Maschiene läuft wieder wie sie es soll!")
-			addCommsReply("Können wir ihnen noch anderweitig helfen?", function()
+		setCommsMessage("Hervorragende Arbeit! Die Maschiene lÃ¤uft wieder wie sie es soll!")
+			addCommsReply("KÃ¶nnen wir ihnen noch anderweitig helfen?", function()
 				setCommsMessage([[Nein vielen Dank! 
 				
 UH Arizona Ende.]])
 				comm_stat = nil
 				mission_state = 2
 			end)
-			addCommsReply("Lassen sie ihren Schrotthaufen überholen!", function()
+			addCommsReply("Lassen sie ihren Schrotthaufen Ã¼berholen!", function()
 				setCommsMessage([[Haben Verstanden. Das geht aber auch freundlicher.
 
 UH Arizona Ende.]])
@@ -852,7 +852,7 @@ function commsHackedShipCompare()
 	frequency2 = 400 + (comms_source:getShieldsFrequency() * 20)
 	if (frequency1 == frequency2) and player:getShieldsActive() then
         setCommsMessage("Frequenzabgleich war erfolgreich.")
-        addCommsReply("Impulsfreigabe für den Waffenoffizier", function()
+        addCommsReply("Impulsfreigabe fÃ¼r den Waffenoffizier", function()
 			setCommsMessage("Senden sie den Impuls und kontaktieren sie uns danach wieder!")
 			player:addCustomButton("weapons","IMPULS_SHILD", "IMPULS", function()
 				comms_target:setSystemHealth("impulse", 0):setSystemHealth("maneuver", 0):orderDock(earthstation1):setImpulseMaxSpeed(35)
@@ -878,12 +878,12 @@ earthstation1:openCommsTo(player)
 end
 
 function coolant_f()
--- Kühlmittel Ausstoß --
-	--player:addCustomButton("engineering", "Coolant_Venting", "EKA", function() -- Engineering muss Scince die Erlaubnis erteilen Kühlmittel abzulassen.
-	coolant = 0 -- Werte für das Kühlmittelscript am Ende
+-- KÃ¼hlmittel AusstoÃŸ --
+	--player:addCustomButton("engineering", "Coolant_Venting", "EKA", function() -- Engineering muss Scince die Erlaubnis erteilen KÃ¼hlmittel abzulassen.
+	coolant = 0 -- Werte fÃ¼r das KÃ¼hlmittelscript am Ende
 	coolant_lvl = nil
 
-	player:addCustomButton("science", "Coolant_Override", "Kühlmittel ausstoßen", function()
+	player:addCustomButton("science", "Coolant_Override", "KÃ¼hlmittel ausstoÃŸen", function()
 		if coolant == nil then coolant = 0 end
 		coolant = coolant + 1
 		if coolant == 1 then					
@@ -921,30 +921,30 @@ function coolant_f()
 		end
 	end)
 	--end)
--- Ende Kühlmittel Ausstoß --
+-- Ende KÃ¼hlmittel AusstoÃŸ --
 end
 
 function aliencomms()
 	if alien_state == 1 then
-		setCommsMessage("/sION6541 51846?00ß  =?6&%%%jn7 846as8 d462e (7777 (%fmdsl =mklnf -*+'##sdf")
+		setCommsMessage("/sION6541 51846?00ÃŸ  =?6&%%%jn7 846as8 d462e (7777 (%fmdsl =mklnf -*+'##sdf")
 			addCommsReply("Nachricht an Wissenschaftsoffizier weiterleiten.", function()
 				player:addCustomButton("weapons", "alien_tar", "Ziel als Feind Markieren", function()
 					alien_01:setFaction("Alien (Feindlich)")
 					alien_state = 9
 				end)
 				setCommsMessage("Nachricht an Wissenschaftsoffizier weiter geleitet.")
-				player:addCustomButton("science", "alien_scrambel_01", "Nachricht entschlüsseln.", function()
+				player:addCustomButton("science", "alien_scrambel_01", "Nachricht entschlÃ¼sseln.", function()
 					player:removeCustom("alien_scrambel_01")
-					player:addCustomMessage("science", "alien_sc_info01", "Wir 51846?00ß  in 846as8 d462e beabsichtigen euch =mklnf anzugreifen.")
-					player:addCustomButton("science", "alien_scrambel_02", "Nachricht entschlüsseln.", function()
+					player:addCustomMessage("science", "alien_sc_info01", "Wir 51846?00ÃŸ  in 846as8 d462e beabsichtigen euch =mklnf anzugreifen.")
+					player:addCustomButton("science", "alien_scrambel_02", "Nachricht entschlÃ¼sseln.", function()
 						player:removeCustom("alien_scrambel_02")
 						player:removeCustom("alien_sc_info01")
 						player:addCustomMessage("science", "alien_sc_info02", "Wir kommen  in 846as8 und beabsichtigen euch =mklnf anzugreifen.")
-						player:addCustomButton("science", "alien_scrambel_03", "Nachricht entschlüsseln.", function()
+						player:addCustomButton("science", "alien_scrambel_03", "Nachricht entschlÃ¼sseln.", function()
 							player:removeCustom("alien_scrambel_03")
 							player:removeCustom("alien_sc_info02")
 							player:addCustomMessage("science", "alien_sc_info03", "Wir kommen in Frieden und beabsichtigen euch nicht anzugreifen.")
-							player:addCustomButton("science", "alien_scrambel_04", "Übersetzungsalgorythmus an Comms senden.", function()
+							player:addCustomButton("science", "alien_scrambel_04", "Ãœbersetzungsalgorythmus an Comms senden.", function()
 								player:removeCustom("alien_scrambel_04")
 								player:removeCustom("alien_sc_info03")
 								alien_state = 2
@@ -959,13 +959,13 @@ function aliencomms()
 	if alien_state == 2 then
 	setCommsMessage([[Hier ist der Kommandant der Shapiron.
 
-Können sie uns verstehen?]])
-		addCommsReply("Ja wir können sie verstehen! Willkommen im Sol-System.", function()
+KÃ¶nnen sie uns verstehen?]])
+		addCommsReply("Ja wir kÃ¶nnen sie verstehen! Willkommen im Sol-System.", function()
 			alien_state = 3
-			setCommsMessage("Wir sind erfreut sie kennen zu lernen. Könnten sie uns mit ein paar Teilen aushelfen?")
-				addCommsReply("Schicken sie uns eine Liste der benötigten Teile und wir sehen was wir tun können.", function()
-					setCommsMessage("Liste wird übertragen. Melden sie sich erneut wenn sie die Teile gesendet haben.")
-					player:addCustomButton("engineering", "alien_liste", "Inventar-Prüfung", function()
+			setCommsMessage("Wir sind erfreut sie kennen zu lernen. KÃ¶nnten sie uns mit ein paar Teilen aushelfen?")
+				addCommsReply("Schicken sie uns eine Liste der benÃ¶tigten Teile und wir sehen was wir tun kÃ¶nnen.", function()
+					setCommsMessage("Liste wird Ã¼bertragen. Melden sie sich erneut wenn sie die Teile gesendet haben.")
+					player:addCustomButton("engineering", "alien_liste", "Inventar-PrÃ¼fung", function()
 						player:removeCustom("alien_liste")
 						player:addCustomInfo("engineering", "invent_prf", "Material vorhanden.")
 						player:addCustomButton("engineering", "alien_send", "Material senden", function()
@@ -975,26 +975,26 @@ Können sie uns verstehen?]])
 						end)
 					end)
 				end)
-				addCommsReply("Wir kehren in kürze zurück und nehmen mit ihnen wieder Kontakt auf.", function()
-					setCommMessage("Wir warten auf ihre Rückkehr!")
+				addCommsReply("Wir kehren in kÃ¼rze zurÃ¼ck und nehmen mit ihnen wieder Kontakt auf.", function()
+					setCommMessage("Wir warten auf ihre RÃ¼ckkehr!")
 				end)
 				addCommsReply("Wir trauen ihnen leider nicht. Senden sie keine Daten!",function()
 					alien_state = 8
 					setCommMessage("Verstanden.")
 				end)
 		end)
-		addCommsReply("Lassen sie ihre Schilde runter und übergeben sie das Schiff.", function()
+		addCommsReply("Lassen sie ihre Schilde runter und Ã¼bergeben sie das Schiff.", function()
 			alien_01:setFaction("Alien (Feindlich)")
 			alien_state = 9
-			setCommsMessage("Sie sind eine wiederwärtige Spezies. Wir werden sie ausrotten.")
+			setCommsMessage("Sie sind eine wiederwÃ¤rtige Spezies. Wir werden sie ausrotten.")
 		end)
 	end
 	
 	if alien_state == 3 then
-		setCommsMessage("Können sie uns nun mit ein paar Teilen aushelfen?")
-		addCommsReply("Schicken sie uns eine Liste der benötigten Teile und wir sehen was wir tun können.", function()
-					setCommsMessage("Liste wird übertragen. Melden sie sich erneut wenn sie die Teile gesendet haben.")
-					player:addCustomButton("engineering", "alien_liste", "Inventar-Prüfung", function()
+		setCommsMessage("KÃ¶nnen sie uns nun mit ein paar Teilen aushelfen?")
+		addCommsReply("Schicken sie uns eine Liste der benÃ¶tigten Teile und wir sehen was wir tun kÃ¶nnen.", function()
+					setCommsMessage("Liste wird Ã¼bertragen. Melden sie sich erneut wenn sie die Teile gesendet haben.")
+					player:addCustomButton("engineering", "alien_liste", "Inventar-PrÃ¼fung", function()
 						player:removeCustom("alien_liste")
 						player:addCustomInfo("engineering", "invent_prf", "Material vorhanden.")
 						player:addCustomButton("engineering", "alien_send", "Material senden", function()
@@ -1004,8 +1004,8 @@ Können sie uns verstehen?]])
 						end)
 					end)
 				end)
-				addCommsReply("Wir kehren in kürze zurück und nehmen mit ihnen wieder Kontakt auf.", function()
-					setCommMessage("Wir warten auf ihre Rückkehr!")
+				addCommsReply("Wir kehren in kÃ¼rze zurÃ¼ck und nehmen mit ihnen wieder Kontakt auf.", function()
+					setCommMessage("Wir warten auf ihre RÃ¼ckkehr!")
 				end)
 				addCommsReply("Wir trauen ihnen leider nicht. Senden sie keine Daten!",function()
 					alien_state = 8
@@ -1014,26 +1014,26 @@ Können sie uns verstehen?]])
 	end
 	
 	if alien_state == 4 then
-		setCommsMessage("Vielen Dank für die Materialien, wir würden ihnen gerne anbieten einen alternativen Antrieb einzubauen. Möchten sie einen Sprungantrieb statt ihres Warpantriebs erhalten?")
-		addCommsReply("Wir würden den Sprungantrieb gerne annehmen.", function()
+		setCommsMessage("Vielen Dank fÃ¼r die Materialien, wir wÃ¼rden ihnen gerne anbieten einen alternativen Antrieb einzubauen. MÃ¶chten sie einen Sprungantrieb statt ihres Warpantriebs erhalten?")
+		addCommsReply("Wir wÃ¼rden den Sprungantrieb gerne annehmen.", function()
 			alien_state = 6
 			player:setWarpDrive(false):setJumpDrive(true)
 			setCommsMessage("Schon erledigt.")
 		end)
-		addCommsReply("Wir kommen darauf zurück.", function()
+		addCommsReply("Wir kommen darauf zurÃ¼ck.", function()
 			alien_state = 5
 			setCommsMessage("Wir sind noch eine Weile hier uns sammeln Wissenschaftliche Daten.")
 		end)	
 	end
 	
 	if alien_state == 5 then
-		setCommsMessage("Möchten sie nun den Sprungantrieb erhalten?")
-		addCommsReply("Wir würden den Sprungantrieb nun gerne annehmen.", function()
+		setCommsMessage("MÃ¶chten sie nun den Sprungantrieb erhalten?")
+		addCommsReply("Wir wÃ¼rden den Sprungantrieb nun gerne annehmen.", function()
 			alien_state = 6
 			player:setWarpDrive(false):setJumpDrive(true)
 			setCommsMessage("Schon erledigt.")
 		end)
-		addCommsReply("Wir kommen darauf zurück.", function()
+		addCommsReply("Wir kommen darauf zurÃ¼ck.", function()
 			setCommsMessage("Wir sind noch eine Weile hier uns sammeln Wissenschaftliche Daten.")
 		end)	
 	end
@@ -1044,19 +1044,19 @@ Können sie uns verstehen?]])
 	
 	if alien_state == 8 then
 		setCommsMessage("Wir bedauern das sie uns nicht vertrauen.")
-		addCommsReply("Wir haben es uns überlegt. Wir sprechen sie gleich nochmal an.", function()
+		addCommsReply("Wir haben es uns Ã¼berlegt. Wir sprechen sie gleich nochmal an.", function()
 			alien_state = 3
-			setCommsMessage("Wir erwarten ihre Rückmeldung.")
+			setCommsMessage("Wir erwarten ihre RÃ¼ckmeldung.")
 		end)
 		addCommsReply("Wir werden sie ausradieren.",function()
 			alien_01:setFaction("Alien (Feindlich)")
 			alien_state = 9
-			setCommsMessage("Sie sind eine wiederwärtige Spezies. Wir werden sie ausrotten.")
+			setCommsMessage("Sie sind eine wiederwÃ¤rtige Spezies. Wir werden sie ausrotten.")
 		end)
 	end
 	
 	if alien_state == 9 then
-		setCommsMessage("Sie sind eine wiederwärtige Spezies. Wir werden sie ausrotten.")
+		setCommsMessage("Sie sind eine wiederwÃ¤rtige Spezies. Wir werden sie ausrotten.")
 	end
 end
 
@@ -1067,24 +1067,24 @@ function update (delta)
     end
 	-- Ende MissionsStatus--
 	
--- Details über die Handelsschiffe.
+-- Details Ã¼ber die Handelsschiffe.
 	if Transport_1 ~= nil and Transport_1:isScannedBy(player) then
-		Transport_1:setDescription("Lebenszeichen:\n1 Mensch \n2 Katzen \nKapitän Haviland Tuf, der Besitzer dieses Schiffs, ihr name ist -Füllhorn der excellenten Güter und niedrigen Preise-, ein gutmütiger und stehts freundlicher Händler. Jedoch sollte man ihn nicht unterschätzen und er mag Katzen.")
-		Transport_1:setCallSign("UH Füllhorn der excellenten Güter und niedriger Preise")
+		Transport_1:setDescription("Lebenszeichen:\n1 Mensch \n2 Katzen \nKapitÃ¤n Haviland Tuf, der Besitzer dieses Schiffs, ihr name ist -FÃ¼llhorn der excellenten GÃ¼ter und niedrigen Preise-, ein gutmÃ¼tiger und stehts freundlicher HÃ¤ndler. Jedoch sollte man ihn nicht unterschÃ¤tzen und er mag Katzen.")
+		Transport_1:setCallSign("UH FÃ¼llhorn der excellenten GÃ¼ter und niedriger Preise")
 	Transport_1 = nil
 	end
 	if Transport_2 ~= nil and Transport_2:isScannedBy(player) then
-		Transport_2:setDescription("Lebenszeichen:\n5 Menschen \n1 Maus \nKapitän Perry Rhodan, ehemaliger Major der Terranischen Navy. Angeblich sei er 340 Jahre alt, das behaupten zumindest einge Bewohner der Jupiterstation.")
+		Transport_2:setDescription("Lebenszeichen:\n5 Menschen \n1 Maus \nKapitÃ¤n Perry Rhodan, ehemaliger Major der Terranischen Navy. Angeblich sei er 340 Jahre alt, das behaupten zumindest einge Bewohner der Jupiterstation.")
 		Transport_2:setCallSign("UH Stardust")
 	Transport_2 = nil
 	end
 	if Transport_3 ~= nil and Transport_3:isScannedBy(player) then
-		Transport_3:setDescription("Lebenszeichen:\n1 Mensch \nKapitän Gaius Baltar, früherer hochrangiger Politiker. Nach einem tiefen sozialen absturz schlägt er sich nun als Kraftstoff-Transporter durch. Das Schiff ist jedoch mit der besten Technologie von Mars und Erde ausgestattet.")
+		Transport_3:setDescription("Lebenszeichen:\n1 Mensch \nKapitÃ¤n Gaius Baltar, frÃ¼herer hochrangiger Politiker. Nach einem tiefen sozialen absturz schlÃ¤gt er sich nun als Kraftstoff-Transporter durch. Das Schiff ist jedoch mit der besten Technologie von Mars und Erde ausgestattet.")
 		Transport_3:setCallSign("UH Zylon-Six")
 	Transport_3 = nil
 	end
 	if Transport_4 ~= nil and Transport_4:isScannedBy(player) then
-		Transport_4:setDescription("#lpüokasö lökmasm 0i88-,..-.,l ijdsac..,-.94&kmdasöc))0p0lmcöams..-.c,ß=! \n \n --- Alle Daten werden durch die Strahlung zerstückelt, selbst der Schiffsname scheint zersetzt zu werden bei der Übertragung. ---")
+		Transport_4:setDescription("#lpÃ¼okasÃ¶ lÃ¶kmasm 0i88-,..-.,l ijdsac..,-.94&kmdasÃ¶c))0p0lmcÃ¶ams..-.c,ÃŸ=! \n \n --- Alle Daten werden durch die Strahlung zerstÃ¼ckelt, selbst der Schiffsname scheint zersetzt zu werden bei der Ãœbertragung. ---")
 		Transport_4:setCallSign("Piranha")
 		Transport_4:setFaction("Piraten")
 		Transport_4:setBeamWeapon(0, 46, 0, 1000, 2.9, 3.4):setBeamWeaponTurret(0, 0, 0, 0):setBeamWeapon(1, 46, -180, 1000, 3.0, 3.0):setShields(100, 100)
@@ -1092,58 +1092,58 @@ function update (delta)
 	Transport_4 = nil
 	end
 	if Transport_5 ~= nil and Transport_5:isScannedBy(player) then
-		Transport_5:setDescription("Lebenszeichen:\n4 Menschen \nKapitän: L.Arvus \nErster Offizier: P.Peterson \nTechniker: S.Michalowitzch \nPassagier: E.Watson \n Ladung: 50 Tonnen Wissenschaftliches Equipment.")
+		Transport_5:setDescription("Lebenszeichen:\n4 Menschen \nKapitÃ¤n: L.Arvus \nErster Offizier: P.Peterson \nTechniker: S.Michalowitzch \nPassagier: E.Watson \n Ladung: 50 Tonnen Wissenschaftliches Equipment.")
 		Transport_5:setCallSign("UH Sharon")
 	Transport_5 = nil
 	end
 	if Transport_6 ~= nil and Transport_6:isScannedBy(player) then
-		Transport_6:setDescription("Lebenszeichen:\n54 Menschen \nKapitän: W.Cheng \nErster Offizier: T.Long \nTechniker: S.Müller \n Arzt: D.Smith \nPassagier01: L.Worlas \nPassagier02: K.Limbert \nPassagier03: U.Sambert \nPassagier04: E.Plater \nPassagier05: K.Friedrich \nPassagier06: F.Disch \nPassagier07: G.Weiter \nWeitere Namen werden geladen...")
+		Transport_6:setDescription("Lebenszeichen:\n54 Menschen \nKapitÃ¤n: W.Cheng \nErster Offizier: T.Long \nTechniker: S.MÃ¼ller \n Arzt: D.Smith \nPassagier01: L.Worlas \nPassagier02: K.Limbert \nPassagier03: U.Sambert \nPassagier04: E.Plater \nPassagier05: K.Friedrich \nPassagier06: F.Disch \nPassagier07: G.Weiter \nWeitere Namen werden geladen...")
 		Transport_6:setCallSign("UH Arizona")
 	Transport_6 = nil
 	end
 	if Transport_7 ~= nil and Transport_7:isScannedBy(player) then
-		Transport_7:setDescription("Lebenszeichen:\n2 Menschen \nKapitän: J.Sparrow\nTechniker: L.Tuang \n\nLadung: \nDatapads, Stations Eqipment, Handfeuerwaffen.")
+		Transport_7:setDescription("Lebenszeichen:\n2 Menschen \nKapitÃ¤n: J.Sparrow\nTechniker: L.Tuang \n\nLadung: \nDatapads, Stations Eqipment, Handfeuerwaffen.")
 		Transport_7:setCallSign("UH Sparrow")
 	Transport_7 = nil
 	end
 	if Transport_8 ~= nil and Transport_8:isScannedBy(player) then
-		Transport_8:setDescription("Lebenszeichen:\n4 Menschen \nKapitän: A.Coblenz\nErster Offizier: E.Ripley\n\nLadung: \nVersuchstiere und einige Güter des täglichen Bedarfs.")
+		Transport_8:setDescription("Lebenszeichen:\n4 Menschen \nKapitÃ¤n: A.Coblenz\nErster Offizier: E.Ripley\n\nLadung: \nVersuchstiere und einige GÃ¼ter des tÃ¤glichen Bedarfs.")
 		Transport_8:setCallSign("UH Nostromo")
 	Transport_8 = nil
 	end
 	if Transport_9 ~= nil and Transport_8:isScannedBy(player) then
-		Transport_9:setDescription("Lebenszeichen:\n3 Menschen \nKapitän: C.Davis\nErster Offizier: L.Harper\nTechnicker: P.Carter\n\nLadung: \nKeine")
+		Transport_9:setDescription("Lebenszeichen:\n3 Menschen \nKapitÃ¤n: C.Davis\nErster Offizier: L.Harper\nTechnicker: P.Carter\n\nLadung: \nKeine")
 		Transport_9:setCallSign("UH Bischoff")
 	Transport_9 = nil
 	end
 	if Transport_10 ~= nil and Transport_10:isScannedBy(player) then
-		Transport_10:setDescription("Lebenszeichen:\n22 Menschen \nKapitän: J.Jordan \nErster Offizier: P.Rassa \nPassagier01: A.Cusher \nPassagier02: A.Bliss \nPassagier03: F.Susaru \nPassagier04: M.Jarson \nPassagier05: P.Dax \nPassagier06: R.Furk \nPassagier07: V.Worklovski \nWeitere Namen werden geladen...")
+		Transport_10:setDescription("Lebenszeichen:\n22 Menschen \nKapitÃ¤n: J.Jordan \nErster Offizier: P.Rassa \nPassagier01: A.Cusher \nPassagier02: A.Bliss \nPassagier03: F.Susaru \nPassagier04: M.Jarson \nPassagier05: P.Dax \nPassagier06: R.Furk \nPassagier07: V.Worklovski \nWeitere Namen werden geladen...")
 		Transport_10:setCallSign("UH Kolonial")
 	Transport_10 = nil
 	end
 	if Transport_11 ~= nil and Transport_11:isScannedBy(player) then
-		Transport_11:setDescription("Lebenszeichen:\n5 Menschen \nKapitän: S.Jates \nDer Erzschürfer weist enorme kratzer und dellen auf die darauf hindeuten, dass das Schiff nicht den besten Steuermann vorzuweisen hat. \n\nLadung: \nEisen: 10 Tonnen\nNickel: 5 Tonnen")
+		Transport_11:setDescription("Lebenszeichen:\n5 Menschen \nKapitÃ¤n: S.Jates \nDer ErzschÃ¼rfer weist enorme kratzer und dellen auf die darauf hindeuten, dass das Schiff nicht den besten Steuermann vorzuweisen hat. \n\nLadung: \nEisen: 10 Tonnen\nNickel: 5 Tonnen")
 		Transport_11:setCallSign("UH Lurch")
 	Transport_11 = nil
 	end
 	if Transport_12 ~= nil and Transport_8:isScannedBy(player) then
-		Transport_12:setDescription("Lebenszeichen:\n5 Menschen \nKapitän: P.Irwin \nErster Offizier: L.Killarny \nTechnicker: F.Agila\n\nLadung: \nEis: 28 Tonnen")
+		Transport_12:setDescription("Lebenszeichen:\n5 Menschen \nKapitÃ¤n: P.Irwin \nErster Offizier: L.Killarny \nTechnicker: F.Agila\n\nLadung: \nEis: 28 Tonnen")
 		Transport_12:setCallSign("UH Pastor")
 	Transport_12 = nil
 	end
 	if Transport_13 ~= nil and Transport_8:isScannedBy(player) then
-		Transport_13:setDescription("Lebenszeichen:\n5 Menschen \nKapitän: T.Wheeler \nTechnicker: A.Palpavisch\n\nLadung: \nBlei: 40 Tonnen \n\n\nWas immer ihr über Kapitän Theodor Wheeler gehört habt, er hat nie einen Außerirdischen getroffen. Marsianer ausgeschlossen.")
+		Transport_13:setDescription("Lebenszeichen:\n5 Menschen \nKapitÃ¤n: T.Wheeler \nTechnicker: A.Palpavisch\n\nLadung: \nBlei: 40 Tonnen \n\n\nWas immer ihr Ã¼ber KapitÃ¤n Theodor Wheeler gehÃ¶rt habt, er hat nie einen AuÃŸerirdischen getroffen. Marsianer ausgeschlossen.")
 		Transport_13:setCallSign("UH Europa")
 	Transport_13 = nil
 	end
--- Ende Details über die Handelsschiffe.
--- Details über Planeten
+-- Ende Details Ã¼ber die Handelsschiffe.
+-- Details Ã¼ber Planeten
 	if sun2 ~= nil and sun2:isScannedBy(player) then
 		sun2:setDescription("Stern: Sol\n\n\nScannwerte: \n\nZusammensetzung: \nWasserstoff: 92,1%\nHelium: 7,8%\nSauerstoff, Kohlenstoff, Neon, Stickstoff: 1%")
 	sun2 = nil
 	end
 	if merkur2 ~= nil and merkur2:isScannedBy(player) then
-		merkur2:setDescription("Planet: Merkur\n\n\nScannwerte: \n\nAtmospheren Hauptbestandteile: bei 1 · 10^-15\nWasserstoff 22%\nHelium: 6%\nSauerstoff: 42%\nNatrium: 29%\nKalium: 0,5%\n\n Zusammensetzung: \nEisen: 65%\nNickel: 30%\nSonstige: 5%")
+		merkur2:setDescription("Planet: Merkur\n\n\nScannwerte: \n\nAtmospheren Hauptbestandteile: bei 1 Â· 10^-15\nWasserstoff 22%\nHelium: 6%\nSauerstoff: 42%\nNatrium: 29%\nKalium: 0,5%\n\n Zusammensetzung: \nEisen: 65%\nNickel: 30%\nSonstige: 5%")
 	merkur2 = nil
 	end
 	if venus2 ~= nil and venus2:isScannedBy(player) then
@@ -1155,7 +1155,7 @@ function update (delta)
 	earth2 = nil
 	end
 	if moon2 ~= nil and moon2:isScannedBy(player) then
-		moon2:setDescription("Satellit: Mond \n\nBewohner: 1.302.894\n\nBodentruppen: Keine Daten \n\n\nScannwerte: \n\nAtmospheren Hauptbestandteile: bei 3 · 10^-10 \nHelium: 25% \nNeon: 25% \nWasserstoff: 23% \nArgon: 20% \nCH4, NH3, CO2: 7% \n\n Zusammensetzung: \nSilizium: 45,5% \nAluminium: 24% \nCalcium: 15,9% \nEisen: 5,9% \nMagnesium: 7,5% \nTitan: 0,6% \nNatrium: 0,6% \nKalium: <0,1% \n\nZudem gibt es konzentrierte Vorkommen von Uran und Thorium.")
+		moon2:setDescription("Satellit: Mond \n\nBewohner: 1.302.894\n\nBodentruppen: Keine Daten \n\n\nScannwerte: \n\nAtmospheren Hauptbestandteile: bei 3 Â· 10^-10 \nHelium: 25% \nNeon: 25% \nWasserstoff: 23% \nArgon: 20% \nCH4, NH3, CO2: 7% \n\n Zusammensetzung: \nSilizium: 45,5% \nAluminium: 24% \nCalcium: 15,9% \nEisen: 5,9% \nMagnesium: 7,5% \nTitan: 0,6% \nNatrium: 0,6% \nKalium: <0,1% \n\nZudem gibt es konzentrierte Vorkommen von Uran und Thorium.")
 	moon2 = nil
 	end
 	if mars2 ~= nil and earth2:isScannedBy(player) then
@@ -1179,10 +1179,10 @@ function update (delta)
 	neptun2 = nil
 	end
 	if pluto2 ~= nil and pluto2:isScannedBy(player) then
-		pluto2:setDescription("Planet: Pluto\n\n\nScannwerte: \n\nAtmospheren Hauptbestandteile: bei 3 · 10^-6\nStickstoff: 34%\nKohlenmonoxid: 33%\nMethan: 33% \n\nZusammensetzung:\nStickstoff: 10%\nWassereis: 30%\nGestein: 55%\nUran: 5%")
+		pluto2:setDescription("Planet: Pluto\n\n\nScannwerte: \n\nAtmospheren Hauptbestandteile: bei 3 Â· 10^-6\nStickstoff: 34%\nKohlenmonoxid: 33%\nMethan: 33% \n\nZusammensetzung:\nStickstoff: 10%\nWassereis: 30%\nGestein: 55%\nUran: 5%")
 	pluto2 = nil
 	end
--- Ende Details über Planeten
+-- Ende Details Ã¼ber Planeten
 
 -- Alienschiff --
 	if alien_01 ~= nil and alien_01:isScannedBy(player) then
@@ -1193,7 +1193,7 @@ function update (delta)
 	end
 -- Ende Alienschiff--
 
-	-- Entscheidung welches "nicht vorhandene" Schiffssystem zum Kühlmittel abzug benutzt wird. --
+	-- Entscheidung welches "nicht vorhandene" Schiffssystem zum KÃ¼hlmittel abzug benutzt wird. --
 	if player:hasJumpDrive() then
 	player:commandSetSystemCoolantRequest("warp", coolant_lvl)
 	else
@@ -1226,7 +1226,7 @@ function update (delta)
 	end
 	-- Ende Tarnnebelvernichtung --
 	
-	-- Kühlmittel aufnahme --
+	-- KÃ¼hlmittel aufnahme --
 	if coolant > 0 then
 		local x0,y0 = player:getPosition()
 		local dummy_station = 0
@@ -1234,7 +1234,7 @@ function update (delta)
 			if obj.typeName == "SpaceStation" then dummy_station = 1 end
 		end
 		if dummy_station == 1 then
-			player:addCustomButton("relay","Coolant_Intake", "Kühlmittel aufnehmen", function()
+			player:addCustomButton("relay","Coolant_Intake", "KÃ¼hlmittel aufnehmen", function()
 				player:removeCustom("Coolant_Info1")
 				player:removeCustom("Coolant_Info2")
 				player:removeCustom("Coolant_Info3")
@@ -1245,5 +1245,5 @@ function update (delta)
 			end)
 		end
 	end
-	-- Ende Kühlmittel aufnahme --
+	-- Ende KÃ¼hlmittel aufnahme --
 end
