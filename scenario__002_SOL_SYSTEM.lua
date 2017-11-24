@@ -490,6 +490,7 @@ function init()
 	earthstation1:setCommsFunction(earthstation1_call)
 	--player:commandDock(earthstation1)
 	marsstation1 = 		SpaceStation():setTemplate("Medium Station"):setFaction("Mars Tech Union"):setCallSign("MTU Ares-01"):setPosition(148108, -29222):setDescription("Ares-01. Werft und Hauptverteidigungslinie der Mars Tech Union.")
+	marsstation1:setCommsFunction(mars_comms)
 	jupiterstation1 = 	SpaceStation():setTemplate("Small Station"):setFaction("Unabhängige"):setCallSign("JS-I"):setPosition(177406, -9858):setDescription("Hauptstadt der Freien. Gerüchteweise ist es ihnen egal wer zum Handeln kommt. Ein jeder wird gleich behandelt."):setScanningParameters(0, 0)
 	venusstation1 = 	SpaceStation():setTemplate("Small Station"):setFaction("Unabhängige"):setCallSign("HS-I"):setPosition(140114, 15979):setDescription("Freie Handelststation im Venusorbit. Bekannt für seine Bordelle und Casinos."):setScanningParameters(0, 0)
 	saturnstation1 =    SpaceStation():setTemplate("Small Station"):setFaction("Unabhängige"):setCallSign("HS-III"):setPosition(72826, -40565):setDescription("Eine der größten Mine im System. Mehr Mineralabbau gibt es nur im Asteroidengürtel."):setScanningParameters(0, 0)
@@ -794,6 +795,40 @@ Zudem Wissen wir auch nur dass, was alle wissen. Piraten respektieren nur andere
 				setCommsMessage([[Die letzten Informationen deuten darauf hin das er sich auf der Jupiterstation befand. Er ist angeblich einer der drei untergetauchten Wissenschaftler, welche die MTU wieder unter ihrer kontrollen wissen möchte.]])
 			end)
 	end
+	
+	if mission_state == 4 then
+		setCommsMessage("Wir haben gehört sie haben 3 untergetauchte Wissenschaftler an Bord.")
+			addCommsReply("Das ist richtig.", function()
+				setCommsMessage("Bringen sie die Wissenschaftler zur Mars Basis um deren bescheuerte Forderung zu erfüllen...")
+				mission_state = 3
+				player:addCustomButton("weapons","wiss_ausl", "Gefangene ausliefern", function()
+					if distance(player,marsstation1) < 3000 then
+						player:removeCustom("oor_wiss_ausl")
+						player:removeCustom("wiss_ausl")
+						wissens_count = nil
+						marsstation1:openCommsTo(player)
+						mc = 1
+						forderungen_count = forderungen_count + 1
+					else
+						player:addCustomInfo("weapons","oor_wiss_ausl","Station nicht in Reichweite")
+					end
+				end)
+			end)
+			addCommsReply("Ehm,... wir melden uns später nochmal!",function()
+				setCommsMessage("Verstanden, erwarten ihre Rückmeldung.")
+				mission_state = 4
+			end)			
+	end
+end
+
+function mars_comms()
+	if mc == 1 then
+		setCommsMessage("Unsere Forderung wurde erfüllt, wir werden das bei den weiteren Verhandlungen mit Terra berücksichtigen.")
+	mc = 2
+	end
+	if mc == 2 then
+		setCommsMessage("Benehmen sie sich in unserem Gebiet.")
+	end
 end
 
 function WC_26_6_call()
@@ -930,7 +965,7 @@ function wissens_fang()
 						player:removeCustom("tartoofar")
 						player:removeCustom("in_reach")
 						dax_wissens()
-						wissens_count = (wissens_count + 1)
+						wissens_count = wissens_count + 1
 					else
 						player:addCustomInfo("weapons","tartoofar","Ziel außer Reichweite")
 						player:removeCustom("tarclose")
@@ -1138,6 +1173,20 @@ function update (delta)
 		wissens_activ = 2
 	end
 	
+	if wissens_count == nil then
+        wissens_count = 0
+    end
+	
+	if wissens_count == 3 then
+		mission_state = 4
+		missionStartState()
+		wissens_count = 0
+	end
+	
+	if forderungen_count == nil then
+        forderungen_count = 0
+    end
+	
 -- Details über die Handelsschiffe.
 	if Transport_1 ~= nil and Transport_1:isScannedBy(player) then
 		Transport_1:setDescription("Lebenszeichen:\n1 Mensch \n2 Katzen \nKapitän Haviland Tuf, der Besitzer dieses Schiffs, ihr name ist -Füllhorn der excellenten Güter und niedrigen Preise-, ein gutmütiger und stehts freundlicher Händler. Jedoch sollte man ihn nicht unterschätzen und er mag Katzen.")
@@ -1165,6 +1214,12 @@ function update (delta)
 	if Transport_5 ~= nil and Transport_5:isScannedBy(player) then
 		Transport_5:setDescription("Lebenszeichen:\n4 Menschen \nKapitän: L.Arvus \nErster Offizier: P.Peterson \nTechniker: S.Michalowitzch \nPassagier: E.Watson \n Ladung: 50 Tonnen Wissenschaftliches Equipment.")
 		Transport_5:setCallSign("UH Sharon")
+		player:addCustomMessage("science","p_dax",[[Gesuchte Person entdeckt.
+		
+Bis auf 3U an das Schiff heranfliegen um Person festzunehmen.
+(Fenster nicht Schließen!)]])
+		wissens_activ = 1
+		wissenschaftler = Transport_5
 	Transport_5 = nil
 	end
 	if Transport_6 ~= nil and Transport_6:isScannedBy(player) then
@@ -1180,6 +1235,12 @@ function update (delta)
 	if Transport_8 ~= nil and Transport_8:isScannedBy(player) then
 		Transport_8:setDescription("Lebenszeichen:\n4 Menschen \nKapitän: A.Coblenz\nErster Offizier: E.Ripley\n\nLadung: \nVersuchstiere und einige Güter des täglichen Bedarfs.")
 		Transport_8:setCallSign("UH Nostromo")
+		player:addCustomMessage("science","p_dax",[[Gesuchte Person entdeckt.
+		
+Bis auf 3U an das Schiff heranfliegen um Person festzunehmen.
+(Fenster nicht Schließen!)]])
+		wissens_activ = 1
+		wissenschaftler = Transport_8
 	Transport_8 = nil
 	end
 	if Transport_9 ~= nil and Transport_8:isScannedBy(player) then
@@ -1212,9 +1273,16 @@ Bis auf 3U an das Schiff heranfliegen um Person festzunehmen.
 	if Transport_13 ~= nil and Transport_8:isScannedBy(player) then
 		Transport_13:setDescription("Lebenszeichen:\n5 Menschen \nKapitän: T.Wheeler \nTechnicker: A.Palpavisch\n\nLadung: \nBlei: 40 Tonnen \n\n\nWas immer ihr über Kapitän Theodor Wheeler gehört habt, er hat nie einen Außerirdischen getroffen. Marsianer ausgeschlossen.")
 		Transport_13:setCallSign("UH Europa")
+		player:addCustomMessage("science","p_dax",[[Gesuchte Person entdeckt.
+		
+Bis auf 3U an das Schiff heranfliegen um Person festzunehmen.
+(Fenster nicht Schließen!)]])
+		wissens_activ = 1
+		wissenschaftler = Transport_13
 	Transport_13 = nil
 	end
 -- Ende Details über die Handelsschiffe.
+
 -- Details über Planeten
 	if sun2 ~= nil and sun2:isScannedBy(player) then
 		sun2:setDescription("Stern: Sol\n\n\nScannwerte: \n\nZusammensetzung: \nWasserstoff: 92,1%\nHelium: 7,8%\nSauerstoff, Kohlenstoff, Neon, Stickstoff: 1%")
