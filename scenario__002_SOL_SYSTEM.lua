@@ -5,8 +5,8 @@ require("utils.lua")
 function init()
 	player = PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Atlantis"):setPosition(82464, 294):setCallSign("TN Verdandi")
 	    for _, system in ipairs({"reactor", "beamweapons", "missilesystem", "maneuver", "impulse", "warp", "jumpdrive", "frontshield", "rearshield"}) do
-        -- player:setSystemPower(system, 0.0) -- Diese beiden Zeilen setzen die "Leistung" der Systeme auf 0.0, Engineering muss quasi den Motor erstmal starten.
-        -- player:commandSetSystemPowerRequest(system, 0.0)
+         player:setSystemPower(system, 0.0) -- Diese beiden Zeilen setzen die "Leistung" der Systeme auf 0.0, Engineering muss quasi den Motor erstmal starten.
+         player:commandSetSystemPowerRequest(system, 0.0)
 		end
 	Script():run("Solarer_Sektor.lua")
 	
