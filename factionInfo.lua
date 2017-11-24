@@ -33,3 +33,12 @@ pirat1:setFriendly(tn)
 pirat1:setFriendly(neutrals)
 pirat1:setEnemy(mars)
 pirat1:setEnemy(mars1)
+
+al1 = FactionInfo():setName("Alien (Friedlich)")
+al1:setGMColor(100, 100, 0)
+al1:setDescription([[Unbekannte Spezies.]])
+
+al2 = FactionInfo():setName("Alien (Feindlich)")
+al2:setGMColor(0, 100, 100)
+al2:setDescription([[Unbekannte Spezies.]])
+al2:setEnemy(tn)
