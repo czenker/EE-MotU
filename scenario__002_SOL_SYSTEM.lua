@@ -5,8 +5,8 @@ require("utils.lua")
 function init()
 	player = PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Atlantis"):setPosition(82464, 294):setCallSign("TN Verdandi")
 	    for _, system in ipairs({"reactor", "beamweapons", "missilesystem", "maneuver", "impulse", "warp", "jumpdrive", "frontshield", "rearshield"}) do
-        player:setSystemPower(system, 0.0) -- Diese beiden Zeilen setzen die "Leistung" der Systeme auf 0.0, Engineering muss quasi den Motor erstmal starten.
-        player:commandSetSystemPowerRequest(system, 0.0)
+        -- player:setSystemPower(system, 0.0) -- Diese beiden Zeilen setzen die "Leistung" der Systeme auf 0.0, Engineering muss quasi den Motor erstmal starten.
+        -- player:commandSetSystemPowerRequest(system, 0.0)
 		end
 	Script():run("Solarer_Sektor.lua")
 	
@@ -569,10 +569,13 @@ function init()
     mtu_06=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Cruiser"):setCallSign("MTU Primaris"):setPosition(176810, -12445):orderDefendLocation(176810, -12445)
     mtu_07=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Cruiser"):setCallSign("MTU Mefisto"):setPosition(144896, -27251):orderDefendLocation(144896, -27251)
     mtu_08=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Cruiser"):setCallSign("MTU FuckYou"):setPosition(142860, 10991):orderDefendLocation(142860, 10991)
+	-- Alien --
+	alien_01= CpuShip():setFaction("Alien (Friedlich)"):setTemplate("Cruiser"):setCallSign("?*'#&45/"):setPosition(183023, -112526):setHullMax(100):setHull(100):setJumpDrive(true):setBeamWeapon(2, 49, 1, 1300, 5.9, 6.0):setBeamWeaponTurret(2, 67, 1, 1)
+		alien_01:setScanningParameters(0, 0):setCommsFunction(aliencomms)
+		alien_01:setDescriptions("Schiffserkennung nicht eindeutig.\n\n Ähnlichster Typ: Cruiser. \n\n\n Unbekanntes Schiff." , "Schiff nicht aus dem Sol-System. Unbekannte Zeichen auf der Hülle.")
 	-- Raumschiffe Ende
 
 mission_state = missionStartState
-
 	-- GM Befehle --
 	addGMFunction("Bergbau", function() --Startet das Bergbau Script. --
 		Script():run("scenario_mineral_de.lua")
@@ -675,20 +678,121 @@ function earthstation1_call()
 	if mission_state == missionStartState then
 		setCommsMessage([[TN Alpharius-01 an TN Verdandi.
 		
-Sie haben das fortschrittlichste Schiff das bisher unsere Werft verlassen hat. Es handelt sich um das erste WARP 4 Schiff der Flotte.]])
-			addCommsReply("Nachricht erhalten.", function()
-				mission_state = ongoging
-				Transport_6:setSystemHealth("impulse", -100):setSystemHealth("maneuver", -100)
-				setCommsMessage([[Gut, die Comms funktioniert demnach. Wir haben bereits den ersten Auftrag für sie.
+Testnachricht.]])
+		addCommsReply("Nachricht erhalten.", function()
+			mission_state = ongoging
+			Transport_6:setSystemHealth("impulse", -100):setSystemHealth("maneuver", -100)
+			setCommsMessage([[Sehr gut, die Comms funktioniert demnach. Wir haben bereits den ersten Auftrag für sie TN Verdandi.
 				
-Die UH WC-26 meldet einen Notfall. Fahren sie ihren Reaktor und alle anderen Systeme hoch und docken sie ab.]])
-					addCommsReply("Auftrag erhalten.", function()
-						missions_state = stillongoing
-						comm_stat = 1
-						setCommsMessage([[TN Verdandi, melden sie sich wenn die Mission erledigt ist.
+Die UH WC-26 meldet einen Notfall. Fahren sie ihren Reaktor hoch und aktivieren sie alle Systeme. Docken sie anschließend ab und machen sie sich auf den Weg.]])
+			addCommsReply("Auftrag erhalten.", function()
+				comm_stat = 1
+				setCommsMessage([[TN Verdandi, melden sie sich wenn die Mission erledigt ist.
 
 Wir wünschen ihnen einen guten Jungfernflug!]])
-					end)
+				end)
+		end)
+	end
+	
+	if mission_state == 2 then
+		setCommsMessage([[Haben sie den Auftrag erledigt?]])
+		addCommsReply("Auftrag erledigt.", function()
+			setCommsMessage([[Sehr gut, kommen wir nun zu ihrer eigentlichen Mission.
+			
+Sie wissen wir stehen im kalten Krieges mit der "Mars Tech Union". Der kleinste Zwischenfall könnte den kalten Krieg zum heißen Krieg werden lassen.
+Es ist nicht unser Plan einen Krieg zu entfesseln der zur beiderseitigen Auslöschung führen könnte.
+
+Die Schiffe der MTU werden sie nicht aktiv angreifen wenn sie in ihre nähe kommen. Ein Angriff ihrerseits würde jedoch den Kriegszustand auslösen, daher erneut die eindringliche Warnung, verursachen sie keinen Zwischenfall!
+
+
+Um ihnen ein Aktuelles Bild der Situation zu geben:
+Die Piraten sind derzeit relativ ruhig, wir vermuten das sie nur auf eine gelegenheit warten wieder auf karperfahrt zu gehen. Aber in diesem politischen Klima können wir es nicht wagen unsere Kampfverbände zur Piraten jagt zu benutzen.
+Eventuell können sie mit ihnen in Verhandlungen treten, sollten sie auf unsere Seite wechseln wäre dies ein deutlicher Vorteil und ein starkes Druckmittel gegenüber der MTU. Sie wären gezwungen sich unseren forderungen zu beugen.
+Zuvor müssten sie allerdings die Aufmerksamkeit des Piraten Admirals erregen.
+
+
+Die Unabhängigen Händler sind eine enorme Institution für beide Parteien, wer sie kontrolliert oder ihnen vorsteht könnte frei entscheiden wie dieser Konflikt bewältigt wird, da alle von den Händlern in gewissem maße abhängig sind.
+
+Unsere letzten informationen nach haben sie schwer unter den Piraten angriffen zu leiden, besonders da wir keine Eskorten mehr zur verfügung stellen. Vielleicht könnten sie auch mit ihnen in Verhandlungen treten und der Terranischen Navy einen vorteil verschaffen?
+
+
+Der letzte Scan des Sol-Systems zeigte keine echten Neuerungen.
+Die Signale vom Pluto sind laut unseren Wissenschaftlern natürlichen Ursprungs, irgendein, mit radiokativem Material durchsetzter, Brocken wird wohl auf den Planeten eingeschlagen sein. Kein Grund für weitere für weiter Nachforschungen.
+
+
+Unser Geheimdienst hat ein paar Informationen für sie:
+Laut unbekannten Quellen ist ein Wissenschaftler, namens Peter Dex, der MTU auf der Flucht.
+Dieser soll ein neuartiges System entwickelt haben Schiffssysteme zu kühlen. Näheres ist jedoch leider nicht bekannt, ihn zu finden könnte uns einen deutlichen Vorteil bescheren.
+
+
+Zu guter letzt, noch Informationen zur Reputation. Jede Aktion die sie durchführen kann Reputation erbringen aber auch kosten. Sehen sie Reputation als eine Mischung aus Währung und Einfluss.]])
+			mission_state = 3
+			addCommsReply("Worin bestehen die gegenseitigen Forderungen der TN und MTU?", function()
+				setCommsMessage([[Eine Einigung im Mars-Kontrakt kann erzielt werden wenn mindestens 3 der forderungen beider Seiten erfüllt wurden.
+				
+Die "Terranische Navy" fordert:
+-	Die Piraten los werden.
+-	Die eingliederung der MTU unter der Terranischen herrschaft.
+-	Zugriff auf die marsianische Industriekapazität.
+-	Militärische übermacht gegenüber dem Mars besitzen.
+-	Erhöhte priorität bei der Belieferung durch Händler.
+-	Einnehmen der Neptun-Station für die TN.
+
+Die "Mars Tech Union" fordert:
+-	Die Piraten los werden.
+-	Unabhängigkeit von der Terranischen herrschaft.
+-	Technologie abkommen mit Terra.
+-	Alle (3) untergetauchten Wissenschaftler zurückführen.
+-	Erhöhte priorität bei der Belieferung durch Händler.
+-	Abkaufen der Asteroiden-Station HS-IV, für die MTU.]])
+			end)
+			addCommsReply("Haben sie genauere Informationen über die Piraten?", function()
+				setCommsMessage([[Wir Wissen lediglich das sie die Neptun-Station kürzlich eingenommen haben und über mehr als 5 Schiffe verfügen.
+Sie verstehen sicherlich, dass unsere Prioritäten derzeit woanders liegen.
+
+Zudem Wissen wir auch nur dass, was alle wissen. Piraten respektieren nur andere Piraten.]])
+			end)
+			addCommsReply("Wer ist der Ansprechpartner der Unabhängigen Händler?",function()
+				setCommsMessage([[Prinzipiell kann man jeden der UH ansprechen. Jeder Kapitän koch sein eigenes süppchen. Sie sind eine gute Quelle um an Reputations Punkte zu kommen.]])
+			end)
+			addCommsReply("Gibt es mehr informationen über den Wissenschaftler?", function()
+				setCommsMessage([[Die letzten Informationen deuten darauf hin das er sich auf der Jupiterstation befand. Er ist angeblich einer der drei untergetauchten Wissenschaftler, welche die MTU wieder unter ihrer kontrollen wissen möchte.]])
+			end)
+		end)
+	end
+	
+	if mission_state == 3 then
+		setCommsMessage([[Können wir ihnen weiterhelfen?]])
+			addCommsReply("Worin bestehen die gegenseitigen Forderungen der TN und MTU?", function()
+				setCommsMessage([[Eine Einigung im Mars-Kontrakt kann erzielt werden wenn mindestens 3 der forderungen beider Seiten erfüllt wurden.
+				
+Die "Terranische Navy" fordert:
+-	Die Piraten los werden.
+-	Die eingliederung der MTU unter der Terranischen herrschaft.
+-	Zugriff auf die marsianische Industriekapazität.
+-	Militärische übermacht gegenüber dem Mars besitzen.
+-	Erhöhte priorität bei der Belieferung durch Händler.
+-	Einnehmen der Neptun-Station für die TN.
+
+Die "Mars Tech Union" fordert:
+-	Die Piraten los werden.
+-	Unabhängigkeit von der Terranischen herrschaft.
+-	Technologie abkommen mit Terra.
+-	Alle (3) untergetauchten Wissenschaftler zurückführen.
+-	Erhöhte priorität bei der Belieferung durch Händler.
+-	Abkaufen der Asteroiden-Station HS-IV, für die MTU.]])
+			end)
+			addCommsReply("Haben sie genauere Informationen über die Piraten?", function()
+				setCommsMessage([[Wir Wissen lediglich das sie die Neptun-Station kürzlich eingenommen haben und über mehr als 5 Schiffe verfügen.
+Sie verstehen sicherlich, dass unsere Prioritäten derzeit woanders liegen.
+
+Zudem Wissen wir auch nur dass, was alle wissen. Piraten respektieren nur andere Piraten.]])
+			end)
+			addCommsReply("Wer ist der Ansprechpartner der Unabhängigen Händler?",function()
+				setCommsMessage([[Prinzipiell kann man jeden der UH ansprechen. Jeder Kapitän koch sein eigenes süppchen. Sie sind eine gute Quelle um an Reputations Punkte zu kommen.]])
+			end)
+			addCommsReply("Gibt es mehr informationen über den Wissenschaftler?", function()
+				setCommsMessage([[Die letzten Informationen deuten darauf hin das er sich auf der Jupiterstation befand. Er ist angeblich einer der drei untergetauchten Wissenschaftler, welche die MTU wieder unter ihrer kontrollen wissen möchte.]])
 			end)
 	end
 end
@@ -730,6 +834,7 @@ Sind die Schilde aktiv und die korrekte Frequenz eingestellt worden, lassen sie 
 				
 UH Arizona Ende.]])
 				comm_stat = nil
+				mission_state = 2
 			end)
 			addCommsReply("Lassen sie ihren Schrotthaufen überholen!", function()
 				setCommsMessage([[Haben Verstanden. Das geht aber auch freundlicher.
@@ -737,6 +842,7 @@ UH Arizona Ende.]])
 UH Arizona Ende.]])
 				player:takeReputationPoints(50.0)
 				comm_stat = nil
+				mission_state = 2
 			end)
 	end
 end
@@ -816,6 +922,142 @@ function coolant_f()
 	end)
 	--end)
 -- Ende Kühlmittel Ausstoß --
+end
+
+function aliencomms()
+	if alien_state == 1 then
+		setCommsMessage("/sION6541 51846?00ß  =?6&%%%jn7 846as8 d462e (7777 (%fmdsl =mklnf -*+'##sdf")
+			addCommsReply("Nachricht an Wissenschaftsoffizier weiterleiten.", function()
+				player:addCustomButton("weapons", "alien_tar", "Ziel als Feind Markieren", function()
+					alien_01:setFaction("Alien (Feindlich)")
+					alien_state = 9
+				end)
+				setCommsMessage("Nachricht an Wissenschaftsoffizier weiter geleitet.")
+				player:addCustomButton("science", "alien_scrambel_01", "Nachricht entschlüsseln.", function()
+					player:removeCustom("alien_scrambel_01")
+					player:addCustomMessage("science", "alien_sc_info01", "Wir 51846?00ß  in 846as8 d462e beabsichtigen euch =mklnf anzugreifen.")
+					player:addCustomButton("science", "alien_scrambel_02", "Nachricht entschlüsseln.", function()
+						player:removeCustom("alien_scrambel_02")
+						player:removeCustom("alien_sc_info01")
+						player:addCustomMessage("science", "alien_sc_info02", "Wir kommen  in 846as8 und beabsichtigen euch =mklnf anzugreifen.")
+						player:addCustomButton("science", "alien_scrambel_03", "Nachricht entschlüsseln.", function()
+							player:removeCustom("alien_scrambel_03")
+							player:removeCustom("alien_sc_info02")
+							player:addCustomMessage("science", "alien_sc_info03", "Wir kommen in Frieden und beabsichtigen euch nicht anzugreifen.")
+							player:addCustomButton("science", "alien_scrambel_04", "Übersetzungsalgorythmus an Comms senden.", function()
+								player:removeCustom("alien_scrambel_04")
+								player:removeCustom("alien_sc_info03")
+								alien_state = 2
+								player:removeCustom("alien_tar")
+							end)
+						end)
+					end)
+				end)
+			end)
+	end
+	
+	if alien_state == 2 then
+	setCommsMessage([[Hier ist der Kommandant der Shapiron.
+
+Können sie uns verstehen?]])
+		addCommsReply("Ja wir können sie verstehen! Willkommen im Sol-System.", function()
+			alien_state = 3
+			setCommsMessage("Wir sind erfreut sie kennen zu lernen. Könnten sie uns mit ein paar Teilen aushelfen?")
+				addCommsReply("Schicken sie uns eine Liste der benötigten Teile und wir sehen was wir tun können.", function()
+					setCommsMessage("Liste wird übertragen. Melden sie sich erneut wenn sie die Teile gesendet haben.")
+					player:addCustomButton("engineering", "alien_liste", "Inventar-Prüfung", function()
+						player:removeCustom("alien_liste")
+						player:addCustomInfo("engineering", "invent_prf", "Material vorhanden.")
+						player:addCustomButton("engineering", "alien_send", "Material senden", function()
+							player:removeCustom("invent_prf")
+							player:removeCustom("alien_send")
+							alien_state = 4
+						end)
+					end)
+				end)
+				addCommsReply("Wir kehren in kürze zurück und nehmen mit ihnen wieder Kontakt auf.", function()
+					setCommMessage("Wir warten auf ihre Rückkehr!")
+				end)
+				addCommsReply("Wir trauen ihnen leider nicht. Senden sie keine Daten!",function()
+					alien_state = 8
+					setCommMessage("Verstanden.")
+				end)
+		end)
+		addCommsReply("Lassen sie ihre Schilde runter und übergeben sie das Schiff.", function()
+			alien_01:setFaction("Alien (Feindlich)")
+			alien_state = 9
+			setCommsMessage("Sie sind eine wiederwärtige Spezies. Wir werden sie ausrotten.")
+		end)
+	end
+	
+	if alien_state == 3 then
+		setCommsMessage("Können sie uns nun mit ein paar Teilen aushelfen?")
+		addCommsReply("Schicken sie uns eine Liste der benötigten Teile und wir sehen was wir tun können.", function()
+					setCommsMessage("Liste wird übertragen. Melden sie sich erneut wenn sie die Teile gesendet haben.")
+					player:addCustomButton("engineering", "alien_liste", "Inventar-Prüfung", function()
+						player:removeCustom("alien_liste")
+						player:addCustomInfo("engineering", "invent_prf", "Material vorhanden.")
+						player:addCustomButton("engineering", "alien_send", "Material senden", function()
+							player:removeCustom("invent_prf")
+							player:removeCustom("alien_send")
+							alien_state = 4
+						end)
+					end)
+				end)
+				addCommsReply("Wir kehren in kürze zurück und nehmen mit ihnen wieder Kontakt auf.", function()
+					setCommMessage("Wir warten auf ihre Rückkehr!")
+				end)
+				addCommsReply("Wir trauen ihnen leider nicht. Senden sie keine Daten!",function()
+					alien_state = 8
+					setCommMessage("Verstanden.")
+				end)
+	end
+	
+	if alien_state == 4 then
+		setCommsMessage("Vielen Dank für die Materialien, wir würden ihnen gerne anbieten einen alternativen Antrieb einzubauen. Möchten sie einen Sprungantrieb statt ihres Warpantriebs erhalten?")
+		addCommsReply("Wir würden den Sprungantrieb gerne annehmen.", function()
+			alien_state = 6
+			player:setWarpDrive(false):setJumpDrive(true)
+			setCommsMessage("Schon erledigt.")
+		end)
+		addCommsReply("Wir kommen darauf zurück.", function()
+			alien_state = 5
+			setCommsMessage("Wir sind noch eine Weile hier uns sammeln Wissenschaftliche Daten.")
+		end)	
+	end
+	
+	if alien_state == 5 then
+		setCommsMessage("Möchten sie nun den Sprungantrieb erhalten?")
+		addCommsReply("Wir würden den Sprungantrieb nun gerne annehmen.", function()
+			alien_state = 6
+			player:setWarpDrive(false):setJumpDrive(true)
+			setCommsMessage("Schon erledigt.")
+		end)
+		addCommsReply("Wir kommen darauf zurück.", function()
+			setCommsMessage("Wir sind noch eine Weile hier uns sammeln Wissenschaftliche Daten.")
+		end)	
+	end
+	
+	if alien_state == 6 then
+		setCommsMessage("Wir sammeln noch Wissenschaftliche Daten.")
+	end
+	
+	if alien_state == 8 then
+		setCommsMessage("Wir bedauern das sie uns nicht vertrauen.")
+		addCommsReply("Wir haben es uns überlegt. Wir sprechen sie gleich nochmal an.", function()
+			alien_state = 3
+			setCommsMessage("Wir erwarten ihre Rückmeldung.")
+		end)
+		addCommsReply("Wir werden sie ausradieren.",function()
+			alien_01:setFaction("Alien (Feindlich)")
+			alien_state = 9
+			setCommsMessage("Sie sind eine wiederwärtige Spezies. Wir werden sie ausrotten.")
+		end)
+	end
+	
+	if alien_state == 9 then
+		setCommsMessage("Sie sind eine wiederwärtige Spezies. Wir werden sie ausrotten.")
+	end
 end
 
 function update (delta)
@@ -942,6 +1184,14 @@ function update (delta)
 	end
 -- Ende Details über Planeten
 
+-- Alienschiff --
+	if alien_01 ~= nil and alien_01:isScannedBy(player) then
+		alien_01:setCallSign("Shapiron")
+		alien_state = 1
+		alien_01:openCommsTo(player)
+		alien_01 = nil
+	end
+-- Ende Alienschiff--
 
 	-- Entscheidung welches "nicht vorhandene" Schiffssystem zum Kühlmittel abzug benutzt wird. --
 	if player:hasJumpDrive() then
