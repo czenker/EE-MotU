@@ -8,44 +8,289 @@ function init()
 			player:setSystemPower(system, 0.0) -- Diese beiden Zeilen setzen die "Leistung" der Systeme auf 0.0, Engineering muss quasi den Motor erstmal starten.
 			player:commandSetSystemPowerRequest(system, 0.0)
 		end
-	Script():run("Solarer_Sektor.lua")
+	--Script():run("Solarer_Sektor.lua")
 	
 	-- SOL-SYSTEM
 	-- Stern und Planeten -- Die Artefakte dienen zur lesbarkeit auf den Radarschirmen.
 	sun1 = Planet():setPosition(120000, 0):setPlanetRadius(10000):setDistanceFromMovementPlane(-3000):setPlanetSurfaceTexture("planets/sun-1.png"):setPlanetAtmosphereTexture("planets/star-1.png"):setPlanetAtmosphereColor(1,0.5,0):setAxialRotationTime(1000)
 		sun2 = Artifact():setPosition(120000, 0):setModel("SensorBuoyMKI"):setCallSign("Sol"):setDescription("Stern: Sol. Im allgemeinen auch als Sonne bezeichnet."):setScanningParameters(1, 1):setFaction("Unabhängige")
+		sun2.Gescannt = 0
 	merkur1 = Planet():setPosition(111664, -13005):setPlanetRadius(500):setDistanceFromMovementPlane(-50):setPlanetSurfaceTexture("planets/merkur-2.png")
 		merkur2 = Artifact():setPosition(111664, -13005):setModel("SensorBuoyMKI"):setCallSign("Merkur"):setDescription("Planet: Merkur."):setScanningParameters(1, 1):setFaction("Unabhängige")
-	merkur3 = 1
+		merkur2.Gescannt = 0
+		merkur2.TuffDaten = 1
 	venus1 = Planet():setPosition(137872, 14535):setPlanetRadius(1000):setDistanceFromMovementPlane(-500):setPlanetSurfaceTexture("planets/venus-2.png"):setPlanetCloudTexture("planets/venus-2.png"):setPlanetAtmosphereTexture("planets/venus-2.png"):setPlanetAtmosphereColor(-1,-1,-1):setAxialRotationTime(2000.0)
 		venus2 = Artifact():setPosition(137872, 14535):setModel("SensorBuoyMKI"):setCallSign("Venus"):setDescription("Planet: Venus."):setScanningParameters(1, 1):setFaction("Unabhängige")
-	venus3 = 1
+		venus2.Gescannt = 0
+		venus2.TuffDaten = 1
 	earth1 = Planet():setPosition(85250, -519):setPlanetRadius(1250):setDistanceFromMovementPlane(-700):setPlanetSurfaceTexture("planets/earth-1.png"):setPlanetCloudTexture("planets/clouds-1.png"):setPlanetAtmosphereTexture("planets/atmosphere.png"):setPlanetAtmosphereColor(0.2,0.2,1.0):setAxialRotationTime(1000.0)
 		earth2 = Artifact():setPosition(85250, -519):setModel("SensorBuoyMKI"):setCallSign("Terra"):setDescription("Planet: Erde. Von manchen Religiösen auch Gaia genannt."):setScanningParameters(1, 1):setFaction("Terranische Navy")
-	earth3 = 1
+		earth2.Gescannt = 0
+		earth2.TuffDaten = 1
 	moon1 = Planet():setPosition(83526, 1936):setPlanetRadius(500):setPlanetSurfaceTexture("planets/moon-2.png")
 		moon2 = Artifact():setPosition(83526, 1936):setModel("SensorBuoyMKI"):setCallSign("TN C&C"):setDescription("Mond. \n\n Auf dem Trabanten der Erde befindet sich die ausgelagerte Basis der Terranischen Navy. Von hier steuert und überwacht die Admiralität die Terranische Flotte."):setScanningParameters(1, 0):setFaction("Terranische Navy")
+		moon2.Gescannt = 0
 	mars1 = Planet():setPosition(150735, -30537):setCallSign("Mars Comm-Link-Station"):setPlanetRadius(1100):setDistanceFromMovementPlane(-700):setPlanetSurfaceTexture("planets/mars-1.png"):setPlanetAtmosphereTexture("planets/atmosphere.png"):setPlanetAtmosphereColor(0.1,0.1,0.1):setAxialRotationTime(1000.0)
 		mars2 = Artifact():setPosition(150735, -30537):setModel("SensorBuoyMKI"):setCallSign("Mars"):setDescription("Planet: Mars."):setScanningParameters(1, 1):setFaction("Mars Tech Union")
-	mars3 = 1
+		mars2.Gescannt = 0
+		mars2.TuffDaten = 1
 	jupiter1 = Planet():setPosition(173499, -6871):setPlanetRadius(3000):setPlanetSurfaceTexture("planets/jupiter-1.png"):setPlanetAtmosphereTexture("planets/atmosphere.png"):setPlanetAtmosphereColor(0.1,0.1,0.1):setAxialRotationTime(25.0)
 		jupiter2 = Artifact():setPosition(173499, -6871):setModel("SensorBuoyMKI"):setCallSign("Jupiter"):setDescription("Planet: Jupiter."):setScanningParameters(1, 1):setFaction("Unabhängige")
-	jupiter3 = 1
+		jupiter2.Gescannt = 0
+		jupiter2.TuffDaten = 1
 	saturn1 = Planet():setPosition(75271, -45952):setPlanetRadius(2500):setPlanetSurfaceTexture("planets/saturn-1.png"):setPlanetAtmosphereTexture("planets/atmosphere.png"):setPlanetAtmosphereColor(0.1,0.1,0.1):setAxialRotationTime(200.0)
 		saturn2 = Artifact():setPosition(75271, -45952):setModel("SensorBuoyMKI"):setCallSign("Saturn"):setDescription("Planet: Saturn."):setScanningParameters(1, 1):setFaction("Unabhängige")
-	saturn3 = 1
+		saturn2.Gescannt = 0
+		saturn2.TuffDaten = 1
 	uranus1 = Planet():setPosition(164408, 68598):setPlanetRadius(2000):setDistanceFromMovementPlane(-1250):setPlanetSurfaceTexture("planets/uranus-1.png"):setPlanetAtmosphereTexture("planets/atmosphere.png"):setPlanetAtmosphereColor(0.1,0.1,0.1):setAxialRotationTime(200.0)
 		uranus2 = Artifact():setPosition(164408, 68598):setModel("SensorBuoyMKI"):setCallSign("Uranus"):setDescription("Planet: Uranus."):setScanningParameters(1, 1):setFaction("Unabhängige")
-	uranus3 = 1
+		uranus2.Gescannt = 0
+		uranus2.TuffDaten = 1
 	neptun1 = Planet():setPosition(47779, 72861):setPlanetRadius(2000):setDistanceFromMovementPlane(-1250):setPlanetSurfaceTexture("planets/neptun-1.png"):setPlanetAtmosphereTexture("planets/atmosphere.png"):setPlanetAtmosphereColor(0.1,0.1,0.1):setAxialRotationTime(200.0)
 		neptun2 = Artifact():setPosition(47779, 72861):setModel("SensorBuoyMKI"):setCallSign("Neptun"):setDescription("Planet: Neptun."):setScanningParameters(1, 1):setFaction("Unabhängige")
-	neptun3 = 1
+		neptun2.Gescannt = 0
+		neptun2.TuffDaten = 1
 	pluto1 = Planet():setPosition(182630, -112156):setPlanetRadius(400):setPlanetSurfaceTexture("planets/pluto-1.png"):setAxialRotationTime(100.0)
 		pluto2 = Artifact():setPosition(182630, -112156):setModel("SensorBuoyMKI"):setCallSign("Pluto"):setDescription("Planet: Pluto."):setScanningParameters(1, 1):setFaction("Unabhängige")
-	pluto3 = 1
+		pluto2.Gescannt = 0
+		pluto2.TuffDaten = 1
 	-- Stern und Planeten Ende
 	
-	-- Saturn Ring
+	--Asteroiden
+	AddAsteroiden()
+	--Asteroiden Ende
+	
+	-- Raumstationen
+	earthstation1 = 	SpaceStation():setPosition(82286, 167):setTemplate("Medium Station"):setFaction("Terranische Navy"):setRotation(random(0, 360)):setCallSign("TN Alpharius-01"):setDescription("Alpharius. Werft und Basis aller bisheriger TN Operationen."):setScanningParameters(0, 0)
+	earthstation1:setCommsFunction(earthstation1_call)
+	player:commandDock(earthstation1)
+	marsstation1 = 		SpaceStation():setTemplate("Medium Station"):setFaction("Mars Tech Union"):setCallSign("MTU Ares-01"):setPosition(148108, -29222):setDescription("Ares-01. Werft und Hauptverteidigungslinie der Mars Tech Union.")
+	marsstation1:setCommsFunction(mars_comms)
+	jupiterstation1 = 	SpaceStation():setTemplate("Small Station"):setFaction("Unabhängige"):setCallSign("JS-I"):setPosition(177406, -9858):setDescription("Hauptstadt der Freien. Gerüchteweise ist es ihnen egal wer zum Handeln kommt. Ein jeder wird gleich behandelt."):setScanningParameters(0, 0)
+	venusstation1 = 	SpaceStation():setTemplate("Small Station"):setFaction("Unabhängige"):setCallSign("HS-I"):setPosition(140114, 15979):setDescription("Freie Handelststation im Venusorbit. Bekannt für seine Bordelle und Casinos."):setScanningParameters(0, 0)
+	saturnstation1 =    SpaceStation():setTemplate("Small Station"):setFaction("Unabhängige"):setCallSign("HS-III"):setPosition(72826, -40565):setDescription("Eine der größten Mine im System. Mehr Mineralabbau gibt es nur im Asteroidengürtel."):setScanningParameters(0, 0)
+	uranusstation1 =    SpaceStation():setTemplate("Small Station"):setFaction("Piraten"):setCallSign("Tortuga-Station"):setPosition(166434, 71341):setDescription("Es gibt hier nur Monster. Wenn du eins bist, willkommen! Setz dich, nimm einen Krug Grogg und habe einen Profitabelen Tag.")
+	uranusstation1:setCommsFunction(tortuga_comms)
+	neptunstation1 = 	SpaceStation():setTemplate("Small Station"):setFaction("Unabhängige"):setCallSign("HS-V"):setPosition(50693, 70482):setDescription(""):setScanningParameters(0, 0)
+	asteroidenstation1 =SpaceStation():setTemplate("Small Station"):setFaction("Unabhängige"):setCallSign("HS-IV"):setPosition(111996, 49541):setDescription(""):setScanningParameters(0, 0)
+	asteroidenstation1:setCommsFunction(brocken_comms)
+	-- Raumstation Ende
+  
+	-- Raumschiffe
+	-- Unabhängige Transporter
+	Transport_1=	CpuShip():setFaction("Unabhängige"):setTemplate("Equipment Freighter 4"):setCallSign("UH HT-09"):setPosition(73503, -40404):orderDock(jupiterstation1):setCommsFunction(HT_09_1_call)
+		Transport_1:setScanningParameters(0, 0):setDescription("Typ: Handelsschiff \nWirkt wie ein sehr heruntergekommener Frachter der Nebulon-Klasse.")
+		Transport_1.Gescannt = 0
+	Transport_2=    CpuShip():setFaction("Unabhängige"):setTemplate("Equipment Freighter 4"):setCallSign("UH PR-16"):setPosition(83859, 4035):orderDock(marsstation1):setCommsFunction(PR_16_2_call)
+		Transport_2:setScanningParameters(0, 0):setDescription("Typ: Handelsschiff \nFrisch lackierter Frachter der Nebulon-Klasse. Wirkt als wäre es frisch aus dem Raumhafen gekommen.")
+		Transport_2.Gescannt = 0
+	Transport_3=    CpuShip():setFaction("Unabhängige"):setTemplate("Fuel Freighter 1"):setCallSign("UH GB-14"):setPosition(181053, -5324):orderDock(venusstation1):setCommsFunction(GB_14_3_call)
+		Transport_3:setScanningParameters(0, 0):setDescription("Typ: Handelsschiff \nHochtechnisierter Frachter für Treibstoffe. Wirkt gut gewartet.")
+		Transport_3.Gescannt = 0
+	Transport_4=    CpuShip():setFaction("Unabhängige"):setTemplate("Transport3x1"):setCallSign("UH XX-X4"):setPosition(143722, 17680):orderDock(asteroidenstation1)
+		Transport_4:setScanningParameters(1, 4):setDescription("Typ: Handelsschiff \nTransport für Nukleares Material. Die Strahlungswerte sind so stark das so zimelich alles in seiner nähe überdeckt wird.")
+		Transport_4.Gescannt = 0
+	Transport_5=    CpuShip():setFaction("Unabhängige"):setTemplate("Equipment Freighter 5"):setCallSign("UH LA-02"):setPosition(152108, -26265):orderDock(neptunstation1):setCommsFunction(LA_02_5_call)
+		Transport_5:setScanningParameters(0, 0):setDescription("Typ: Handelsschiff \nDie verkratzte Oberfläche des Schiffes deutet auf häufige passagen durch den Asteroiden Gürtel.")
+		Transport_5.Gescannt = 0
+	Transport_6=    CpuShip():setFaction("Unabhängige"):setTemplate("Personnel Freighter 5"):setCallSign("UH WC-26"):setPosition(113500, 27754):orderDock(earthstation1):setCommsFunction(WC_26_6_call):setImpulseMaxSpeed(0)
+		Transport_6:setScanningParameters(0, 0):setDescription("Typ: Personenfähre \nDas Schiff ist ein Personaltransporter. Fluktuationen der Deflektorschilde machen das Schiff leicht erkennbar. Zudem scheinen die Triebwerke nicht sauber zu laufen.")
+		Transport_6.Gescannt = 0
+	Transport_7=    CpuShip():setFaction("Unabhängige"):setTemplate("Flavia"):setCallSign("UH JS-08"):setPosition(70087, -38142):orderDock(asteroidenstation1):setCommsFunction(JS_08_7_call):setImpulseMaxSpeed(50):setRotationMaxSpeed(10):setShieldsMax(80.00, 80.00):setShields(80.00, 80.00):setBeamWeapon(0, 45, 0, 1000, 6, 4):setBeamWeaponTurret(0, 0, 0, 0):setBeamWeapon(1, 45, -180, 1000, 6, 4):setBeamWeaponTurret(1, 0, 0, 0)
+		Transport_7:setScanningParameters(0, 0):setDescription("Typ: Handelsschiff \nPrivates Handelsschiff. Erhöhte Energiesignatur deutet auf modifizerte Systeme hin.")
+		Transport_7.Gescannt = 0
+	Transport_8=    CpuShip():setFaction("Unabhängige"):setTemplate("Goods Freighter 5"):setCallSign("UH ER-10"):setPosition(86565, -6330):orderDock(asteroidenstation1):setCommsFunction(ER_10_8_call):setImpulseMaxSpeed(10)
+		Transport_8:setScanningParameters(0, 0):setDescription("Typ: Handelsschiff \nHandelsschiff eines groß Unternehmens auf der Erde. Äussere Markierungen weisen auf die >Weyland-Yutani Corporation< hin.")
+		Transport_8.Gescannt = 0
+	Transport_9=    CpuShip():setFaction("Unabhängige"):setTemplate("Garbage Freighter 2"):setCallSign("UH CD-22"):setPosition(173588, 1005):orderDock(asteroidenstation1):setCommsFunction(CD_22_9_call)
+		Transport_9:setScanningParameters(0, 0):setDescription("Typ: Wertstofffrachter \nÄußerlich keine Besonderheiten zu erkennen.")
+		Transport_9.Gescannt = 0
+	Transport_10=   CpuShip():setFaction("Unabhängige"):setTemplate("Personnel Freighter 2"):setCallSign("UH PK-12"):setPosition(175992, -17068):orderDock(saturnstation1):setCommsFunction(PK_12_10_call)
+		Transport_10:setScanningParameters(0, 0):setDescription("Typ: Personenfähre \nKleiner Personentransporter, er scheint ein paar Treffer an seiner Hülle abbekommen zu haben.")
+		Transport_10.Gescannt = 0
+	Transport_11=	CpuShip():setFaction("Unabhängige"):setTemplate("Transport3x2"):setCallSign("UH SJ-11"):setPosition(172131, -34223):orderFlyTowards(78674, 3085):setCommsFunction(SJ_11_11_call)
+		Transport_11:setScanningParameters(0, 0):setDescription("Typ: Erzschürfer \nZerbeult und an vielen Stellen verrostet.")
+		Transport_11.Gescannt = 0
+	Transport_12=	CpuShip():setFaction("Unabhängige"):setTemplate("Transport3x3"):setCallSign("UH PU-06"):setPosition(145055, -30750):orderRoaming():setCommsFunction(PU_06_12_call)
+		Transport_12:setScanningParameters(0, 0):setDescription("Typ: Eisschürfer \nHohe Masseanzeigen deuten auf einen gut gefüllten Laderaum.")
+		Transport_12.Gescannt = 0
+	Transport_13=   CpuShip():setFaction("Unabhängige"):setTemplate("Transport5x1"):setCallSign("UH LE-05"):setPosition(54738, 67403):orderDock(marsstation1):setCommsFunction(LE_05_13_call)
+		Transport_13:setScanningParameters(0, 0):setDescription("Typ: Erzschürfer \nÄußerlich ein gewöhnlicher Erzschürfer. Keine Besonderheiten zu erkennen.")
+		Transport_13.Gescannt = 0
+	-- Piraten
+    pirat_01=	CpuShip():setFaction("Piraten"):setTemplate("Adder MK6"):setCallSign("Manta"):setPosition(169496, 78635):orderDefendLocation(169496, 78635):setWeaponStorage("HVLI", 7)
+    pirat_02=	CpuShip():setFaction("Piraten"):setTemplate("Adder MK6"):setCallSign("Hai"):setPosition(172687, 77739):orderDefendLocation(172687, 77739):setWeaponStorage("HVLI", 7)
+	pirat_03=	CpuShip():setFaction("Piraten"):setTemplate("Adder MK5"):setCallSign("Hecht"):setPosition(174153, 75720):orderDefendLocation(174153, 75720):setWeaponStorage("HVLI", 3)
+    pirat_04=	CpuShip():setFaction("Piraten"):setTemplate("Adder MK5"):setCallSign("Wels"):setPosition(170915, 76644):orderDefendLocation(170915, 76644):setWeaponStorage("HVLI", 3)
+    pirat_05=	CpuShip():setFaction("Piraten"):setTemplate("Adder MK5"):setCallSign("Barrakuda"):setPosition(166757, 77651):orderDefendLocation(166757, 77651):setWeaponStorage("HVLI", 3)
+    pirat_06=	CpuShip():setFaction("Piraten"):setTemplate("Adder MK4"):setCallSign("Barsch"):setPosition(172850, 74108):orderDefendLocation(172850, 74108):setWeaponStorage("HVLI", 1)
+    pirat_07=	CpuShip():setFaction("Piraten"):setTemplate("Adder MK4"):setCallSign("Forelle"):setPosition(170203, 75227):orderDefendLocation(170203, 75227):setWeaponStorage("HVLI", 1)
+    pirat_08=	CpuShip():setFaction("Piraten"):setTemplate("Adder MK4"):setCallSign("Makrele"):setPosition(166561, 76080):orderDefendLocation(166561, 76080):setWeaponStorage("HVLI", 1)
+    pirat_09=	CpuShip():setFaction("Piraten"):setTemplate("Adder MK4"):setCallSign("Thunfisch"):setPosition(168496, 75398):orderDefendLocation(168496, 75398):setWeaponStorage("HVLI", 1)
+	pirat_10=	CpuShip():setFaction("Piraten"):setTemplate("Cruiser"):setCallSign("Tigerhai"):setPosition(169047, 77131):orderDefendLocation(169047, 77131):setHullMax(300):setHull(300)
+	-- Terranische Navy
+    tn_01=	CpuShip():setFaction("Terranische Navy"):setTemplate("Adv. Gunship"):setCallSign("TN Albatross"):setPosition(77018, -2069):setScanned(true):setWeaponStorage("Homing", 4):orderDefendLocation(77018, -2069)
+	tn_01_t = 1
+    tn_02=	CpuShip():setFaction("Terranische Navy"):setTemplate("Adv. Gunship"):setCallSign("TN Falk"):setPosition(80490, -51674):setScanned(true):setWeaponStorage("Homing", 2):orderDefendLocation(80490, -51674)
+	tn_02_t = 1
+	tn_03=	CpuShip():setFaction("Terranische Navy"):setTemplate("Adv. Striker"):setCallSign("TN Predator"):setPosition(79495, 5298):setScanned(true):orderDefendLocation(79495, 5298)
+	tn_03_t = 1
+    tn_04=	CpuShip():setFaction("Terranische Navy"):setTemplate("Adv. Striker"):setCallSign("TN Striker"):setPosition(44866, 67654):setScanned(true):orderDefendLocation(44866, 67654)
+	tn_04_t = 1
+    tn_05=	CpuShip():setFaction("Terranische Navy"):setTemplate("Cruiser"):setCallSign("TN Fidelitas"):setPosition(80945, -6112):setScanned(true):orderDefendLocation(80945, -6112)
+	tn_05_t = 1
+	tn_06=	CpuShip():setFaction("Terranische Navy"):setTemplate("Cruiser"):setCallSign("TN Prestige"):setPosition(78231, -53005):setScanned(true):orderDefendLocation(78231, -53005)
+	tn_06_t = 1
+    tn_07=	CpuShip():setFaction("Terranische Navy"):setTemplate("Cruiser"):setCallSign("TN Tesla"):setPosition(47437, 64947):setScanned(true):orderDefendLocation(47437, 64947)
+	tn_07_t = 1
+    tn_08=	CpuShip():setFaction("Terranische Navy"):setTemplate("Cruiser"):setCallSign("TN Black-Sky"):setPosition(44063, 63704):setScanned(true):orderDefendLocation(44063,63704)
+	tn_08_t = 1
+	-- Mars Tech Union
+    mtu_01=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Adv. Gunship"):setCallSign("MTU Karyptis"):setPosition(144810, 14944):orderDefendLocation(144810, 14944):setWeaponStorage("Homing", 2)
+    mtu_02=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Adv. Gunship"):setCallSign("MTU Skylla"):setPosition(147570, -25057):orderDefendLocation(147570, -25057):setWeaponStorage("Homing", 2)
+	mtu_03=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Adv. Striker"):setCallSign("MTU Hurricane"):setPosition(146055, -28685):orderDefendLocation(146055, -28685)
+    mtu_04=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Adv. Striker"):setCallSign("MTU Calypso"):setPosition(181961, -12625):orderDefendLocation(181961, -12625)
+    mtu_05=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Cruiser"):setCallSign("MTU Taco-Bell"):setPosition(146854, -26914):orderDefendLocation(146854, -26914)
+    mtu_06=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Cruiser"):setCallSign("MTU Primaris"):setPosition(176810, -12445):orderDefendLocation(176810, -12445)
+    mtu_07=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Cruiser"):setCallSign("MTU Mefisto"):setPosition(144896, -27251):orderDefendLocation(144896, -27251)
+    mtu_08=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Cruiser"):setCallSign("MTU FuckYou"):setPosition(142860, 10991):orderDefendLocation(142860, 10991)
+	-- Alien --
+	alien_01= CpuShip():setFaction("Alien (Friedlich)"):setTemplate("Cruiser"):setCallSign("?*'#&45/"):setPosition(183023, -112526):setHullMax(100):setHull(100):setJumpDrive(true):setBeamWeapon(2, 49, 1, 1300, 5.9, 6.0):setBeamWeaponTurret(2, 67, 1, 1)
+		alien_01:setScanningParameters(4, 2):setCommsFunction(aliencomms):setDescriptions("Schiffserkennung nicht eindeutig.\n\n Ähnlichster Typ: Cruiser. \n\n\n Unbekanntes Schiff." , "Schiff nicht aus dem Sol-System. Unbekannte Zeichen auf der Hülle.")
+		alien_01.Gescannt = 0
+	-- Raumschiffe Ende
+
+mission_state = 0
+tech_ab_ter = 1
+pir = 1
+pir2 = 1
+pir3 = 1
+pircom = 1
+pircred = 0
+pirchance = 0
+terur = 1
+zikm = 1
+brocken_kauf = 1
+RepZ1 = 0 -- Multiplikator für Rep. durch Zigarren
+RepZ2 = 0 -- Multiplikator für Rep. durch Zigaretten
+tn_t_Z1 = 0 -- Zigarren Counter
+tn_t_Z2 = 0 -- Zigaretten Counter
+HT_09_1 = 1 -- Mission offen für Transport_1
+PR_16_2 = 1 -- Mission offen für Transport_2
+GB_14_3 = 1 -- Mission offen für Transport_3
+LA_02_5 = 1 -- Mission offen für Transport_5
+WC_26_6 = 1 -- Mission offen für Transport_6
+JS_08_7 = 1 -- Mission offen für Transport_7
+ER_10_8 = 1 -- Mission offen für Transport_8
+ER_10_8_A = 1
+ER_10_8_hack = 1
+CD_22_9 = 1 -- Mission offen für Transport_9
+PK_12_10 = 1 -- Mission offen für Transport_10
+SJ_11_11 = nil -- Mission offen für Transport_11
+PU_06_12 = nil -- Mission offen für Transport_12
+LE_05_13 = nil -- Mission offen für Transport_13
+UH_Check = 0
+
+	-- GM Befehle --
+	addGMFunction("Bergbau", function() --Startet das Bergbau Script. --
+		Script():run("scenario_mineral_de.lua")
+	end)
+	
+	addGMFunction("Mars Politik", function() -- Öffnet die Optionen für Fraktionsweite Befehle, Mars und Piraten.
+		addGMFunction("Krieg", function()
+			marsstation1:setFaction("Mars Tech Union (Krieg)")
+			mtu_01:setFaction("Mars Tech Union (Krieg)")
+			mtu_02:setFaction("Mars Tech Union (Krieg)")
+			mtu_03:setFaction("Mars Tech Union (Krieg)")
+			mtu_04:setFaction("Mars Tech Union (Krieg)")
+			mtu_05:setFaction("Mars Tech Union (Krieg)")
+			mtu_06:setFaction("Mars Tech Union (Krieg)")
+			mtu_07:setFaction("Mars Tech Union (Krieg)")
+			mtu_08:setFaction("Mars Tech Union (Krieg)")
+		end)
+	
+		addGMFunction("Friede", function()
+			marsstation1:setFaction("Mars Tech Union")
+			mtu_01:setFaction("Mars Tech Union")
+			mtu_02:setFaction("Mars Tech Union")
+			mtu_03:setFaction("Mars Tech Union")
+			mtu_04:setFaction("Mars Tech Union")
+			mtu_05:setFaction("Mars Tech Union")
+			mtu_06:setFaction("Mars Tech Union")
+			mtu_07:setFaction("Mars Tech Union")
+			mtu_08:setFaction("Mars Tech Union")
+		end)
+	
+		addGMFunction("Solare Allianz", function()
+			marsstation1:setFaction("Terranische Navy")
+			mtu_01:setFaction("Terranische Navy")
+			mtu_02:setFaction("Terranische Navy")
+			mtu_03:setFaction("Terranische Navy")
+			mtu_04:setFaction("Terranische Navy")
+			mtu_05:setFaction("Terranische Navy")
+			mtu_06:setFaction("Terranische Navy")
+			mtu_07:setFaction("Terranische Navy")
+			mtu_08:setFaction("Terranische Navy")
+		end)
+	
+		addGMFunction("P-Alliierte", function()
+			marsstation1:setFaction("Piraten (Alliierte)")
+			pirat_01:setFaction("Piraten (Alliierte)")
+			pirat_02:setFaction("Piraten (Alliierte)")
+			pirat_03:setFaction("Piraten (Alliierte)")
+			pirat_04:setFaction("Piraten (Alliierte)")
+			pirat_05:setFaction("Piraten (Alliierte)")
+			pirat_06:setFaction("Piraten (Alliierte)")
+			pirat_07:setFaction("Piraten (Alliierte)")
+			pirat_08:setFaction("Piraten (Alliierte)")
+			pirat_09:setFaction("Piraten (Alliierte)")
+			pirat_10:setFaction("Piraten (Alliierte)")
+		end)
+	
+		addGMFunction("P-ExAlliierte", function()
+			marsstation1:setFaction("Piraten")
+			pirat_01:setFaction("Piraten")
+			pirat_02:setFaction("Piraten")
+			pirat_03:setFaction("Piraten")
+			pirat_04:setFaction("Piraten")
+			pirat_05:setFaction("Piraten")
+			pirat_06:setFaction("Piraten")
+			pirat_07:setFaction("Piraten")
+			pirat_08:setFaction("Piraten")
+			pirat_09:setFaction("Piraten")
+			pirat_10:setFaction("Piraten")
+		end)
+	end)
+	
+	addGMFunction("Kühlmittel", function() -- Öffnet die Optionen für Kühlmittelausstoß
+		addGMFunction("KMA erlauben", coolant_f) -- Kühlmittelausstoß erlauben
+		addGMFunction("KMA entziehen", function() -- Kühlmittelausstoß entziehen
+			player:removeCustom("Coolant_Override")
+		end)		
+		addGMFunction("KM Reset", function() -- Reset Kühlmittel
+			coolant = 0
+			coolant_lvl = nil
+		end)		
+	end)
+
+	addGMFunction("Säubern", function() -- löscht alle Optionen mit außnahme der Startoptionen.
+	removeGMFunction("Krieg")
+	removeGMFunction("Friede")
+	removeGMFunction("Solare Allianz")
+	removeGMFunction("P-Alliierte")
+	removeGMFunction("P-ExAlliierte")
+	removeGMFunction("Erz +")
+	removeGMFunction("Erz + SP")
+	removeGMFunction("Erz -")
+	removeGMFunction("KMA erlauben")
+	removeGMFunction("KM Reset")
+	removeGMFunction("KMA entziehen")
+	end)
+	-- GM Befehle Ende --
+end
+
+function AddAsteroiden()
+-- Saturn Ring
 	Asteroid():setPosition(79086, -45983)
     Asteroid():setPosition(79191, -47250)
     Asteroid():setPosition(76024, -42103)
@@ -493,247 +738,15 @@ function init()
     Asteroid():setPosition(70858, 3211)
     Asteroid():setPosition(70301, 12)
 	-- Innerer Asteroidengürtel Ende
-
-	-- Raumstationen
-	earthstation1 = 	SpaceStation():setPosition(82286, 167):setTemplate("Medium Station"):setFaction("Terranische Navy"):setRotation(random(0, 360)):setCallSign("TN Alpharius-01"):setDescription("Alpharius. Werft und Basis aller bisheriger TN Operationen."):setScanningParameters(0, 0)
-	earthstation1:setCommsFunction(earthstation1_call)
-	player:commandDock(earthstation1)
-	marsstation1 = 		SpaceStation():setTemplate("Medium Station"):setFaction("Mars Tech Union"):setCallSign("MTU Ares-01"):setPosition(148108, -29222):setDescription("Ares-01. Werft und Hauptverteidigungslinie der Mars Tech Union.")
-	marsstation1:setCommsFunction(mars_comms)
-	jupiterstation1 = 	SpaceStation():setTemplate("Small Station"):setFaction("Unabhängige"):setCallSign("JS-I"):setPosition(177406, -9858):setDescription("Hauptstadt der Freien. Gerüchteweise ist es ihnen egal wer zum Handeln kommt. Ein jeder wird gleich behandelt."):setScanningParameters(0, 0)
-	venusstation1 = 	SpaceStation():setTemplate("Small Station"):setFaction("Unabhängige"):setCallSign("HS-I"):setPosition(140114, 15979):setDescription("Freie Handelststation im Venusorbit. Bekannt für seine Bordelle und Casinos."):setScanningParameters(0, 0)
-	saturnstation1 =    SpaceStation():setTemplate("Small Station"):setFaction("Unabhängige"):setCallSign("HS-III"):setPosition(72826, -40565):setDescription("Eine der größten Mine im System. Mehr Mineralabbau gibt es nur im Asteroidengürtel."):setScanningParameters(0, 0)
-	uranusstation1 =    SpaceStation():setTemplate("Small Station"):setFaction("Piraten"):setCallSign("Tortuga-Station"):setPosition(166434, 71341):setDescription("Es gibt hier nur Monster. Wenn du eins bist, willkommen! Setz dich, nimm einen Krug Grogg und habe einen Profitabelen Tag.")
-	uranusstation1:setCommsFunction(tortuga_comms)
-	neptunstation1 = 	SpaceStation():setTemplate("Small Station"):setFaction("Unabhängige"):setCallSign("HS-V"):setPosition(50693, 70482):setDescription(""):setScanningParameters(0, 0)
-	asteroidenstation1 =SpaceStation():setTemplate("Small Station"):setFaction("Unabhängige"):setCallSign("HS-IV"):setPosition(111996, 49541):setDescription(""):setScanningParameters(0, 0)
-	asteroidenstation1:setCommsFunction(brocken_comms)
-	-- Raumstation Ende
-  
-	-- Raumschiffe
-	-- Unabhängige Transporter
-	Transport_1=	CpuShip():setFaction("Unabhängige"):setTemplate("Equipment Freighter 4"):setCallSign("UH HT-09"):setPosition(73503, -40404):orderDock(jupiterstation1):setCommsFunction(HT_09_1_call)
-		Transport_1:setScanningParameters(0, 0)
-		Transport_1:setDescription("Typ: Handelsschiff \nWirkt wie ein sehr heruntergekommener Frachter der Nebulon-Klasse.")
-	Transport_2=    CpuShip():setFaction("Unabhängige"):setTemplate("Equipment Freighter 4"):setCallSign("UH PR-16"):setPosition(83859, 4035):orderDock(marsstation1):setCommsFunction(PR_16_2_call)
-		Transport_2:setScanningParameters(0, 0)
-		Transport_2:setDescription("Typ: Handelsschiff \nFrisch lackierter Frachter der Nebulon-Klasse. Wirkt als wäre es frisch aus dem Raumhafen gekommen.")
-	Transport_3=    CpuShip():setFaction("Unabhängige"):setTemplate("Fuel Freighter 1"):setCallSign("UH GB-14"):setPosition(181053, -5324):orderDock(venusstation1):setCommsFunction(GB_14_3_call)
-		Transport_3:setScanningParameters(0, 0)
-		Transport_3:setDescription("Typ: Handelsschiff \nHochtechnisierter Frachter für Treibstoffe. Wirkt gut gewartet.")
-	Transport_4=    CpuShip():setFaction("Unabhängige"):setTemplate("Transport3x1"):setCallSign("UH XX-X4"):setPosition(143722, 17680):orderDock(asteroidenstation1)
-		Transport_4:setScanningParameters(1, 4)
-		Transport_4:setDescription("Typ: Handelsschiff \nTransport für Nukleares Material. Die Strahlungswerte sind so stark das so zimelich alles in seiner nähe überdeckt wird.")
-	Transport_5=    CpuShip():setFaction("Unabhängige"):setTemplate("Equipment Freighter 5"):setCallSign("UH LA-02"):setPosition(152108, -26265):orderDock(neptunstation1):setCommsFunction(LA_02_5_call)
-		Transport_5:setScanningParameters(0, 0)
-		Transport_5:setDescription("Typ: Handelsschiff \nDie verkratzte Oberfläche des Schiffes deutet auf häufige passagen durch den Asteroiden Gürtel.")
-	Transport_6=    CpuShip():setFaction("Unabhängige"):setTemplate("Personnel Freighter 5"):setCallSign("UH WC-26"):setPosition(113500, 27754):orderDock(earthstation1):setCommsFunction(WC_26_6_call)
-		Transport_6:setScanningParameters(0, 0)
-		Transport_6:setDescription("Typ: Personenfähre \nDas Schiff ist ein Personaltransporter. Fluktuationen der Deflektorschilde machen das Schiff leicht erkennbar. Zudem scheinen die Triebwerke nicht sauber zu laufen.")
-		Transport_6:setImpulseMaxSpeed(0)
-	Transport_7=    CpuShip():setFaction("Unabhängige"):setTemplate("Flavia"):setCallSign("UH JS-08"):setPosition(70087, -38142):orderDock(asteroidenstation1):setCommsFunction(JS_08_7_call):setImpulseMaxSpeed(50):setRotationMaxSpeed(10):setShieldsMax(80.00, 80.00):setShields(80.00, 80.00):setBeamWeapon(0, 45, 0, 1000, 6, 4):setBeamWeaponTurret(0, 0, 0, 0):setBeamWeapon(1, 45, -180, 1000, 6, 4):setBeamWeaponTurret(1, 0, 0, 0)
-		Transport_7:setScanningParameters(0, 0)
-		Transport_7:setDescription("Typ: Handelsschiff \nPrivates Handelsschiff. Erhöhte Energiesignatur deutet auf modifizerte Systeme hin.")
-	Transport_8=    CpuShip():setFaction("Unabhängige"):setTemplate("Goods Freighter 5"):setCallSign("UH ER-10"):setPosition(86565, -6330):orderDock(asteroidenstation1):setCommsFunction(ER_10_8_call):setImpulseMaxSpeed(10)
-		Transport_8:setScanningParameters(0, 0)
-		Transport_8:setDescription("Typ: Handelsschiff \nHandelsschiff eines groß Unternehmens auf der Erde. Äussere Markierungen weisen auf die >Weyland-Yutani Corporation< hin.")
-	Transport_9=    CpuShip():setFaction("Unabhängige"):setTemplate("Garbage Freighter 2"):setCallSign("UH CD-22"):setPosition(173588, 1005):orderDock(asteroidenstation1):setCommsFunction(CD_22_9_call)
-		Transport_9:setScanningParameters(0, 0)
-		Transport_9:setDescription("Typ: Wertstofffrachter \nÄußerlich keine Besonderheiten zu erkennen.")
-	Transport_10=   CpuShip():setFaction("Unabhängige"):setTemplate("Personnel Freighter 2"):setCallSign("UH PK-12"):setPosition(175992, -17068):orderDock(saturnstation1):setCommsFunction(PK_12_10_call)
-		Transport_10:setScanningParameters(0, 0)
-		Transport_10:setDescription("Typ: Personenfähre \nKleiner Personentransporter, er scheint ein paar Treffer an seiner Hülle abbekommen zu haben.")
-	Transport_11=	CpuShip():setFaction("Unabhängige"):setTemplate("Transport3x2"):setCallSign("UH SJ-11"):setPosition(172131, -34223):orderFlyTowards(78674, 3085):setCommsFunction(SJ_11_11_call)
-		Transport_11:setScanningParameters(0, 0)
-		Transport_11:setDescription("Typ: Erzschürfer \nZerbeult und an vielen Stellen verrostet.")
-	Transport_12=	CpuShip():setFaction("Unabhängige"):setTemplate("Transport3x3"):setCallSign("UH PU-06"):setPosition(145055, -30750):orderRoaming():setCommsFunction(PU_06_12_call)
-		Transport_12:setScanningParameters(0, 0)
-		Transport_12:setDescription("Typ: Eisschürfer \nHohe Masseanzeigen deuten auf einen gut gefüllten Laderaum.")
-	Transport_13=   CpuShip():setFaction("Unabhängige"):setTemplate("Transport5x1"):setCallSign("UH LE-05"):setPosition(54738, 67403):orderDock(marsstation1):setCommsFunction(LE_05_13_call)
-		Transport_13:setScanningParameters(0, 0)
-		Transport_13:setDescription("Typ: Erzschürfer \nÄußerlich ein gewöhnlicher Erzschürfer. Keine Besonderheiten zu erkennen.")
-	-- Piraten
-    pirat_01=	CpuShip():setFaction("Piraten"):setTemplate("Adder MK6"):setCallSign("Manta"):setPosition(169496, 78635):orderDefendLocation(169496, 78635):setWeaponStorage("HVLI", 7)
-    pirat_02=	CpuShip():setFaction("Piraten"):setTemplate("Adder MK6"):setCallSign("Hai"):setPosition(172687, 77739):orderDefendLocation(172687, 77739):setWeaponStorage("HVLI", 7)
-	pirat_03=	CpuShip():setFaction("Piraten"):setTemplate("Adder MK5"):setCallSign("Hecht"):setPosition(174153, 75720):orderDefendLocation(174153, 75720):setWeaponStorage("HVLI", 3)
-    pirat_04=	CpuShip():setFaction("Piraten"):setTemplate("Adder MK5"):setCallSign("Wels"):setPosition(170915, 76644):orderDefendLocation(170915, 76644):setWeaponStorage("HVLI", 3)
-    pirat_05=	CpuShip():setFaction("Piraten"):setTemplate("Adder MK5"):setCallSign("Barrakuda"):setPosition(166757, 77651):orderDefendLocation(166757, 77651):setWeaponStorage("HVLI", 3)
-    pirat_06=	CpuShip():setFaction("Piraten"):setTemplate("Adder MK4"):setCallSign("Barsch"):setPosition(172850, 74108):orderDefendLocation(172850, 74108):setWeaponStorage("HVLI", 1)
-    pirat_07=	CpuShip():setFaction("Piraten"):setTemplate("Adder MK4"):setCallSign("Forelle"):setPosition(170203, 75227):orderDefendLocation(170203, 75227):setWeaponStorage("HVLI", 1)
-    pirat_08=	CpuShip():setFaction("Piraten"):setTemplate("Adder MK4"):setCallSign("Makrele"):setPosition(166561, 76080):orderDefendLocation(166561, 76080):setWeaponStorage("HVLI", 1)
-    pirat_09=	CpuShip():setFaction("Piraten"):setTemplate("Adder MK4"):setCallSign("Thunfisch"):setPosition(168496, 75398):orderDefendLocation(168496, 75398):setWeaponStorage("HVLI", 1)
-	pirat_10=	CpuShip():setFaction("Piraten"):setTemplate("Cruiser"):setCallSign("Tigerhai"):setPosition(169047, 77131):orderDefendLocation(169047, 77131):setHullMax(300):setHull(300)
-	-- Terranische Navy
-    tn_01=	CpuShip():setFaction("Terranische Navy"):setTemplate("Adv. Gunship"):setCallSign("TN Albatross"):setPosition(77018, -2069):setScanned(true):setWeaponStorage("Homing", 4):orderDefendLocation(77018, -2069)
-	tn_01_t = 1
-    tn_02=	CpuShip():setFaction("Terranische Navy"):setTemplate("Adv. Gunship"):setCallSign("TN Falk"):setPosition(80490, -51674):setScanned(true):setWeaponStorage("Homing", 2):orderDefendLocation(80490, -51674)
-	tn_02_t = 1
-	tn_03=	CpuShip():setFaction("Terranische Navy"):setTemplate("Adv. Striker"):setCallSign("TN Predator"):setPosition(79495, 5298):setScanned(true):orderDefendLocation(79495, 5298)
-	tn_03_t = 1
-    tn_04=	CpuShip():setFaction("Terranische Navy"):setTemplate("Adv. Striker"):setCallSign("TN Striker"):setPosition(44866, 67654):setScanned(true):orderDefendLocation(44866, 67654)
-	tn_04_t = 1
-    tn_05=	CpuShip():setFaction("Terranische Navy"):setTemplate("Cruiser"):setCallSign("TN Fidelitas"):setPosition(80945, -6112):setScanned(true):orderDefendLocation(80945, -6112)
-	tn_05_t = 1
-	tn_06=	CpuShip():setFaction("Terranische Navy"):setTemplate("Cruiser"):setCallSign("TN Prestige"):setPosition(78231, -53005):setScanned(true):orderDefendLocation(78231, -53005)
-	tn_06_t = 1
-    tn_07=	CpuShip():setFaction("Terranische Navy"):setTemplate("Cruiser"):setCallSign("TN Tesla"):setPosition(47437, 64947):setScanned(true):orderDefendLocation(47437, 64947)
-	tn_07_t = 1
-    tn_08=	CpuShip():setFaction("Terranische Navy"):setTemplate("Cruiser"):setCallSign("TN Black-Sky"):setPosition(44063, 63704):setScanned(true):orderDefendLocation(44063,63704)
-	tn_08_t = 1
-	-- Mars Tech Union
-    mtu_01=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Adv. Gunship"):setCallSign("MTU Karyptis"):setPosition(144810, 14944):orderDefendLocation(144810, 14944):setWeaponStorage("Homing", 2)
-    mtu_02=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Adv. Gunship"):setCallSign("MTU Skylla"):setPosition(147570, -25057):orderDefendLocation(147570, -25057):setWeaponStorage("Homing", 2)
-	mtu_03=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Adv. Striker"):setCallSign("MTU Hurricane"):setPosition(146055, -28685):orderDefendLocation(146055, -28685)
-    mtu_04=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Adv. Striker"):setCallSign("MTU Calypso"):setPosition(181961, -12625):orderDefendLocation(181961, -12625)
-    mtu_05=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Cruiser"):setCallSign("MTU Taco-Bell"):setPosition(146854, -26914):orderDefendLocation(146854, -26914)
-    mtu_06=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Cruiser"):setCallSign("MTU Primaris"):setPosition(176810, -12445):orderDefendLocation(176810, -12445)
-    mtu_07=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Cruiser"):setCallSign("MTU Mefisto"):setPosition(144896, -27251):orderDefendLocation(144896, -27251)
-    mtu_08=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Cruiser"):setCallSign("MTU FuckYou"):setPosition(142860, 10991):orderDefendLocation(142860, 10991)
-	-- Alien --
-	alien_01= CpuShip():setFaction("Alien (Friedlich)"):setTemplate("Cruiser"):setCallSign("?*'#&45/"):setPosition(183023, -112526):setHullMax(100):setHull(100):setJumpDrive(true):setBeamWeapon(2, 49, 1, 1300, 5.9, 6.0):setBeamWeaponTurret(2, 67, 1, 1)
-		alien_01:setScanningParameters(4, 2):setCommsFunction(aliencomms):setDescriptions("Schiffserkennung nicht eindeutig.\n\n Ähnlichster Typ: Cruiser. \n\n\n Unbekanntes Schiff." , "Schiff nicht aus dem Sol-System. Unbekannte Zeichen auf der Hülle.")
-	-- Raumschiffe Ende
-
-mission_state = missionStartState
-tech_ab_ter = 1
-pir = 1
-pir2 = 1
-pir3 = 1
-pircom = 1
-pircred = 0
-pirchance = 0
-terur = 1
-zikm = 1
-brocken_kauf = 1
-RepZ1 = 0 -- Multiplikator für Rep. durch Zigarren
-RepZ2 = 0 -- Multiplikator für Rep. durch Zigaretten
-tn_t_Z1 = 0 -- Zigarren Counter
-tn_t_Z2 = 0 -- Zigaretten Counter
-HT_09_1 = 1 -- Mission offen für Transport_1
-PR_16_2 = 1 -- Mission offen für Transport_2
-GB_14_3 = 1 -- Mission offen für Transport_3
-LA_02_5 = 1 -- Mission offen für Transport_5
-WC_26_6 = 1 -- Mission offen für Transport_6
-JS_08_7 = 1 -- Mission offen für Transport_7
-ER_10_8 = 1 -- Mission offen für Transport_8
-ER_10_8_A = 1
-ER_10_8_hack = 1
-CD_22_9 = 1 -- Mission offen für Transport_9
-PK_12_10 = 1 -- Mission offen für Transport_10
-SJ_11_11 = nil -- Mission offen für Transport_11
-PU_06_12 = nil -- Mission offen für Transport_12
-LE_05_13 = nil -- Mission offen für Transport_13
-UH_Check = 0
-
-	-- GM Befehle --
-	addGMFunction("Bergbau", function() --Startet das Bergbau Script. --
-		Script():run("scenario_mineral_de.lua")
-	end)
-	
-	addGMFunction("5", function() --Startet das Bergbau Script. --
-		UH_Check = 4
-	end)
-
-	addGMFunction("Mars Politik", function() -- Öffnet die Optionen für Fraktionsweite Befehle, Mars und Piraten.
-		addGMFunction("Krieg", function()
-			marsstation1:setFaction("Mars Tech Union (Krieg)")
-			mtu_01:setFaction("Mars Tech Union (Krieg)")
-			mtu_02:setFaction("Mars Tech Union (Krieg)")
-			mtu_03:setFaction("Mars Tech Union (Krieg)")
-			mtu_04:setFaction("Mars Tech Union (Krieg)")
-			mtu_05:setFaction("Mars Tech Union (Krieg)")
-			mtu_06:setFaction("Mars Tech Union (Krieg)")
-			mtu_07:setFaction("Mars Tech Union (Krieg)")
-			mtu_08:setFaction("Mars Tech Union (Krieg)")
-		end)
-	
-		addGMFunction("Friede", function()
-			marsstation1:setFaction("Mars Tech Union")
-			mtu_01:setFaction("Mars Tech Union")
-			mtu_02:setFaction("Mars Tech Union")
-			mtu_03:setFaction("Mars Tech Union")
-			mtu_04:setFaction("Mars Tech Union")
-			mtu_05:setFaction("Mars Tech Union")
-			mtu_06:setFaction("Mars Tech Union")
-			mtu_07:setFaction("Mars Tech Union")
-			mtu_08:setFaction("Mars Tech Union")
-		end)
-	
-		addGMFunction("Solare Allianz", function()
-			marsstation1:setFaction("Terranische Navy")
-			mtu_01:setFaction("Terranische Navy")
-			mtu_02:setFaction("Terranische Navy")
-			mtu_03:setFaction("Terranische Navy")
-			mtu_04:setFaction("Terranische Navy")
-			mtu_05:setFaction("Terranische Navy")
-			mtu_06:setFaction("Terranische Navy")
-			mtu_07:setFaction("Terranische Navy")
-			mtu_08:setFaction("Terranische Navy")
-		end)
-	
-		addGMFunction("P-Alliierte", function()
-			marsstation1:setFaction("Piraten (Alliierte)")
-			pirat_01:setFaction("Piraten (Alliierte)")
-			pirat_02:setFaction("Piraten (Alliierte)")
-			pirat_03:setFaction("Piraten (Alliierte)")
-			pirat_04:setFaction("Piraten (Alliierte)")
-			pirat_05:setFaction("Piraten (Alliierte)")
-			pirat_06:setFaction("Piraten (Alliierte)")
-			pirat_07:setFaction("Piraten (Alliierte)")
-			pirat_08:setFaction("Piraten (Alliierte)")
-			pirat_09:setFaction("Piraten (Alliierte)")
-			pirat_10:setFaction("Piraten (Alliierte)")
-		end)
-	
-		addGMFunction("P-ExAlliierte", function()
-			marsstation1:setFaction("Piraten")
-			pirat_01:setFaction("Piraten")
-			pirat_02:setFaction("Piraten")
-			pirat_03:setFaction("Piraten")
-			pirat_04:setFaction("Piraten")
-			pirat_05:setFaction("Piraten")
-			pirat_06:setFaction("Piraten")
-			pirat_07:setFaction("Piraten")
-			pirat_08:setFaction("Piraten")
-			pirat_09:setFaction("Piraten")
-			pirat_10:setFaction("Piraten")
-		end)
-	end)
-	
-	addGMFunction("Kühlmittel", function() -- Öffnet die Optionen für Kühlmittelausstoß
-		addGMFunction("KMA erlauben", coolant_f) -- Kühlmittelausstoß erlauben
-		addGMFunction("KMA entziehen", function() -- Kühlmittelausstoß entziehen
-			player:removeCustom("Coolant_Override")
-		end)		
-		addGMFunction("KM Reset", function() -- Reset Kühlmittel
-			coolant = 0
-			coolant_lvl = nil
-		end)		
-	end)
-
-	addGMFunction("Säubern", function() -- löscht alle Optionen mit außnahme der Startoptionen.
-	removeGMFunction("Krieg")
-	removeGMFunction("Friede")
-	removeGMFunction("Solare Allianz")
-	removeGMFunction("P-Alliierte")
-	removeGMFunction("P-ExAlliierte")
-	removeGMFunction("Erz +")
-	removeGMFunction("Erz + SP")
-	removeGMFunction("Erz -")
-	removeGMFunction("KMA erlauben")
-	removeGMFunction("KM Reset")
-	removeGMFunction("KMA entziehen")
-	end)
-	-- GM Befehle Ende --
 end
 
 function earthstation1_call() -- Script für Reaktion der TN Alpharius-01 --
-	if mission_state == missionStartState then -- Start des Spiels --
+	if mission_state == 0 then -- Start des Spiels --
 		setCommsMessage([[TN Alpharius-01 an TN Verdandi.
 		
 Testnachricht.]])
 		addCommsReply("Nachricht erhalten.", function() -- Transport_6 wird gestoppt und als Notfall Deklariert --
-			mission_state = ongoging
+			mission_state = 9
 			Transport_6:setSystemHealth("impulse", -100):setSystemHealth("maneuver", -100)
 			setCommsMessage([[Sehr gut, die Comms funktioniert demnach. Wir haben bereits den ersten Auftrag für sie TN Verdandi.
 				
@@ -1091,53 +1104,53 @@ Ich denke schon. Zuzüglich 200 Rep. wenn sie alle 9 Daten Pakete versand haben. 
 				HT_09_1 = 3
 				setCommsMessage("In der tat.")
 				player:addCustomButton("science","ht_scan_send","Tuff Daten senden.",function()
-					if merkur3 == 2 then
+					if merkur2.TuffDaten == 2 then
 						player:addReputationPoints(200)
-						merkur3 = 3
+						merkur2.TuffDaten = 3
 					end
-					if venus3 == 2 then
+					if venus.TuffDaten == 2 then
 						player:addReputationPoints(200)
-						venus3 = 3
+						venus2.TuffDaten = 3
 					end
-					if earth3 == 2 then
+					if eart2.TuffDaten == 2 then
 						player:addReputationPoints(200)
-						earth3 = 3
+						earth2.TuffDaten = 3
 					end
-					if mars3 == 2 then
+					if mars2.TuffDaten == 2 then
 						player:addReputationPoints(200)
-						mars3 = 3
+						mars2.TuffDaten = 3
 					end
-					if jupiter3 == 2 then
+					if jupiter2.TuffDaten == 2 then
 						player:addReputationPoints(200)
-						jupiter3 = 3
+						jupiter2.TuffDaten = 3
 					end
-					if saturn3 == 2 then
+					if saturn2.TuffDaten == 2 then
 						player:addReputationPoints(200)
-						saturn3 = 3
+						saturn2.TuffDaten = 3
 					end
-					if uranus3 == 2 then
+					if uranus2.TuffDaten == 2 then
 						player:addReputationPoints(200)
-						uranus3 = 3
+						uranus2.TuffDaten = 3
 					end
-					if neptun3 == 2 then
+					if neptun2.TuffDaten == 2 then
 						player:addReputationPoints(200)
-						neptun3 = 3
+						neptun2.TuffDaten = 3
 					end
-					if pluto3 == 2 then
+					if pluto2.TuffDaten == 2 then
 						player:addReputationPoints(200)
-						pluto3 = 3
+						pluto2.TuffDaten = 3
 					end
-					if merkur3 == 3 and venus3 == 3 and earth3 == 3 and mars3 == 3 and jupiter3 == 3 and saturn3 == 3 and uranus3 == 3 and neptun3 == 3 and pluto3 == 3 then
+					if merkur2.TuffDaten == 3 and venus2.TuffDaten == 3 and earth2.TuffDaten == 3 and mars2.TuffDaten == 3 and jupiter2.TuffDaten == 3 and saturn2.TuffDaten == 3 and uranus2.TuffDaten == 3 and neptun2.TuffDaten == 3 and pluto2.TuffDaten == 3 then
 						player:addReputationPoints(200)
-						merkur3 = nil
-						venus3 = nil
-						earth3 = nil
-						mars3 = nil
-						jupiter3 = nil
-						satrun3 = nil
-						uranus3 = nil
-						neptun3 = nil
-						pluto3 = nil
+						merkur2.TuffDaten = nil
+						venus2.TuffDaten = nil
+						earth2.TuffDaten = nil
+						mars2.TuffDaten = nil
+						jupiter2.TuffDaten = nil
+						satrun2.TuffDaten = nil
+						uranus2.TuffDaten = nil
+						neptun2.TuffDaten = nil
+						pluto2.TuffDaten = nil
 						player:removeCustom("ht_scan_send")
 						UH_Check = UH_Check + 1
 						HT_09_1 = nil
@@ -1158,62 +1171,62 @@ Welches Schicksal sie wohl für uns bereit hält?]])
 		addCommsReply("Wir nehmen die Aufgabe an.", function()
 			HT_09_1 = 3
 			setCommsMessage("In der tat.")
-			player:addCustomButton("science","ht_scan_send1","Tuff Daten senden.",function()
-				if merkur3 == 2 then
+			player:addCustomButton("science","ht_scan_send","Tuff Daten senden.",function()
+				if merkur2.TuffDaten == 2 then
 					player:addReputationPoints(200)
-					merkur3 = 3
+					merkur2.TuffDaten = 3
 				end
-				if venus3 == 2 then
+				if venus.TuffDaten == 2 then
 					player:addReputationPoints(200)
-					venus3 = 3
+					venus2.TuffDaten = 3
 				end
-				if earth3 == 2 then
+				if eart2.TuffDaten == 2 then
 					player:addReputationPoints(200)
-					earth3 = 3
+					earth2.TuffDaten = 3
 				end
-				if mars3 == 2 then
+				if mars2.TuffDaten == 2 then
 					player:addReputationPoints(200)
-					mars3 = 3
+					mars2.TuffDaten = 3
 				end
-				if jupiter3 == 2 then
+				if jupiter2.TuffDaten == 2 then
 					player:addReputationPoints(200)
-					jupiter3 = 3
+					jupiter2.TuffDaten = 3
 				end
-				if saturn3 == 2 then
+				if saturn2.TuffDaten == 2 then
 					player:addReputationPoints(200)
-					saturn3 = 3
+					saturn2.TuffDaten = 3
 				end
-				if uranus3 == 2 then
+				if uranus2.TuffDaten == 2 then
 					player:addReputationPoints(200)
-					uranus3 = 3
+					uranus2.TuffDaten = 3
 				end
-				if neptun3 == 2 then
+				if neptun2.TuffDaten == 2 then
 					player:addReputationPoints(200)
-					neptun3 = 3
+					neptun2.TuffDaten = 3
 				end
-				if pluto3 == 2 then
+				if pluto2.TuffDaten == 2 then
 					player:addReputationPoints(200)
-					pluto3 = 3
+					pluto2.TuffDaten = 3
 				end
-				if merkur3 == 3 and venus3 == 3 and earth3 == 3 and mars3 == 3 and jupiter3 == 3 and saturn3 == 3 and uranus3 == 3 and neptun3 == 3 and pluto3 == 3 then
+				if merkur2.TuffDaten == 3 and venus2.TuffDaten == 3 and earth2.TuffDaten == 3 and mars2.TuffDaten == 3 and jupiter2.TuffDaten == 3 and saturn2.TuffDaten == 3 and uranus2.TuffDaten == 3 and neptun2.TuffDaten == 3 and pluto2.TuffDaten == 3 then
 					player:addReputationPoints(200)
-					merkur3 = nil
-					venus3 = nil
-					earth3 = nil
-					mars3 = nil
-					jupiter3 = nil
-					satrun3 = nil
-					uranus3 = nil
-					neptun3 = nil
-					pluto3 = nil
-					player:removeCustom("ht_scan_send1")
+					merkur2.TuffDaten = nil
+					venus2.TuffDaten = nil
+					earth2.TuffDaten = nil
+					mars2.TuffDaten = nil
+					jupiter2.TuffDaten = nil
+					satrun2.TuffDaten = nil
+					uranus2.TuffDaten = nil
+					neptun2.TuffDaten = nil
+					pluto2.TuffDaten = nil
+					player:removeCustom("ht_scan_send")
 					UH_Check = UH_Check + 1
 					HT_09_1 = nil
 				end
 			end)
 		end)
 		addCommsReply("Wir überlegen es uns noch mit ihrem Auftrag.",function()
-			setCommsMessage("Wir haben Verstanden und erwarten ihr zustimmen.")
+			setCommsMessage("Wir haben Verstanden und erwarten ihre Zustimmung.")
 		end)
 	end
 
@@ -2731,10 +2744,14 @@ UH_Check = nil
  
 function update (delta)
 	-- Keine Ahnung warum das notwendig ist, MissionsStatus--
-    if mission_state ~= nil then
-        mission_state(delta)
-    end
+    --if mission_state ~= nil then
+    --    mission_state(delta)
+    --end
 	-- Ende MissionsStatus--
+	
+	if mission_state == 0 then
+	missionStartState()
+	end
 	
 	if ER_10_8_A == 1 and Transport_8:isValid() == false and ER_10_8 == 3 then
 	ER_10_8_A = nil
@@ -2983,30 +3000,30 @@ Wir sind beeindruckt von ihrer Karperfahrt. Sollten sie jemals unsere Unterstütz
 	end
 
 -- Details über die Handelsschiffe.
-	if Transport_1 ~= nil and Transport_1:isScannedByFaction("Terranische Navy") then
+	if Transport_1.Gescannt == 0 and Transport_1:isScannedByFaction("Terranische Navy") then
 		Transport_1:setDescription("Lebenszeichen:\n1 Mensch \n2 Katzen \nKapitän Haviland Tuf, der Besitzer dieses Schiffs, ihr name ist -Füllhorn der excellenten Güter und niedrigen Preise-, ein gutmütiger und stehts freundlicher Händler. Jedoch sollte man ihn nicht unterschätzen und er mag Katzen.")
 		Transport_1:setCallSign("UH Füllhorn der excellenten Güter und niedriger Preise")
-	Transport_1 = nil
+	Transport_1.Gescannt = 1
 	end
-	if Transport_2 ~= nil and Transport_2:isScannedByFaction("Terranische Navy") then
+	if Transport_2.Gescannt == 0 and Transport_2:isScannedByFaction("Terranische Navy") then
 		Transport_2:setDescription("Lebenszeichen:\n5 Menschen \n1 Maus \nKapitän Perry Rhodan, ehemaliger Major der Terranischen Navy. Angeblich sei er 340 Jahre alt, das behaupten zumindest einge Bewohner der Jupiterstation.")
 		Transport_2:setCallSign("UH Stardust")
-	Transport_2 = nil
+	Transport_2.Gescannt = 1
 	end
-	if Transport_3 ~= nil and Transport_3:isScannedByFaction("Terranische Navy") then
+	if Transport_3.Gescannt == 0 and Transport_3:isScannedByFaction("Terranische Navy") then
 		Transport_3:setDescription("Lebenszeichen:\n1 Mensch \nKapitän Gaius Baltar, früherer hochrangiger Politiker. Nach einem tiefen sozialen absturz schlägt er sich nun als Kraftstoff-Transporter durch. Das Schiff ist jedoch mit der besten Technologie von Mars und Erde ausgestattet.")
 		Transport_3:setCallSign("UH Zylon-Six")
-	Transport_3 = nil
+	Transport_3.Gescannt = 1
 	end
-	if Transport_4 ~= nil and Transport_4:isScannedByFaction("Terranische Navy") then
+	if Transport_4.Gescannt == 0 and Transport_4:isScannedByFaction("Terranische Navy") then
 		Transport_4:setDescription("#lpüokasö lökmasm 0i88-,..-.,l ijdsac..,-.94&kmdasöc))0p0lmcöams..-.c,ß=! \n \n --- Alle Daten werden durch die Strahlung zerstückelt, selbst der Schiffsname scheint zersetzt zu werden bei der Übertragung. ---")
 		Transport_4:setCallSign("Piranha")
 		Transport_4:setFaction("Piraten")
 		Transport_4:setBeamWeapon(0, 46, 0, 1000, 2.9, 3.4):setBeamWeaponTurret(0, 0, 0, 0):setBeamWeapon(1, 46, -180, 1000, 3.0, 3.0):setShields(100, 100)
 		Transport_4:orderDock(uranusstation1)
-	Transport_4 = nil
+	Transport_4.Gescannt = 1
 	end
-	if Transport_5 ~= nil and Transport_5:isScannedByFaction("Terranische Navy") then
+	if Transport_5.Gescannt == 0 and Transport_5:isScannedByFaction("Terranische Navy") then
 		Transport_5:setDescription("Lebenszeichen:\n4 Menschen \nKapitän: L.Arvus \nErster Offizier: P.Peterson \nTechniker: S.Michalowitzch \nPassagier: E.Watson \n Ladung: 50 Tonnen Wissenschaftliches Equipment.")
 		Transport_5:setCallSign("UH Pyrox")
 		player:addCustomMessage("science","p_dax",[[Gesuchte Person entdeckt.
@@ -3015,19 +3032,19 @@ Bis auf 3U an das Schiff heranfliegen um Person festzunehmen.
 (Fenster nicht Schließen!)]])
 		wissens_activ = 1
 		wissenschaftler = Transport_5
-	Transport_5 = nil
+	Transport_5.Gescannt = 1
 	end
-	if Transport_6 ~= nil and Transport_6:isScannedByFaction("Terranische Navy") then
+	if Transport_6.Gescannt == 0 and Transport_6:isScannedByFaction("Terranische Navy") then
 		Transport_6:setDescription("Lebenszeichen:\n54 Menschen \nKapitän: W.Cheng \nErster Offizier: T.Long \nTechniker: S.Müller \n Arzt: D.Smith \nPassagier01: L.Worlas \nPassagier02: K.Limbert \nPassagier03: U.Sambert \nPassagier04: E.Plater \nPassagier05: K.Friedrich \nPassagier06: F.Disch \nPassagier07: G.Weiter \nWeitere Namen werden geladen...")
 		Transport_6:setCallSign("UH Arizona")
-	Transport_6 = nil
+	Transport_6.Gescannt = 1
 	end
-	if Transport_7 ~= nil and Transport_7:isScannedByFaction("Terranische Navy") then
+	if Transport_7.Gescannt == 0 and Transport_7:isScannedByFaction("Terranische Navy") then
 		Transport_7:setDescription("Lebenszeichen:\n2 Menschen \nKapitän: J.Sluk\nTechniker: L.Tuang \n\nLadung: \nDatapads, Stations Eqipment, Handfeuerwaffen.")
 		Transport_7:setCallSign("UH Sparrow")
-	Transport_7 = nil
+	Transport_7.Gescannt = 1
 	end
-	if Transport_8 ~= nil and Transport_8:isScannedByFaction("Terranische Navy") then
+	if Transport_8.Gescannt == 0 and Transport_8:isScannedByFaction("Terranische Navy") then
 		Transport_8:setDescription("Lebenszeichen:\n4 Menschen \nKapitän: A.Coblenz\nErster Offizier: E.Ripley\n\nLadung: \nVersuchstiere und einige Güter des täglichen Bedarfs.")
 		Transport_8:setCallSign("UH Nostromo")
 		player:addCustomMessage("science","p_dax",[[Gesuchte Person entdeckt.
@@ -3036,14 +3053,14 @@ Bis auf 3U an das Schiff heranfliegen um Person festzunehmen.
 (Fenster nicht Schließen!)]])
 		wissens_activ = 1
 		wissenschaftler = Transport_8
-	Transport_8 = nil
+		Transport_8.Gescannt = 1
 	end
-	if Transport_9 ~= nil and Transport_9:isScannedByFaction("Terranische Navy") then
+	if Transport_9.Gescannt == 0 and Transport_9:isScannedByFaction("Terranische Navy") then
 		Transport_9:setDescription("Lebenszeichen:\n3 Menschen \nKapitän: C.Davis\nErster Offizier: L.Harper\nTechnicker: P.Carter\n\nLadung: \nKeine")
 		Transport_9:setCallSign("UH Lepovnik")
-	Transport_9 = nil
+	Transport_9.Gescannt = 1
 	end
-	if Transport_10 ~= nil and Transport_10:isScannedByFaction("Terranische Navy") then
+	if Transport_10.Gescannt == 0 and Transport_10:isScannedByFaction("Terranische Navy") then
 		Transport_10:setDescription("Lebenszeichen:\n22 Menschen \nKapitän: J.Jordan \nErster Offizier: P.Rassa \nPassagier01: A.Cusher \nPassagier02: A.Bliss \nPassagier03: F.Susaru \nPassagier04: M.Jarson \nPassagier05: P.Dax \nPassagier06: R.Furk \nPassagier07: V.Worklovski \nWeitere Namen werden geladen...")
 		Transport_10:setCallSign("UH Kolonial")
 		player:addCustomMessage("science","p_dax",[[Gesuchte Person entdeckt.
@@ -3053,19 +3070,19 @@ Bis auf 3U an das Schiff heranfliegen um Person festzunehmen.
 		wissens_activ = 1
 		wissenschaftler = Transport_10
 		dax_da = 1
-		Transport_10 = nil
+		Transport_10.Gescannt = 1
 	end
-	if Transport_11 ~= nil and Transport_11:isScannedByFaction("Terranische Navy") then
+	if Transport_11.Gescannt == 0 and Transport_11:isScannedByFaction("Terranische Navy") then
 		Transport_11:setDescription("Lebenszeichen:\n5 Menschen \nKapitän: S.Jates \nDer Erzschürfer weist enorme kratzer und dellen auf die darauf hindeuten, dass das Schiff nicht den besten Steuermann vorzuweisen hat. \n\nLadung: \nEisen: 10 Tonnen\nNickel: 5 Tonnen")
 		Transport_11:setCallSign("UH Lurch")
-	Transport_11 = nil
+	Transport_11.Gescannt = 1
 	end
-	if Transport_12 ~= nil and Transport_12:isScannedByFaction("Terranische Navy") then
+	if Transport_12.Gescannt == 0 and Transport_12:isScannedByFaction("Terranische Navy") then
 		Transport_12:setDescription("Lebenszeichen:\n5 Menschen \nKapitän: P.Irwin \nErster Offizier: L.Killarny \nTechnicker: F.Agila\n\nLadung: \nEis: 28 Tonnen")
 		Transport_12:setCallSign("UH Pastor")
-	Transport_12 = nil
+	Transport_12.Gescannt = 1
 	end
-	if Transport_13 ~= nil and Transport_13:isScannedByFaction("Terranische Navy") then
+	if Transport_13.Gescannt == 0 and Transport_13:isScannedByFaction("Terranische Navy") then
 		Transport_13:setDescription("Lebenszeichen:\n5 Menschen \nKapitän: T.Wheeler \nTechnicker: A.Palpavisch\n\nLadung: \nBlei: 40 Tonnen \n\n\nWas immer ihr über Kapitän Theodor Wheeler gehört habt, er hat nie einen Außerirdischen getroffen. Marsianer ausgeschlossen.")
 		Transport_13:setCallSign("UH Europa")
 		player:addCustomMessage("science","p_dax",[[Gesuchte Person entdeckt.
@@ -3074,71 +3091,82 @@ Bis auf 3U an das Schiff heranfliegen um Person festzunehmen.
 (Fenster nicht Schließen!)]])
 		wissens_activ = 1
 		wissenschaftler = Transport_13
-	Transport_13 = nil
+	Transport_13.Gescannt = 1
 	end
 -- Ende Details über die Handelsschiffe.
 
 -- Details über Planeten
-	if sun2 ~= nil and sun2:isScannedBy(player) then
+	if sun2.Gescannt == 0 and sun2:isScannedByFaction("Terranische Navy") then
 		sun2:setDescription("Stern: Sol\n\n\nScannwerte: \n\nZusammensetzung: \nWasserstoff: 92,1%\nHelium: 7,8%\nSauerstoff, Kohlenstoff, Neon, Stickstoff: 1%")
-	sun2 = nil
+	sun2.Gescannt = 1
 	end
-	if merkur2 ~= nil and merkur2:isScannedBy(player) then
+	if merkur2.Gescannt == 0 and merkur2:isScannedByFaction("Terranische Navy") then
 		merkur2:setDescription("Planet: Merkur\n\n\nScannwerte: \n\nAtmospheren Hauptbestandteile: bei 1 · 10^-15\nWasserstoff 22%\nHelium: 6%\nSauerstoff: 42%\nNatrium: 29%\nKalium: 0,5%\n\n Zusammensetzung: \nEisen: 65%\nNickel: 30%\nSonstige: 5%")
-	merkur2 = nil
+	merkur2.Gescannt = 1
+	merkur2.TuffDaten = 2
 	end
-	if venus2 ~= nil and venus2:isScannedBy(player) then
+	if venus2.Gescannt == 0 and venus2:isScannedByFaction("Terranische Navy") then
 		venus2:setDescription("Planet: Venus\n\n\nScannwerte: \n\nAtmospheren Hauptbestandteile: bei 92 kPa\nKohlenstoffdioxid: 96,5%\nStickstoff: 3,5%\nSchwefeldioxid: 0,015%\n\n Zusammensetzung:\nEisen: 22,5% \nSauerstoff: 29,7% \nSilizium: 18,1% \nMagnesium: 10,9% \nSchwefel: 3,9% \nNickel: 0,7% \nCalcium: 1,5% \nAluminium: 11,4% \nSonstige Elemente: 1,2%")
-	venus2 = nil
+	venus2.Gescannt = 1
+	venus2.TuffDaten = 2
 	end
-	if earth2 ~= nil and earth2:isScannedBy(player) then
+	if earth2.Gescannt == 0 and earth2:isScannedByFaction("Terranische Navy") then
 		earth2:setDescription("Planet: Terra \n\nBewohner: 11.002.429.983\n\nBodentruppen: Keine Daten \n\n\nScannwerte: \n\nAtmospheren Hauptbestandteile: bei 1013 hPa \nStickstoff: 78,08% \nSauerstoff: 20,95% \nArgon: 0,93% \nKholenstoffdioxid: 0,038% \nNeon: 0,002% \n\n Zusammensetzung:\nEisen: 32,1% \nSauerstoff: 30,1% \nSilizium: 15,1% \nMagnesium: 13,9% \nSchwefel: 2,9% \nNickel: 1,8% \nCalcium: 1,5% \nAluminium: 1,4% \nSonstige Elemente: 1,2%")
-	earth2 = nil
+	earth2.Gescannt = 1
+	earth2.TuffDaten = 2
 	end
-	if moon2 ~= nil and moon2:isScannedBy(player) then
+	if moon2.Gescannt == 0 and moon2:isScannedByFaction("Terranische Navy") then
 		moon2:setDescription("Satellit: Mond \n\nBewohner: 1.302.894\n\nBodentruppen: Keine Daten \n\n\nScannwerte: \n\nAtmospheren Hauptbestandteile: bei 3 · 10^-10 \nHelium: 25% \nNeon: 25% \nWasserstoff: 23% \nArgon: 20% \nCH4, NH3, CO2: 7% \n\n Zusammensetzung: \nSilizium: 45,5% \nAluminium: 24% \nCalcium: 15,9% \nEisen: 5,9% \nMagnesium: 7,5% \nTitan: 0,6% \nNatrium: 0,6% \nKalium: <0,1% \n\nZudem gibt es konzentrierte Vorkommen von Uran und Thorium.")
-	moon2 = nil
+	moon2.Gescannt = 1
 	end
-	if mars2 ~= nil and earth2:isScannedBy(player) then
+	if mars2.Gescannt == 0 and earth2:isScannedByFaction("Terranische Navy") then
 		mars2:setDescription("Planet: Mars \n\nBewohner: 4.042.246.934\n\nBodentruppen: Keine Daten \n\n\nScannwerte: \n\nAtmospheren Hauptbestandteile: bei 6,36 hPa \nKohlenstoffdioxid: 95,3%\nStickstoff: 2,7%\nArgon: 1,6% \n\n Zusammensetzung:\nEisen: 42% \nSauerstoff: 15,3% \nSilizium: 10,1% \nMagnesium: 18,9% \nSchwefel: 7,9% \nNickel: 1,8% \nCalcium: 1,9% \nAluminium: 1% \nSonstige Elemente: 1,2%")
-	mars2 = nil
+	mars2.Gescannt = 1
+	mars2.TuffDaten = 2
 	end
-	if jupiter2 ~= nil and jupiter2:isScannedBy(player) then
+	if jupiter2.Gescannt == 0 and jupiter2:isScannedByFaction("Terranische Navy") then
 		jupiter2:setDescription("Planet: Jupiter\n\n\nScannwerte: \n\nAtmospheren Hauptbestandteile: bei 1 kPa\nWasserstoff: 89,8%\nHelium: 10,2%\nMethan: 0,3%\nAmmoniak: 0,026%")
-	jupiter2 = nil
+	jupiter2.Gescannt = 1
+	jupiter2.TuffDaten = 2
 	end
-	if saturn2 ~= nil and saturn2:isScannedBy(player) then
+	if saturn2.Gescannt == 0 and saturn2:isScannedByFaction("Terranische Navy") then
 		saturn2:setDescription("Planet: Saturn\n\n\nScannwerte: \n\nAtmospheren Hauptbestandteile: bei 1 kPa\nWasserstoff: 96,3%\nHelium: 3,25%\nMethan: 0,45%\nAmmoniak: 0,026%")
-	saturn2 = nil
+	saturn2.Gescannt = 1
+	saturn2.TuffDaten = 2
 	end
-	if uranus2 ~= nil and uranus2:isScannedBy(player) then
+	if uranus2.Gescannt == 0 and uranus2:isScannedByFaction("Terranische Navy") then
 		uranus2:setDescription("Planet: Uranus\n\n\nScannwerte: \n\nAtmospheren Hauptbestandteile: bei 1 kPa\nWasserstoff: 82,5%\nHelium: 15,2%\nMethan: 2,3%")
-	uranus2 = nil
+	uranus2.Gescannt = 1
+	uranus2.TuffDaten = 2
 	end
-	if neptun2 ~= nil and neptun2:isScannedBy(player) then
+	if neptun2.Gescannt == 0 and neptun2:isScannedByFaction("Terranische Navy") then
 		neptun2:setDescription("Planet: Neptun\n\n\nScannwerte: \n\nAtmospheren Hauptbestandteile: bei 1 kPa\nWasserstoff: 80% \nHelium: 19%\nMethan: 1%")
-	neptun2 = nil
+	neptun2.Gescannt = 1
+	neptun2.TuffDaten = 2
 	end
-	if pluto2 ~= nil and pluto2:isScannedBy(player) then
+	if pluto2.Gescannt == 0 and pluto2:isScannedByFaction("Terranische Navy") then
 		pluto2:setDescription("Planet: Pluto\n\n\nScannwerte: \n\nAtmospheren Hauptbestandteile: bei 3 · 10^-6\nStickstoff: 34%\nKohlenmonoxid: 33%\nMethan: 33% \n\nZusammensetzung:\nStickstoff: 10%\nWassereis: 30%\nGestein: 55%\nUran: 5%")
-	pluto2 = nil
+	pluto2.Gescannt = 1
+	pluto2.TuffDaten = 2
 	end
 -- Ende Details über Planeten
 
 -- Alienschiff --
-	if alien_01 ~= nil and alien_01:isScannedBy(player) then
+	if alien_01.Gescannt == 0 and alien_01:isScannedByFaction("Terranische Navy") then
 		alien_01:setCallSign("Shapiron")
 		alien_state = 1
 		alien_01:openCommsTo(player)
-		alien_01 = nil
+		alien_01.Gescannt = 1
 	end
 -- Ende Alienschiff--
 
 	-- Entscheidung welches "nicht vorhandene" Schiffssystem zum Kühlmittel abzug benutzt wird. --
-	if player:hasJumpDrive() then
-	player:commandSetSystemCoolantRequest("warp", coolant_lvl)
-	else
-	player:commandSetSystemCoolantRequest("jumpdrive", coolant_lvl)
+	if coolant_lvl ~= nil then
+		if player:hasJumpDrive() then
+		player:commandSetSystemCoolantRequest("warp", coolant_lvl)
+		else
+		player:commandSetSystemCoolantRequest("jumpdrive", coolant_lvl)
+		end
 	end	
 	-- Ende der Entscheidung --
 	
@@ -3168,7 +3196,7 @@ Bis auf 3U an das Schiff heranfliegen um Person festzunehmen.
 	-- Ende Tarnnebelvernichtung --
 	
 	-- Kühlmittel aufnahme --
-	if coolant > 0 then
+	if coolant ~= nil and coolant > 0 then
 		local x0,y0 = player:getPosition()
 		local dummy_station = 0
 		for _, obj in ipairs(getObjectsInRadius(x0,y0,1000)) do
