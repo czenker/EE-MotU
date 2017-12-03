@@ -3,12 +3,13 @@
 -- Type: Basic
 require("utils.lua")
 function init()
-	player = PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Atlantis"):setPosition(82464, 294):setCallSign("TN Verdandi")
+	player = PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Atlantis"):setPosition(82464, 294):setCallSign("TN Verdandi"):setShieldsMax(100.00, 100.00):setShields(100.00, 100.00):setHullMax(100):setHull(100)
 	    for _, system in ipairs({"reactor", "beamweapons", "missilesystem", "maneuver", "impulse", "warp", "jumpdrive", "frontshield", "rearshield"}) do
 			player:setSystemPower(system, 0.0) -- Diese beiden Zeilen setzen die "Leistung" der Systeme auf 0.0, Engineering muss quasi den Motor erstmal starten.
 			player:commandSetSystemPowerRequest(system, 0.0)
 		end
 	--Script():run("Solarer_Sektor.lua")
+
 	
 	-- SOL-SYSTEM
 	-- Stern und Planeten -- Die Artefakte dienen zur lesbarkeit auf den Radarschirmen.
@@ -118,42 +119,42 @@ function init()
 		Transport_13:setScanningParameters(0, 0):setDescription("Typ: Erzschürfer \nÄußerlich ein gewöhnlicher Erzschürfer. Keine Besonderheiten zu erkennen.")
 		Transport_13.Gescannt = 0
 	-- Piraten
-    pirat_01=	CpuShip():setFaction("Piraten"):setTemplate("Adder MK6"):setCallSign("Manta"):setPosition(169496, 78635):orderDefendLocation(169496, 78635):setWeaponStorage("HVLI", 7)
-    pirat_02=	CpuShip():setFaction("Piraten"):setTemplate("Adder MK6"):setCallSign("Hai"):setPosition(172687, 77739):orderDefendLocation(172687, 77739):setWeaponStorage("HVLI", 7)
-	pirat_03=	CpuShip():setFaction("Piraten"):setTemplate("Adder MK5"):setCallSign("Hecht"):setPosition(174153, 75720):orderDefendLocation(174153, 75720):setWeaponStorage("HVLI", 3)
-    pirat_04=	CpuShip():setFaction("Piraten"):setTemplate("Adder MK5"):setCallSign("Wels"):setPosition(170915, 76644):orderDefendLocation(170915, 76644):setWeaponStorage("HVLI", 3)
-    pirat_05=	CpuShip():setFaction("Piraten"):setTemplate("Adder MK5"):setCallSign("Barrakuda"):setPosition(166757, 77651):orderDefendLocation(166757, 77651):setWeaponStorage("HVLI", 3)
-    pirat_06=	CpuShip():setFaction("Piraten"):setTemplate("Adder MK4"):setCallSign("Barsch"):setPosition(172850, 74108):orderDefendLocation(172850, 74108):setWeaponStorage("HVLI", 1)
-    pirat_07=	CpuShip():setFaction("Piraten"):setTemplate("Adder MK4"):setCallSign("Forelle"):setPosition(170203, 75227):orderDefendLocation(170203, 75227):setWeaponStorage("HVLI", 1)
-    pirat_08=	CpuShip():setFaction("Piraten"):setTemplate("Adder MK4"):setCallSign("Makrele"):setPosition(166561, 76080):orderDefendLocation(166561, 76080):setWeaponStorage("HVLI", 1)
-    pirat_09=	CpuShip():setFaction("Piraten"):setTemplate("Adder MK4"):setCallSign("Thunfisch"):setPosition(168496, 75398):orderDefendLocation(168496, 75398):setWeaponStorage("HVLI", 1)
-	pirat_10=	CpuShip():setFaction("Piraten"):setTemplate("Cruiser"):setCallSign("Tigerhai"):setPosition(169047, 77131):orderDefendLocation(169047, 77131):setHullMax(300):setHull(300)
+    pirat_01=	CpuShip():setFaction("Piraten"):setTemplate("Bomber"):setCallSign("Manta"):setPosition(169496, 78635):orderDefendLocation(169496, 78635)
+    pirat_02=	CpuShip():setFaction("Piraten"):setTemplate("Bomber"):setCallSign("Hai"):setPosition(172687, 77739):orderDefendLocation(172687, 77739)
+	pirat_03=	CpuShip():setFaction("Piraten"):setTemplate("Bomber"):setCallSign("Hecht"):setPosition(174153, 75720):orderDefendLocation(174153, 75720)
+    pirat_04=	CpuShip():setFaction("Piraten"):setTemplate("Bomber"):setCallSign("Wels"):setPosition(170915, 76644):orderDefendLocation(170915, 76644)
+    pirat_05=	CpuShip():setFaction("Piraten"):setTemplate("Jäger"):setCallSign("Barrakuda"):setPosition(166757, 77651):orderDefendLocation(166757, 77651)
+    pirat_06=	CpuShip():setFaction("Piraten"):setTemplate("Jäger"):setCallSign("Barsch"):setPosition(172850, 74108):orderDefendLocation(172850, 74108)
+    pirat_07=	CpuShip():setFaction("Piraten"):setTemplate("Jäger"):setCallSign("Forelle"):setPosition(170203, 75227):orderDefendLocation(170203, 75227)
+    pirat_08=	CpuShip():setFaction("Piraten"):setTemplate("Jäger"):setCallSign("Makrele"):setPosition(166561, 76080):orderDefendLocation(166561, 76080)
+    pirat_09=	CpuShip():setFaction("Piraten"):setTemplate("Jäger"):setCallSign("Thunfisch"):setPosition(168496, 75398):orderDefendLocation(168496, 75398)
+	pirat_10=	CpuShip():setFaction("Piraten"):setTemplate("Korvette"):setCallSign("Tigerhai"):setPosition(169047, 77131):orderDefendLocation(169047, 77131)
 	-- Terranische Navy
-    tn_01=	CpuShip():setFaction("Terranische Navy"):setTemplate("Adv. Gunship"):setCallSign("TN Albatross"):setPosition(77018, -2069):setScanned(true):setWeaponStorage("Homing", 4):orderDefendLocation(77018, -2069)
+    tn_01=	CpuShip():setFaction("Terranische Navy"):setTemplate("Zerstörer-II"):setCallSign("TN Albatross"):setPosition(77018, -2069):setScanned(true):orderDefendLocation(77018, -2069)
 	tn_01_t = 1
-    tn_02=	CpuShip():setFaction("Terranische Navy"):setTemplate("Adv. Gunship"):setCallSign("TN Falk"):setPosition(80490, -51674):setScanned(true):setWeaponStorage("Homing", 2):orderDefendLocation(80490, -51674)
+    tn_02=	CpuShip():setFaction("Terranische Navy"):setTemplate("Zerstörer-I"):setCallSign("TN Falk"):setPosition(80490, -51674):setScanned(true):orderDefendLocation(80490, -51674)
 	tn_02_t = 1
-	tn_03=	CpuShip():setFaction("Terranische Navy"):setTemplate("Adv. Striker"):setCallSign("TN Predator"):setPosition(79495, 5298):setScanned(true):orderDefendLocation(79495, 5298)
+	tn_03=	CpuShip():setFaction("Terranische Navy"):setTemplate("Fregatte"):setCallSign("TN Predator"):setPosition(79495, 5298):setScanned(true):orderDefendLocation(79495, 5298)
 	tn_03_t = 1
-    tn_04=	CpuShip():setFaction("Terranische Navy"):setTemplate("Adv. Striker"):setCallSign("TN Striker"):setPosition(44866, 67654):setScanned(true):orderDefendLocation(44866, 67654)
+    tn_04=	CpuShip():setFaction("Terranische Navy"):setTemplate("Fregatte"):setCallSign("TN Striker"):setPosition(44866, 67654):setScanned(true):orderDefendLocation(44866, 67654)
 	tn_04_t = 1
-    tn_05=	CpuShip():setFaction("Terranische Navy"):setTemplate("Cruiser"):setCallSign("TN Fidelitas"):setPosition(80945, -6112):setScanned(true):orderDefendLocation(80945, -6112)
+    tn_05=	CpuShip():setFaction("Terranische Navy"):setTemplate("Korvette"):setCallSign("TN Fidelitas"):setPosition(80945, -6112):setScanned(true):orderDefendLocation(80945, -6112)
 	tn_05_t = 1
-	tn_06=	CpuShip():setFaction("Terranische Navy"):setTemplate("Cruiser"):setCallSign("TN Prestige"):setPosition(78231, -53005):setScanned(true):orderDefendLocation(78231, -53005)
+	tn_06=	CpuShip():setFaction("Terranische Navy"):setTemplate("Korvette"):setCallSign("TN Prestige"):setPosition(78231, -53005):setScanned(true):orderDefendLocation(78231, -53005)
 	tn_06_t = 1
-    tn_07=	CpuShip():setFaction("Terranische Navy"):setTemplate("Cruiser"):setCallSign("TN Tesla"):setPosition(47437, 64947):setScanned(true):orderDefendLocation(47437, 64947)
+    tn_07=	CpuShip():setFaction("Terranische Navy"):setTemplate("Korvette"):setCallSign("TN Tesla"):setPosition(47437, 64947):setScanned(true):orderDefendLocation(47437, 64947)
 	tn_07_t = 1
-    tn_08=	CpuShip():setFaction("Terranische Navy"):setTemplate("Cruiser"):setCallSign("TN Black-Sky"):setPosition(44063, 63704):setScanned(true):orderDefendLocation(44063,63704)
+    tn_08=	CpuShip():setFaction("Terranische Navy"):setTemplate("Korvette"):setCallSign("TN Black-Sky"):setPosition(44063, 63704):setScanned(true):orderDefendLocation(44063,63704)
 	tn_08_t = 1
 	-- Mars Tech Union
-    mtu_01=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Adv. Gunship"):setCallSign("MTU Karyptis"):setPosition(144810, 14944):orderDefendLocation(144810, 14944):setWeaponStorage("Homing", 2)
-    mtu_02=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Adv. Gunship"):setCallSign("MTU Skylla"):setPosition(147570, -25057):orderDefendLocation(147570, -25057):setWeaponStorage("Homing", 2)
-	mtu_03=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Adv. Striker"):setCallSign("MTU Hurricane"):setPosition(146055, -28685):orderDefendLocation(146055, -28685)
-    mtu_04=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Adv. Striker"):setCallSign("MTU Calypso"):setPosition(181961, -12625):orderDefendLocation(181961, -12625)
-    mtu_05=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Cruiser"):setCallSign("MTU Taco-Bell"):setPosition(146854, -26914):orderDefendLocation(146854, -26914)
-    mtu_06=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Cruiser"):setCallSign("MTU Primaris"):setPosition(176810, -12445):orderDefendLocation(176810, -12445)
-    mtu_07=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Cruiser"):setCallSign("MTU Mefisto"):setPosition(144896, -27251):orderDefendLocation(144896, -27251)
-    mtu_08=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Cruiser"):setCallSign("MTU FuckYou"):setPosition(142860, 10991):orderDefendLocation(142860, 10991)
+    mtu_01=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Zerstörer-II"):setCallSign("MTU Karyptis"):setPosition(144810, 14944):orderDefendLocation(144810, 14944)
+    mtu_02=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Zerstörer-I"):setCallSign("MTU Skylla"):setPosition(147570, -25057):orderDefendLocation(147570, -25057)
+	mtu_03=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Fregatte"):setCallSign("MTU Hurricane"):setPosition(146055, -28685):orderDefendLocation(146055, -28685)
+    mtu_04=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Fregatte"):setCallSign("MTU Calypso"):setPosition(181961, -12625):orderDefendLocation(181961, -12625)
+    mtu_05=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Korvette"):setCallSign("MTU Taco-Bell"):setPosition(146854, -26914):orderDefendLocation(146854, -26914)
+    mtu_06=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Korvette"):setCallSign("MTU Primaris"):setPosition(176810, -12445):orderDefendLocation(176810, -12445)
+    mtu_07=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Korvette"):setCallSign("MTU Mefisto"):setPosition(144896, -27251):orderDefendLocation(144896, -27251)
+    mtu_08=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Korvette"):setCallSign("MTU FuckYou"):setPosition(142860, 10991):orderDefendLocation(142860, 10991)
 	-- Alien --
 	alien_01= CpuShip():setFaction("Alien (Friedlich)"):setTemplate("Cruiser"):setCallSign("?*'#&45/"):setPosition(183023, -112526):setHullMax(100):setHull(100):setJumpDrive(true):setBeamWeapon(2, 49, 1, 1300, 5.9, 6.0):setBeamWeaponTurret(2, 67, 1, 1)
 		alien_01:setScanningParameters(4, 2):setCommsFunction(aliencomms):setDescriptions("Schiffserkennung nicht eindeutig.\n\n Ähnlichster Typ: Cruiser. \n\n\n Unbekanntes Schiff." , "Schiff nicht aus dem Sol-System. Unbekannte Zeichen auf der Hülle.")
