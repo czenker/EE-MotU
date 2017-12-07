@@ -1,16 +1,80 @@
 -- Name: SOL-System-Beginning
 -- Description: Erde und Mars stehen in einem brüchigen Frieden
 -- Type: Basic
+-- Variation[TN Verdandi]: Erde und Mars stehen in einem brüchigen Frieden - TN Verdandi
+-- Variation[TN Leviathan]: Erde und Mars stehen in einem brüchigen Frieden - TN Leviathan
 require("utils.lua")
 function init()
-	player = PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Atlantis"):setPosition(82464, 294):setCallSign("TN Verdandi"):setShieldsMax(100.00, 100.00):setShields(100.00, 100.00):setHullMax(100):setHull(100)
+
+	if getScenarioVariation() == "TN Verdandi" then
+		player = PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Atlantis"):setPosition(82464, 294):setCallSign("TN Verdandi"):setShieldsMax(100.00, 100.00):setShields(100.00, 100.00):setHullMax(100):setHull(100)
 	    for _, system in ipairs({"reactor", "beamweapons", "missilesystem", "maneuver", "impulse", "warp", "jumpdrive", "frontshield", "rearshield"}) do
 			player:setSystemPower(system, 0.0) -- Diese beiden Zeilen setzen die "Leistung" der Systeme auf 0.0, Engineering muss quasi den Motor erstmal starten.
 			player:commandSetSystemPowerRequest(system, 0.0)
+			player:setWeaponStorage("Homing", 12)
+			player:setWeaponStorageMax("Homing", 12)
+			player:setWeaponStorage("Nuke", 2)
+			player:setWeaponStorageMax("Nuke", 2)
+			player:setWeaponStorage("Mine", 2)
+			player:setWeaponStorageMax("Mine", 2)
+			player:setWeaponStorage("EMP", 2)
+			player:setWeaponStorageMax("EMP", 2)
+			player:setWeaponStorage("HVLI", 20)
+			player:setWeaponStorageMax("HVLI", 20)
 		end
+	elseif getScenarioVariation() == "TN Leviathan" then
+		player = PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Träger P"):setPosition(82464, 294):setCallSign("TN Leviathan")
+	    for _, system in ipairs({"reactor", "beamweapons", "missilesystem", "maneuver", "impulse", "warp", "jumpdrive", "frontshield", "rearshield"}) do
+			--player:setSystemPower(system, 0.0) -- Diese beiden Zeilen setzen die "Leistung" der Systeme auf 0.0, Engineering muss quasi den Motor erstmal starten.
+			--player:commandSetSystemPowerRequest(system, 0.0)
+			
+		end
+		carrier()
+		fighter_01=	CpuShip():setFaction(player:getFaction()):setTemplate("Jäger"):setCallSign("TNJ 01"):setScanned(true):setPosition(player:getPosition()):orderDefendTarget(player)
+		fighter_02=	CpuShip():setFaction(player:getFaction()):setTemplate("Jäger"):setCallSign("TNJ 02"):setScanned(true):setPosition(player:getPosition()):orderDefendTarget(player)
+		fighter_03=	CpuShip():setFaction(player:getFaction()):setTemplate("Jäger"):setCallSign("TNJ 03"):setScanned(true):setPosition(player:getPosition()):orderDefendTarget(player)
+		fighter_04=	CpuShip():setFaction(player:getFaction()):setTemplate("Jäger"):setCallSign("TNJ 04"):setScanned(true):setPosition(player:getPosition()):orderDefendTarget(player)
+		fighter_05=	CpuShip():setFaction(player:getFaction()):setTemplate("Jäger"):setCallSign("TNJ 05"):setScanned(true):setPosition(player:getPosition()):orderDefendTarget(player)
+		fighter_06=	CpuShip():setFaction(player:getFaction()):setTemplate("Jäger"):setCallSign("TNJ 06"):setScanned(true):setPosition(player:getPosition()):orderDefendTarget(player)
+		bomber_01=	CpuShip():setFaction(player:getFaction()):setTemplate("Bomber"):setCallSign("TNB 01"):setScanned(true):setPosition(player:getPosition()):orderDefendTarget(player)
+		bomber_02=	CpuShip():setFaction(player:getFaction()):setTemplate("Bomber"):setCallSign("TNB 02"):setScanned(true):setPosition(player:getPosition()):orderDefendTarget(player)
+		bomber_03=	CpuShip():setFaction(player:getFaction()):setTemplate("Bomber"):setCallSign("TNB 03"):setScanned(true):setPosition(player:getPosition()):orderDefendTarget(player)
+		bomber_04=	CpuShip():setFaction(player:getFaction()):setTemplate("Bomber"):setCallSign("TNB 04"):setScanned(true):setPosition(player:getPosition()):orderDefendTarget(player)
+		fighter_01:destroy()
+		fighter_02:destroy()
+		fighter_03:destroy()
+		fighter_04:destroy()
+		fighter_05:destroy()
+		fighter_06:destroy()
+		bomber_01:destroy()
+		bomber_02:destroy()
+		bomber_03:destroy()
+		bomber_04:destroy()
+		playerfighter_01= PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Jäger P"):setPosition(player:getPosition()):setCallSign("TNJ Black-Jack")
+		playerfighter_02= PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Jäger P"):setPosition(player:getPosition()):setCallSign("TNJP 02")
+		playerfighter_03= PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Jäger P"):setPosition(player:getPosition()):setCallSign("TNJP 03")
+		playerfighter_04= PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Jäger P"):setPosition(player:getPosition()):setCallSign("TNJP 04")
+		playerfighter_05= PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Jäger P"):setPosition(player:getPosition()):setCallSign("TNJP 05")
+		playerfighter_06= PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Jäger P"):setPosition(player:getPosition()):setCallSign("TNJP 06")
+		playerbomber_01= PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Bomber P"):setPosition(player:getPosition()):setCallSign("TNBP 01")
+		playerbomber_02= PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Bomber P"):setPosition(player:getPosition()):setCallSign("TNBP 02")
+		playerbomber_03= PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Bomber P"):setPosition(player:getPosition()):setCallSign("TNBP 03")
+		playerbomber_04= PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Bomber P"):setPosition(player:getPosition()):setCallSign("TNBP 04")
+		playerfighter_01:destroy()
+		playerfighter_02:destroy()
+		playerfighter_03:destroy()
+		playerfighter_04:destroy()
+		playerfighter_05:destroy()
+		playerfighter_06:destroy()
+		playerbomber_01:destroy()
+		playerbomber_02:destroy()
+		playerbomber_03:destroy()
+		playerbomber_04:destroy()
+	end
+
 	--Script():run("Solarer_Sektor.lua")
 
-	
+	PSHIPNAME = player:getCallSign()
 	-- SOL-SYSTEM
 	-- Stern und Planeten -- Die Artefakte dienen zur lesbarkeit auf den Radarschirmen.
 	sun1 = Planet():setPosition(120000, 0):setPlanetRadius(10000):setDistanceFromMovementPlane(-3000):setPlanetSurfaceTexture("planets/sun-1.png"):setPlanetAtmosphereTexture("planets/star-1.png"):setPlanetAtmosphereColor(1,0.5,0):setAxialRotationTime(1000)
@@ -100,7 +164,7 @@ function init()
 	Transport_7=    CpuShip():setFaction("Unabhängige"):setTemplate("Flavia"):setCallSign("UH JS-08"):setPosition(70087, -38142):orderDock(asteroidenstation1):setCommsFunction(JS_08_7_call):setImpulseMaxSpeed(50):setRotationMaxSpeed(10):setShieldsMax(80.00, 80.00):setShields(80.00, 80.00):setBeamWeapon(0, 45, 0, 1000, 6, 4):setBeamWeaponTurret(0, 0, 0, 0):setBeamWeapon(1, 45, -180, 1000, 6, 4):setBeamWeaponTurret(1, 0, 0, 0)
 		Transport_7:setScanningParameters(0, 0):setDescription("Typ: Handelsschiff \nPrivates Handelsschiff. Erhöhte Energiesignatur deutet auf modifizerte Systeme hin.")
 		Transport_7.Gescannt = 0
-	Transport_8=    CpuShip():setFaction("Unabhängige"):setTemplate("Goods Freighter 5"):setCallSign("UH ER-10"):setPosition(86565, -6330):orderDock(asteroidenstation1):setCommsFunction(ER_10_8_call):setImpulseMaxSpeed(10)
+	Transport_8=    CpuShip():setFaction("Unabhängige"):setTemplate("Goods Freighter 5"):setCallSign("UH ER-10"):setPosition(114557, -44122):orderDock(asteroidenstation1):setCommsFunction(ER_10_8_call):setImpulseMaxSpeed(10)
 		Transport_8:setScanningParameters(0, 0):setDescription("Typ: Handelsschiff \nHandelsschiff eines groß Unternehmens auf der Erde. Äussere Markierungen weisen auf die >Weyland-Yutani Corporation< hin.")
 		Transport_8.Gescannt = 0
 	Transport_9=    CpuShip():setFaction("Unabhängige"):setTemplate("Garbage Freighter 2"):setCallSign("UH CD-22"):setPosition(173588, 1005):orderDock(asteroidenstation1):setCommsFunction(CD_22_9_call)
@@ -119,42 +183,42 @@ function init()
 		Transport_13:setScanningParameters(0, 0):setDescription("Typ: Erzschürfer \nÄußerlich ein gewöhnlicher Erzschürfer. Keine Besonderheiten zu erkennen.")
 		Transport_13.Gescannt = 0
 	-- Piraten
-    pirat_01=	CpuShip():setFaction("Piraten"):setTemplate("Bomber"):setCallSign("Manta"):setPosition(169496, 78635):orderDefendLocation(169496, 78635)
-    pirat_02=	CpuShip():setFaction("Piraten"):setTemplate("Bomber"):setCallSign("Hai"):setPosition(172687, 77739):orderDefendLocation(172687, 77739)
-	pirat_03=	CpuShip():setFaction("Piraten"):setTemplate("Bomber"):setCallSign("Hecht"):setPosition(174153, 75720):orderDefendLocation(174153, 75720)
-    pirat_04=	CpuShip():setFaction("Piraten"):setTemplate("Bomber"):setCallSign("Wels"):setPosition(170915, 76644):orderDefendLocation(170915, 76644)
-    pirat_05=	CpuShip():setFaction("Piraten"):setTemplate("Jäger"):setCallSign("Barrakuda"):setPosition(166757, 77651):orderDefendLocation(166757, 77651)
-    pirat_06=	CpuShip():setFaction("Piraten"):setTemplate("Jäger"):setCallSign("Barsch"):setPosition(172850, 74108):orderDefendLocation(172850, 74108)
-    pirat_07=	CpuShip():setFaction("Piraten"):setTemplate("Jäger"):setCallSign("Forelle"):setPosition(170203, 75227):orderDefendLocation(170203, 75227)
-    pirat_08=	CpuShip():setFaction("Piraten"):setTemplate("Jäger"):setCallSign("Makrele"):setPosition(166561, 76080):orderDefendLocation(166561, 76080)
-    pirat_09=	CpuShip():setFaction("Piraten"):setTemplate("Jäger"):setCallSign("Thunfisch"):setPosition(168496, 75398):orderDefendLocation(168496, 75398)
-	pirat_10=	CpuShip():setFaction("Piraten"):setTemplate("Korvette"):setCallSign("Tigerhai"):setPosition(169047, 77131):orderDefendLocation(169047, 77131)
+    pirat_01=	CpuShip():setFaction("Piraten"):setTemplate("Bomber"):setCallSign("Manta"):setPosition(169496, 78635):orderDefendLocation(169496, 78635):setWarpDrive(true)
+    pirat_02=	CpuShip():setFaction("Piraten"):setTemplate("Bomber"):setCallSign("Hai"):setPosition(172687, 77739):orderDefendLocation(172687, 77739):setWarpDrive(true)
+	pirat_03=	CpuShip():setFaction("Piraten"):setTemplate("Bomber"):setCallSign("Hecht"):setPosition(174153, 75720):orderDefendLocation(174153, 75720):setWarpDrive(true)
+    pirat_04=	CpuShip():setFaction("Piraten"):setTemplate("Bomber"):setCallSign("Wels"):setPosition(170915, 76644):orderDefendLocation(170915, 76644):setWarpDrive(true)
+    pirat_05=	CpuShip():setFaction("Piraten"):setTemplate("Jäger"):setCallSign("Barrakuda"):setPosition(166757, 77651):orderDefendLocation(166757, 77651):setWarpDrive(true)
+    pirat_06=	CpuShip():setFaction("Piraten"):setTemplate("Jäger"):setCallSign("Barsch"):setPosition(172850, 74108):orderDefendLocation(172850, 74108):setWarpDrive(true)
+    pirat_07=	CpuShip():setFaction("Piraten"):setTemplate("Jäger"):setCallSign("Forelle"):setPosition(170203, 75227):orderDefendLocation(170203, 75227):setWarpDrive(true)
+    pirat_08=	CpuShip():setFaction("Piraten"):setTemplate("Jäger"):setCallSign("Makrele"):setPosition(166561, 76080):orderDefendLocation(166561, 76080):setWarpDrive(true)
+    pirat_09=	CpuShip():setFaction("Piraten"):setTemplate("Jäger"):setCallSign("Thunfisch"):setPosition(168496, 75398):orderDefendLocation(168496, 75398):setWarpDrive(true)
+	pirat_10=	CpuShip():setFaction("Piraten"):setTemplate("Korvette"):setCallSign("Tigerhai"):setPosition(169047, 77131):orderDefendLocation(169047, 77131):setWarpDrive(true)
 	-- Terranische Navy
-    tn_01=	CpuShip():setFaction("Terranische Navy"):setTemplate("Zerstörer-II"):setCallSign("TN Albatross"):setPosition(77018, -2069):setScanned(true):orderDefendLocation(77018, -2069)
+    tn_01=	CpuShip():setFaction("Terranische Navy"):setTemplate("Zerstörer-II"):setCallSign("TN Albatross"):setPosition(77018, -2069):setScanned(true):orderDefendLocation(77018, -2069):setWarpDrive(true)
 	tn_01_t = 1
-    tn_02=	CpuShip():setFaction("Terranische Navy"):setTemplate("Zerstörer-I"):setCallSign("TN Falk"):setPosition(80490, -51674):setScanned(true):orderDefendLocation(80490, -51674)
+    tn_02=	CpuShip():setFaction("Terranische Navy"):setTemplate("Zerstörer-I"):setCallSign("TN Falk"):setPosition(80490, -51674):setScanned(true):orderDefendLocation(80490, -51674):setWarpDrive(true)
 	tn_02_t = 1
-	tn_03=	CpuShip():setFaction("Terranische Navy"):setTemplate("Fregatte"):setCallSign("TN Predator"):setPosition(79495, 5298):setScanned(true):orderDefendLocation(79495, 5298)
+	tn_03=	CpuShip():setFaction("Terranische Navy"):setTemplate("Fregatte"):setCallSign("TN Predator"):setPosition(79495, 5298):setScanned(true):orderDefendLocation(79495, 5298):setWarpDrive(true)
 	tn_03_t = 1
-    tn_04=	CpuShip():setFaction("Terranische Navy"):setTemplate("Fregatte"):setCallSign("TN Striker"):setPosition(44866, 67654):setScanned(true):orderDefendLocation(44866, 67654)
+    tn_04=	CpuShip():setFaction("Terranische Navy"):setTemplate("Fregatte"):setCallSign("TN Striker"):setPosition(44866, 67654):setScanned(true):orderDefendLocation(44866, 67654):setWarpDrive(true)
 	tn_04_t = 1
-    tn_05=	CpuShip():setFaction("Terranische Navy"):setTemplate("Korvette"):setCallSign("TN Fidelitas"):setPosition(80945, -6112):setScanned(true):orderDefendLocation(80945, -6112)
+    tn_05=	CpuShip():setFaction("Terranische Navy"):setTemplate("Korvette"):setCallSign("TN Fidelitas"):setPosition(80945, -6112):setScanned(true):orderDefendLocation(80945, -6112):setWarpDrive(true)
 	tn_05_t = 1
-	tn_06=	CpuShip():setFaction("Terranische Navy"):setTemplate("Korvette"):setCallSign("TN Prestige"):setPosition(78231, -53005):setScanned(true):orderDefendLocation(78231, -53005)
+	tn_06=	CpuShip():setFaction("Terranische Navy"):setTemplate("Korvette"):setCallSign("TN Prestige"):setPosition(78231, -53005):setScanned(true):orderDefendLocation(78231, -53005):setWarpDrive(true)
 	tn_06_t = 1
-    tn_07=	CpuShip():setFaction("Terranische Navy"):setTemplate("Korvette"):setCallSign("TN Tesla"):setPosition(47437, 64947):setScanned(true):orderDefendLocation(47437, 64947)
+    tn_07=	CpuShip():setFaction("Terranische Navy"):setTemplate("Korvette"):setCallSign("TN Tesla"):setPosition(47437, 64947):setScanned(true):orderDefendLocation(47437, 64947):setWarpDrive(true)
 	tn_07_t = 1
-    tn_08=	CpuShip():setFaction("Terranische Navy"):setTemplate("Korvette"):setCallSign("TN Black-Sky"):setPosition(44063, 63704):setScanned(true):orderDefendLocation(44063,63704)
+    tn_08=	CpuShip():setFaction("Terranische Navy"):setTemplate("Korvette"):setCallSign("TN Black-Sky"):setPosition(44063, 63704):setScanned(true):orderDefendLocation(44063,63704):setWarpDrive(true)
 	tn_08_t = 1
 	-- Mars Tech Union
-    mtu_01=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Zerstörer-II"):setCallSign("MTU Karyptis"):setPosition(144810, 14944):orderDefendLocation(144810, 14944)
-    mtu_02=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Zerstörer-I"):setCallSign("MTU Skylla"):setPosition(147570, -25057):orderDefendLocation(147570, -25057)
-	mtu_03=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Fregatte"):setCallSign("MTU Hurricane"):setPosition(146055, -28685):orderDefendLocation(146055, -28685)
-    mtu_04=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Fregatte"):setCallSign("MTU Calypso"):setPosition(181961, -12625):orderDefendLocation(181961, -12625)
-    mtu_05=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Korvette"):setCallSign("MTU Taco-Bell"):setPosition(146854, -26914):orderDefendLocation(146854, -26914)
-    mtu_06=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Korvette"):setCallSign("MTU Primaris"):setPosition(176810, -12445):orderDefendLocation(176810, -12445)
-    mtu_07=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Korvette"):setCallSign("MTU Mefisto"):setPosition(144896, -27251):orderDefendLocation(144896, -27251)
-    mtu_08=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Korvette"):setCallSign("MTU FuckYou"):setPosition(142860, 10991):orderDefendLocation(142860, 10991)
+    mtu_01=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Zerstörer-II"):setCallSign("MTU Karyptis"):setPosition(144810, 14944):orderDefendLocation(144810, 14944):setWarpDrive(true)
+    mtu_02=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Zerstörer-I"):setCallSign("MTU Skylla"):setPosition(147570, -25057):orderDefendLocation(147570, -25057):setWarpDrive(true)
+	mtu_03=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Fregatte"):setCallSign("MTU Hurricane"):setPosition(146055, -28685):orderDefendLocation(146055, -28685):setWarpDrive(true)
+    mtu_04=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Fregatte"):setCallSign("MTU Calypso"):setPosition(181961, -12625):orderDefendLocation(181961, -12625):setWarpDrive(true)
+    mtu_05=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Korvette"):setCallSign("MTU Taco-Bell"):setPosition(146854, -26914):orderDefendLocation(146854, -26914):setWarpDrive(true)
+    mtu_06=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Korvette"):setCallSign("MTU Primaris"):setPosition(176810, -12445):orderDefendLocation(176810, -12445):setWarpDrive(true)
+    mtu_07=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Korvette"):setCallSign("MTU Mefisto"):setPosition(144896, -27251):orderDefendLocation(144896, -27251):setWarpDrive(true)
+    mtu_08=	CpuShip():setFaction("Mars Tech Union"):setTemplate("Korvette"):setCallSign("MTU FuckYou"):setPosition(142860, 10991):orderDefendLocation(142860, 10991):setWarpDrive(true)
 	-- Alien --
 	alien_01= CpuShip():setFaction("Alien (Friedlich)"):setTemplate("Cruiser"):setCallSign("?*'#&45/"):setPosition(183023, -112526):setHullMax(100):setHull(100):setJumpDrive(true):setBeamWeapon(2, 49, 1, 1300, 5.9, 6.0):setBeamWeaponTurret(2, 67, 1, 1)
 		alien_01:setScanningParameters(4, 2):setCommsFunction(aliencomms):setDescriptions("Schiffserkennung nicht eindeutig.\n\n Ähnlichster Typ: Cruiser. \n\n\n Unbekanntes Schiff." , "Schiff nicht aus dem Sol-System. Unbekannte Zeichen auf der Hülle.")
@@ -288,6 +352,454 @@ UH_Check = 0
 	removeGMFunction("KMA entziehen")
 	end)
 	-- GM Befehle Ende --
+end
+
+function carrier()
+
+	player.fighter_01carrier = 1
+	player.fighter_02carrier = 1
+	player.fighter_03carrier = 1
+	player.fighter_04carrier = 1
+	player.fighter_05carrier = 1
+	player.fighter_06carrier = 1
+	player.bomber_01carrier = 1
+	player.bomber_02carrier = 1
+	player.bomber_03carrier = 1
+	player.bomber_04carrier = 1
+	
+	player:addCustomButton("relay","SchiSta","Schiffe Starten", function()	
+	player:addCustomButton("relay","jaggo","Jäger Starten", function()
+		if player.fighter_01carrier == 1 then
+		fighter_01=	CpuShip():setFaction(player:getFaction()):setTemplate("Jäger"):setCallSign("TNJ 01"):setScanned(true):setPosition(player:getPosition()):orderDefendTarget(player):setWarpDrive(false)
+		player.fighter_01carrier = 0
+		elseif player.fighter_01carrier == 3 then
+		playerfighter_01= PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Jäger P"):setPosition(player:getPosition()):setCallSign("TNJ Black-Jack"):setWarpDrive(false)
+		player.fighter_01carrier = 4
+		end
+		if player.fighter_02carrier == 1 then
+		fighter_02=	CpuShip():setFaction(player:getFaction()):setTemplate("Jäger"):setCallSign("TNJ 02"):setScanned(true):setPosition(player:getPosition()):orderDefendTarget(player):setWarpDrive(false)
+		player.fighter_02carrier = 0
+		elseif player.fighter_02carrier == 3 then
+		playerfighter_02= PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Jäger P"):setPosition(player:getPosition()):setCallSign("TNJP 02"):setWarpDrive(false)
+		player.fighter_02carrier = 4
+		end
+		if player.fighter_03carrier == 1 then
+		fighter_03=	CpuShip():setFaction(player:getFaction()):setTemplate("Jäger"):setCallSign("TNJ 03"):setScanned(true):setPosition(player:getPosition()):orderDefendTarget(player):setWarpDrive(false)
+		player.fighter_03carrier = 0
+		elseif player.fighter_03carrier == 3 then
+		playerfighter_03= PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Jäger P"):setPosition(player:getPosition()):setCallSign("TNJP 03"):setWarpDrive(false)
+		player.fighter_03carrier = 4
+		end
+		if player.fighter_04carrier == 1 then
+		fighter_04=	CpuShip():setFaction(player:getFaction()):setTemplate("Jäger"):setCallSign("TNJ 04"):setScanned(true):setPosition(player:getPosition()):orderDefendTarget(player):setWarpDrive(false)
+		player.fighter_04carrier = 0
+		elseif player.fighter_04carrier == 3 then
+		playerfighter_04= PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Jäger P"):setPosition(player:getPosition()):setCallSign("TNJP 04"):setWarpDrive(false)
+		player.fighter_04carrier = 4
+		end
+		if player.fighter_05carrier == 1 then
+		fighter_05=	CpuShip():setFaction(player:getFaction()):setTemplate("Jäger"):setCallSign("TNJ 05"):setScanned(true):setPosition(player:getPosition()):orderDefendTarget(player):setWarpDrive(false)
+		player.fighter_05carrier = 0
+		elseif player.fighter_05carrier == 3 then
+		playerfighter_05= PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Jäger P"):setPosition(player:getPosition()):setCallSign("TNJP 05"):setWarpDrive(false)
+		player.fighter_05carrier = 4
+		end
+		if player.fighter_06carrier == 1 then
+		fighter_06=	CpuShip():setFaction(player:getFaction()):setTemplate("Jäger"):setCallSign("TNJ 06"):setScanned(true):setPosition(player:getPosition()):orderDefendTarget(player):setWarpDrive(false)
+		player.fighter_06carrier = 0
+		elseif player.fighter_06carrier == 3 then
+		playerfighter_06= PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Jäger P"):setPosition(player:getPosition()):setCallSign("TNJP 06"):setWarpDrive(false)
+		player.fighter_06carrier = 4
+		end
+		player:removeCustom("jaggo")
+		player:removeCustom("bomgo")
+	end)
+	
+	player:addCustomButton("relay","bomgo","Bomber Starten", function()
+		if player.bomber_01carrier == 1 then
+		bomber_01=	CpuShip():setFaction(player:getFaction()):setTemplate("Bomber"):setCallSign("TNB 01"):setScanned(true):setPosition(player:getPosition()):orderDefendTarget(player):setWarpDrive(false)
+		player.bomber_01carrier = 0
+		elseif player.bomber_01carrier == 3 then
+		playerbomber_01= PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Bomber P"):setPosition(player:getPosition()):setCallSign("TNBP 01"):setWarpDrive(false)
+		player.bomber_01carrier = 4
+		end
+		if player.bomber_02carrier == 1 then
+		bomber_02=	CpuShip():setFaction(player:getFaction()):setTemplate("Bomber"):setCallSign("TNB 02"):setScanned(true):setPosition(player:getPosition()):orderDefendTarget(player):setWarpDrive(false)
+		player.bomber_02carrier = 0
+		elseif player.bomber_02carrier == 3 then
+		playerbomber_02= PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Bomber P"):setPosition(player:getPosition()):setCallSign("TNBP 02"):setWarpDrive(false)
+		player.bomber_02carrier = 4
+		end
+		if player.bomber_03carrier == 1 then
+		bomber_03=	CpuShip():setFaction(player:getFaction()):setTemplate("Bomber"):setCallSign("TNB 03"):setScanned(true):setPosition(player:getPosition()):orderDefendTarget(player):setWarpDrive(false)
+		player.bomber_03carrier = 0
+		elseif player.bomber_03carrier == 3 then
+		playerbomber_03= PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Bomber P"):setPosition(player:getPosition()):setCallSign("TNBP 03"):setWarpDrive(false)
+		player.bomber_03carrier = 4
+		end
+		if player.bomber_04carrier == 1 then
+		bomber_04=	CpuShip():setFaction(player:getFaction()):setTemplate("Bomber"):setCallSign("TNB 04"):setScanned(true):setPosition(player:getPosition()):orderDefendTarget(player):setWarpDrive(false)
+		player.bomber_04carrier = 0
+		elseif player.bomber_04carrier == 3 then
+		playerbomber_04= PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Bomber P"):setPosition(player:getPosition()):setCallSign("TNBP 04"):setWarpDrive(false)
+		player.bomber_04carrier = 4
+		end
+		player:removeCustom("jaggo")
+		player:removeCustom("bomgo")
+	end)
+	
+	end)
+	
+	player:addCustomButton("relay","hangartakein","Schiffe Aufnehmen", function()
+			if fighter_01:isDocked(player) then
+				fighter_01:destroy()
+				player.fighter_01carrier = 1
+			elseif playerfighter_01:isDocked(player) then
+				playerfighter_01:destroy()
+				player.fighter_01carrier = 3
+			end
+			if fighter_02:isDocked(player) then
+				fighter_02:destroy()
+				player.fighter_02carrier = 1
+			elseif playerfighter_02:isDocked(player) then
+				playerfighter_02:destroy()
+				player.fighter_02carrier = 3
+			end
+			if fighter_03:isDocked(player) then
+				fighter_03:destroy()
+				player.fighter_03carrier = 1
+			elseif playerfighter_03:isDocked(player) then
+				playerfighter_03:destroy()
+				player.fighter_03carrier = 3
+			end
+			if fighter_04:isDocked(player) then
+				fighter_04:destroy()
+				player.fighter_04carrier = 1
+			elseif playerfighter_04:isDocked(player) then
+				playerfighter_04:destroy()
+				player.fighter_04carrier = 3
+			end
+			if fighter_05:isDocked(player) then
+				fighter_05:destroy()
+				player.fighter_05carrier = 1
+			elseif playerfighter_05:isDocked(player) then
+				playerfighter_05:destroy()
+				player.fighter_05carrier = 3
+			end
+			if fighter_06:isDocked(player) then
+				fighter_06:destroy()
+				player.fighter_06carrier = 1
+			elseif playerfighter_06:isDocked(player) then
+				playerfighter_06:destroy()
+				player.fighter_06carrier = 3
+			end
+			if bomber_01:isDocked(player) then
+				bomber_01:destroy()
+				player.bomber_01carrier = 1
+			elseif playerbomber_01:isDocked(player) then
+				playerbomber_01:destroy()
+				player.bomber_01carrier = 3
+			end
+			if bomber_02:isDocked(player) then
+				bomber_02:destroy()
+				player.bomber_02carrier = 1
+			elseif playerbomber_02:isDocked(player) then
+				playerbomber_02:destroy()
+				player.bomber_02carrier = 3
+			end
+			if bomber_03:isDocked(player) then
+				bomber_03:destroy()
+				player.bomber_03carrier = 1
+			elseif playerbomber_03:isDocked(player) then
+				playerbomber_03:destroy()
+				player.bomber_03carrier = 3
+			end
+			if bomber_04:isDocked(player) then
+				bomber_04:destroy()
+				player.bomber_04carrier = 1
+			elseif playerbomber_04:isDocked(player) then
+				playerbomber_04:destroy()
+				player.bomber_04carrier = 3
+			end
+		end)
+	
+	player:addCustomButton("relay","dockingorder","Docking Befehl", function()
+		fighter_01:orderDock(player)
+		fighter_02:orderDock(player)
+		fighter_03:orderDock(player)
+		fighter_04:orderDock(player)
+		fighter_05:orderDock(player)
+		fighter_06:orderDock(player)
+		bomber_01:orderDock(player)
+		bomber_02:orderDock(player)
+		bomber_03:orderDock(player)
+		bomber_04:orderDock(player)
+		
+		
+	end)
+	
+	player:addCustomButton("relay","aendern","Besatzung", function()
+		player:addCustomButton("relay","offiziere","Offiziere einsetzen", function()
+			player:removeCustom("offiziere")
+			player:removeCustom("piloten")
+			player:addCustomButton("relay","offizierej","O-Jäger einsetzen", function()
+				if 	player.fighter_01carrier == 1 then
+					player:addCustomButton("relay","playerf1","Jäger 01",function()
+						player.fighter_01carrier = 3
+						player:removeCustom("playerf1")
+						player:removeCustom("playerf2")
+						player:removeCustom("playerf3")
+						player:removeCustom("playerf4")
+						player:removeCustom("playerf5")
+						player:removeCustom("playerf6")
+					end)
+				end
+				if 	player.fighter_02carrier == 1 then
+					player:addCustomButton("relay","playerf2","Jäger 02",function()
+						player.fighter_02carrier = 3
+						player:removeCustom("playerf1")
+						player:removeCustom("playerf2")
+						player:removeCustom("playerf3")
+						player:removeCustom("playerf4")
+						player:removeCustom("playerf5")
+						player:removeCustom("playerf6")
+					end)
+				end
+				if 	player.fighter_03carrier == 1 then
+					player:addCustomButton("relay","playerf3","Jäger 03",function()
+						player.fighter_03carrier = 3
+						player:removeCustom("playerf1")
+						player:removeCustom("playerf2")
+						player:removeCustom("playerf3")
+						player:removeCustom("playerf4")
+						player:removeCustom("playerf5")
+						player:removeCustom("playerf6")
+					end)
+				end
+				if 	player.fighter_04carrier == 1 then
+					player:addCustomButton("relay","playerf4","Jäger 04",function()
+						player.fighter_04carrier = 3
+						player:removeCustom("playerf1")
+						player:removeCustom("playerf2")
+						player:removeCustom("playerf3")
+						player:removeCustom("playerf4")
+						player:removeCustom("playerf5")
+						player:removeCustom("playerf6")
+					end)
+				end
+				if 	player.fighter_05carrier == 1 then
+					player:addCustomButton("relay","playerf5","Jäger 05",function()
+						player.fighter_05carrier = 3
+						player:removeCustom("playerf1")
+						player:removeCustom("playerf2")
+						player:removeCustom("playerf3")
+						player:removeCustom("playerf4")
+						player:removeCustom("playerf5")
+						player:removeCustom("playerf6")
+					end)
+				end
+				if 	player.fighter_06carrier == 1 then
+					player:addCustomButton("relay","playerf6","Jäger 06",function()
+						player.fighter_06carrier = 3
+						player:removeCustom("playerf1")
+						player:removeCustom("playerf2")
+						player:removeCustom("playerf3")
+						player:removeCustom("playerf4")
+						player:removeCustom("playerf5")
+						player:removeCustom("playerf6")
+					end)
+				end
+				player:addCustomButton("relay","playerremoptj","Opt. Löschen",function()
+					player:removeCustom("playerf1")
+					player:removeCustom("playerf2")
+					player:removeCustom("playerf3")
+					player:removeCustom("playerf4")
+					player:removeCustom("playerf5")
+					player:removeCustom("playerf6")
+					player:removeCustom("playerremoptj")
+				end)
+				player:removeCustom("offizierej")
+				player:removeCustom("offiziereb")
+			end)
+			player:addCustomButton("relay","offiziereb","O-Bomber einsetzen", function()
+				if 	player.bomber_01carrier == 1 then
+					player:addCustomButton("relay","playerb1","Bomber 01",function()
+						player.bomber_01carrier = 3
+						player:removeCustom("playerb1")
+						player:removeCustom("playerb2")
+						player:removeCustom("playerb3")
+						player:removeCustom("playerb4")
+					end)
+				end
+				if 	player.bomber_02carrier == 1 then
+					player:addCustomButton("relay","playerb2","Bomber 02",function()
+						player.bomber_02carrier = 3
+						player:removeCustom("playerb1")
+						player:removeCustom("playerb2")
+						player:removeCustom("playerb3")
+						player:removeCustom("playerb4")
+					end)
+				end
+				if 	player.bomber_03carrier == 1 then
+					player:addCustomButton("relay","playerb3","Bomber 03",function()
+						player.bomber_03carrier = 3
+						player:removeCustom("playerb1")
+						player:removeCustom("playerb2")
+						player:removeCustom("playerb3")
+						player:removeCustom("playerb4")
+					end)
+				end
+				if 	player.bomber_04carrier == 1 then
+					player:addCustomButton("relay","playerb4","Bomber 04",function()
+						player.bomber_04carrier = 3
+						player:removeCustom("playerb1")
+						player:removeCustom("playerb2")
+						player:removeCustom("playerb3")
+						player:removeCustom("playerb4")
+					end)
+				end
+				player:addCustomButton("relay","playerremoptb","Opt. Löschen",function()
+					player:removeCustom("playerb1")
+					player:removeCustom("playerb2")
+					player:removeCustom("playerb3")
+					player:removeCustom("playerb4")
+					player:removeCustom("playerremoptb")
+				end)
+				player:removeCustom("offiziereb")
+				player:removeCustom("offizierej")
+			end)
+		end)
+		player:addCustomButton("relay","piloten","Piloten einsetzen.", function()
+			player:removeCustom("piloten")
+			player:removeCustom("offiziere")
+			player:addCustomButton("relay","pilotenj","P-Jäger einsetzen", function()
+				if 	player.fighter_01carrier == 3 then
+					player:addCustomButton("relay","kif1","Fighter 01",function()
+						player.fighter_01carrier = 1
+						player:removeCustom("kif1")
+						player:removeCustom("kif2")
+						player:removeCustom("kif3")
+						player:removeCustom("kif4")
+						player:removeCustom("kif5")
+						player:removeCustom("kif6")
+					end)
+				end
+				if 	player.fighter_02carrier == 3 then	
+					player:addCustomButton("relay","kif2","Fighter 02",function()
+						player.fighter_02carrier = 1
+						player:removeCustom("kif1")
+						player:removeCustom("kif2")
+						player:removeCustom("kif3")
+						player:removeCustom("kif4")
+						player:removeCustom("kif5")
+						player:removeCustom("kif6")
+					end)
+				end
+				if 	player.fighter_03carrier == 3 then
+					player:addCustomButton("relay","kif3","Fighter 03",function()
+						player.fighter_03carrier = 1
+						player:removeCustom("kif1")
+						player:removeCustom("kif2")
+						player:removeCustom("kif3")
+						player:removeCustom("kif4")
+						player:removeCustom("kif5")
+						player:removeCustom("kif6")
+					end)
+				end
+				if 	player.fighter_04carrier == 3 then
+					player:addCustomButton("relay","kif4","Fighter 04",function()
+						player.fighter_04carrier = 1
+						player:removeCustom("kif1")
+						player:removeCustom("kif2")
+						player:removeCustom("kif3")
+						player:removeCustom("kif4")
+						player:removeCustom("kif5")
+						player:removeCustom("kif6")
+					end)
+				end
+				if 	player.fighter_05carrier == 3 then
+					player:addCustomButton("relay","kif5","Fighter 05",function()
+						player.fighter_05carrier = 1
+						player:removeCustom("kif1")
+						player:removeCustom("kif2")
+						player:removeCustom("kif3")
+						player:removeCustom("kif4")
+						player:removeCustom("kif5")
+						player:removeCustom("kif6")
+					end)
+				end
+				if 	player.fighter_06carrier == 3 then
+					player:addCustomButton("relay","kif6","Fighter 06",function()
+						player.fighter_06carrier = 1
+						player:removeCustom("kif1")
+						player:removeCustom("kif2")
+						player:removeCustom("kif3")
+						player:removeCustom("kif4")
+						player:removeCustom("kif5")
+						player:removeCustom("kif6")
+					end)
+				end
+				player:addCustomButton("relay","pilotenremoptj","Opt. Löschen",function()
+					player:removeCustom("kif1")
+					player:removeCustom("kif2")
+					player:removeCustom("kif3")
+					player:removeCustom("kif4")
+					player:removeCustom("kif5")
+					player:removeCustom("kif6")
+					player:removeCustom("pilotenremoptj")
+				end)
+				player:removeCustom("pilotenj")
+				player:removeCustom("pilotenb")
+			end)
+			player:addCustomButton("relay","pilotenb","P-Bomber einsetzen", function()
+				if 	player.bomber_01carrier == 3 then
+					player:addCustomButton("relay","kib1","Bomber 01",function()
+						player.bomber_01carrier = 1
+						player:removeCustom("kib1")
+						player:removeCustom("kib2")
+						player:removeCustom("kib3")
+						player:removeCustom("kib4")
+					end)
+				end
+				if 	player.bomber_02carrier == 3 then
+					player:addCustomButton("relay","kib2","Bomber 02",function()
+						player.bomber_02carrier = 1
+						player:removeCustom("kib1")
+						player:removeCustom("kib2")
+						player:removeCustom("kib3")
+						player:removeCustom("kib4")
+					end)
+				end
+				if 	player.bomber_03carrier == 3 then
+					player:addCustomButton("relay","kib3","Bomber 03",function()
+						player.bomber_03carrier = 1
+						player:removeCustom("kib1")
+						player:removeCustom("kib2")
+						player:removeCustom("kib3")
+						player:removeCustom("kib4")
+					end)
+				end
+				if 	player.bomber_04carrier == 3 then
+					player:addCustomButton("relay","kib4","Bomber 04",function()
+						player.bomber_04carrier = 1
+						player:removeCustom("kib1")
+						player:removeCustom("kib2")
+						player:removeCustom("kib3")
+						player:removeCustom("kib4")
+					end)
+				end
+				player:addCustomButton("relay","pilotenremoptb","Opt. Löschen",function()
+					player:removeCustom("kib1")
+					player:removeCustom("kib2")
+					player:removeCustom("kib3")
+					player:removeCustom("kib4")
+					player:removeCustom("pilotenremoptb")
+				end)
+				player:removeCustom("pilotenb")
+				player:removeCustom("pilotenj")
+			end)
+		end)
+	end)
 end
 
 function AddAsteroiden()
@@ -743,18 +1255,18 @@ end
 
 function earthstation1_call() -- Script für Reaktion der TN Alpharius-01 --
 	if mission_state == 0 then -- Start des Spiels --
-		setCommsMessage([[TN Alpharius-01 an TN Verdandi.
+		setCommsMessage([[TN Alpharius-01 an ]].. PSHIPNAME ..[[.
 		
 Testnachricht.]])
 		addCommsReply("Nachricht erhalten.", function() -- Transport_6 wird gestoppt und als Notfall Deklariert --
 			mission_state = 9
 			Transport_6:setSystemHealth("impulse", -100):setSystemHealth("maneuver", -100)
-			setCommsMessage([[Sehr gut, die Comms funktioniert demnach. Wir haben bereits den ersten Auftrag für sie TN Verdandi.
+			setCommsMessage([[Sehr gut, die Comms funktioniert demnach. Wir haben bereits den ersten Auftrag für sie ]].. PSHIPNAME ..[[.
 				
 Die UH WC-26 meldet einen Notfall. Fahren sie ihren Reaktor hoch und aktivieren sie alle Systeme. Docken sie anschließend ab und machen sie sich auf den Weg.]])
 			addCommsReply("Auftrag erhalten.", function() -- TN Verdandi akzeptiert den Auftrag und Transport_06 wird ansprechbar mit Notfall-Reaktion --
 				comm_stat = 1
-				setCommsMessage([[TN Verdandi, melden sie sich wenn die Mission erledigt ist.
+				setCommsMessage(PSHIPNAME ..[[, melden sie sich wenn die Mission erledigt ist.
 
 Wir wünschen ihnen einen guten Jungfernflug!]])
 			end)
@@ -1093,14 +1605,14 @@ function HT_09_1_call() -- Script für Transport 1 -- Planeten-Forsch-Mission
 
 	if HT_09_1 == 1 then
 		setCommsMessage([[Seid gegrüßt, mein Name ist Haviland Tuff. Was kann ich für euch tun.]])
-		addCommsReply("Eben das wollten wir sie fragen. Wie kann die TN Verdandi ihnen ihr leben für ein paar Rep. erleichtern?", function()
+		addCommsReply("Eben das wollten wir sie fragen. Wie kann die ".. PSHIPNAME .." ihnen ihr leben für ein paar Rep. erleichtern?", function()
 			setCommsMessage([[Oho, hört du das Gomorra? Man bietet uns Hilfe, wollen wir sie annehmen?
 
 In der tat. Sie könnten eine kleinigkeit für mich erledigen.
 
 Tun sie mir doch den gefallen und Scannen sie jeden Planeten im Sonnensystem. Übermitteln sie die Daten und für jeden gescannten Planeten erhalten sie... was meinst du Gomorra,... klingen 200 Rep. pro Planet fair?
 
-Ich denke schon. Zuzüglich 200 Rep. wenn sie alle 9 Daten Pakete versand haben. Was meinen Sie TN Verdandi?]])
+Ich denke schon. Zuzüglich 200 Rep. wenn sie alle 9 Daten Pakete versand haben. Was meinen Sie ]].. PSHIPNAME ..[[?]])
 			addCommsReply("Wir nehmen die Aufgabe an.", function()
 				HT_09_1 = 3
 				setCommsMessage("In der tat.")
@@ -1166,7 +1678,7 @@ Ich denke schon. Zuzüglich 200 Rep. wenn sie alle 9 Daten Pakete versand haben. 
 	end
 	
 	if HT_09_1 == 2 then
-		setCommsMessage([[Sieh nur Sodom, die Verdandi meldet sich, merke dir, Verdandi ist der Name einer Schicksalsgöttin.
+		setCommsMessage([[Sieh nur Sodom, die ]].. PSHIPNAME ..[[ meldet sich.
 
 Welches Schicksal sie wohl für uns bereit hält?]])
 		addCommsReply("Wir nehmen die Aufgabe an.", function()
@@ -1274,8 +1786,8 @@ Könnten sie uns die eventuell bringen? Es wären 500 Rep. dafür für sie drin.]])
 				end)
 			end)
 			addCommsReply("Wir kommen später darauf zurück.", function()
+				setCommsMessage("Verstanden.")
 				PR_16_2 = 3
-				setCommMessage("Verstanden.")
 			end)
 		end)
 	end
@@ -1312,7 +1824,7 @@ Könnten sie uns die eventuell bringen? Es wären 500 Rep. dafür für sie drin.]])
 			end)
 		end)
 		addCommsReply("Wir kommen später darauf zurück.", function()
-			setCommMessage("Verstanden.")
+			setCommsMessage("Verstanden.")
 		end)
 	end
 end
@@ -2095,11 +2607,11 @@ Können sie uns verstehen?]])
 					end)
 				end)
 				addCommsReply("Wir kehren in kürze zurück und nehmen mit ihnen wieder Kontakt auf.", function()
-					setCommMessage("Wir warten auf ihre Rückkehr!")
+					setCommsMessage("Wir warten auf ihre Rückkehr!")
 				end)
 				addCommsReply("Wir trauen ihnen leider nicht. Senden sie keine Daten!",function()
 					alien_state = 8
-					setCommMessage("Verstanden.")
+					setCommsMessage("Verstanden.")
 				end)
 		end)
 		addCommsReply("Lassen sie ihre Schilde runter und übergeben sie das Schiff.", function()
@@ -2124,11 +2636,11 @@ Können sie uns verstehen?]])
 					end)
 				end)
 				addCommsReply("Wir kehren in kürze zurück und nehmen mit ihnen wieder Kontakt auf.", function()
-					setCommMessage("Wir warten auf ihre Rückkehr!")
+					setCommsMessage("Wir warten auf ihre Rückkehr!")
 				end)
 				addCommsReply("Wir trauen ihnen leider nicht. Senden sie keine Daten!",function()
 					alien_state = 8
-					setCommMessage("Verstanden.")
+					setCommsMessage("Verstanden.")
 				end)
 	end
 	
@@ -2453,7 +2965,7 @@ Frequenz und Schiffs ID erkannt, wie können wir ihnen helfen?]])
 Frequenz und Schiffs ID erkannt, wie können wir ihnen helfen?]])
 		 addCommsReply("Jagt Beendet.", function()
 			if	player:areEnemiesInRange(5000) == false then
-				player:setCallSign("TN Verdandi"):setFaction("Terranische Navy")
+				player:setCallSign(PSHIPNAME):setFaction("Terranische Navy")
 				setCommsMessage("Verstanden. Ende.")
 				player:removeCustom("pir_att")
 				player:removeCustom("pir_sh_on")
@@ -2591,7 +3103,7 @@ Frequenz und Schiffs ID erkannt, wie können wir ihnen helfen?]])
 Frequenz und Schiffs ID erkannt, wie können wir ihnen helfen?]])
 		 addCommsReply("Jagt Beendet.", function()
 			if	player:areEnemiesInRange(5000) == false then
-				player:setCallSign("TN Verdandi"):setFaction("Terranische Navy")
+				player:setCallSign(PSHIPNAME):setFaction("Terranische Navy")
 				setCommsMessage("Verstanden. Ende.")
 				player:removeCustom("pir_att")
 				player:removeCustom("pir_sh_on")
@@ -2730,7 +3242,7 @@ end
  
  function UH_entscheidung()
 UH_Check = nil
-	setCommsMessage("Sie haben uns so viele gefallen getan NT Verdandi das wir nun ihnen einen Gefallen tun möchten. Welche Partei soll eine Handelspriorität erhalten? NT oder MTU? Wir bieten es ihnen nur dieses eine mal an.")
+	setCommsMessage([[Sie haben uns so viele gefallen getan ]].. PSHIPNAME ..[[ das wir nun ihnen einen Gefallen tun möchten. Welche Partei soll eine Handelspriorität erhalten? NT oder MTU? Wir bieten es ihnen nur dieses eine mal an.]])
 	addCommsReply("Terranische Navy",function()
 		forderungen_count_terra = forderungen_count_terra + 1
 		setCommsMessage("Erledigt.")
@@ -2794,7 +3306,7 @@ function update (delta)
 	if escort_tna == 2 and distance(tn_01,mtu_01) < 1000 then
 		player:addCustomMessage("relay","escot_comm2",[[Schon auf dem Weg konnten sich die Diplomaten auf die letzten Einzelheiten einigen.
 		
-Man hat zudem entschieden das Sie, der Kapitän der TN Verdandi, und jeder Offizier der Brückencrew, der am Unternehmen beteiligt war, den Mars-Kontrakt ebenfalls unterzeichnen sollte.]])
+Man hat zudem entschieden das Sie, der Kapitän der ]].. PSHIPNAME ..[[, und jeder Offizier der Brückencrew, der am Unternehmen beteiligt war, den Mars-Kontrakt ebenfalls unterzeichnen sollte.]])
 		player:addCustomButton("relay","unterz_crew00", "Unterzeichnung freigeben", function()
 			player:removeCustom("escot_comm2")
 			player:removeCustom("unterz_crew00")

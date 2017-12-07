@@ -1,18 +1,32 @@
 -- Neue Schiffe - Terra - --
 
+
 -- "Groß-Kampfschiffe" --
 -- Träger -- 1
 template = ShipTemplate():setName("Träger"):setClass("Dreadnaught", "Carrier"):setModel("terra_traeger")
+template:setRadarTrace("radar_traeger.png")
 template:setHull(500)
+template:setWarpSpeed(800)
 template:setShields(300, 200, 200)
 template:setSpeed(50, 6, 10)
 template:setDockClasses("Starfighter", "Frigates", "Corvette")
-template:setTubes(2, 20.0)
-template:setWeaponStorage("EMP", 8)
-template:setTubeDirection(1, 50):setWeaponTubeExclusiveFor(1, "EMP")
-template:setTubeDirection(2,-50):setWeaponTubeExclusiveFor(2, "EMP")
+template:setTubes(9, 40.0)
+template:setWeaponStorage("EMP", 4)
+template:setWeaponStorage("Nuke", 0)
+template:setWeaponStorage("HVLI", 30)
+template:setTubeDirection(0, 0):setWeaponTubeExclusiveFor(0, "Nuke"):setTubeLoadTime(2, 60)
+template:setTubeDirection(1,-50):setWeaponTubeExclusiveFor(1, "EMP")
+template:setTubeDirection(2, 50):setWeaponTubeExclusiveFor(2, "EMP")
+template:setTubeDirection(3,-70):setWeaponTubeExclusiveFor(3, "HVLI"):setTubeLoadTime(3, 10)
+template:setTubeDirection(4,-90):setWeaponTubeExclusiveFor(4, "HVLI"):setTubeLoadTime(4, 10)
+template:setTubeDirection(5,-110):setWeaponTubeExclusiveFor(5, "HVLI"):setTubeLoadTime(5, 10)
+template:setTubeDirection(6, 70):setWeaponTubeExclusiveFor(6, "HVLI"):setTubeLoadTime(6, 10)
+template:setTubeDirection(7, 90):setWeaponTubeExclusiveFor(7, "HVLI"):setTubeLoadTime(7, 10)
+template:setTubeDirection(8, 110):setWeaponTubeExclusiveFor(8, "HVLI"):setTubeLoadTime(8, 10)
 
 variation = template:copy("Träger P"):setType("playership")
+variation:setWeaponStorage("Nuke", 2)
+variation:setCombatManeuver(50, 50)
 variation:setRepairCrewCount(4)
 --				--, |, -, |
 variation:addRoomSystem(0, 2, 2, 2, "Impulse");
@@ -38,21 +52,27 @@ variation:addDoor(5, 4, true);
 
 -- Schlachtschiffe -- 2
 template = ShipTemplate():setName("Schlachtschiff-I"):setClass("Dreadnaught", "Battleship"):setModel("terra_schlachtschiff")
+template:setRadarTrace("radar_schlachtschiff.png")
 template:setHull(400)
+template:setWarpSpeed(800)
 template:setShields(200, 200, 200)
 template:setSpeed(60, 6, 15)
 template:setBeam(0, 90, 90, 1200, 30, 100)
-template:setBeam(2, 90, -90, 1200, 30, 100)
-template:setBeam(5, 90, 0, 1200, 30, 100)
-template:setTubes(4, 14.0)
-template:setWeaponStorage("Nuke", 4)
+template:setBeam(1, 90, -90, 1200, 30, 100)
+template:setBeam(2, 90, 0, 1200, 30, 120)
+template:setTubes(5, 14.0)
+template:setWeaponStorage("Nuke", 5)
 template:setWeaponStorage("Homing", 30)
-template:setTubeDirection(1, 90):setWeaponTubeExclusiveFor(1, "Nuke")
-template:setTubeDirection(2,-90):setWeaponTubeExclusiveFor(2, "Nuke")
-template:setTubeDirection(3, 70):setWeaponTubeExclusiveFor(3, "Homing")
-template:setTubeDirection(4,-70):setWeaponTubeExclusiveFor(4, "Homing")
+template:setWeaponStorage("HVLI", 30)
+template:setTubeDirection(0, 0):setWeaponTubeExclusiveFor(0, "Nuke"):setTubeLoadTime(0, 60)
+template:setTubeDirection(1,-70):setWeaponTubeExclusiveFor(1, "Homing"):setTubeLoadTime(1, 14)
+template:setTubeDirection(2, 70):setWeaponTubeExclusiveFor(2, "Homing"):setTubeLoadTime(2, 14)
+template:setTubeDirection(3,-90):setWeaponTubeExclusiveFor(3, "HVLI"):setTubeLoadTime(3, 10)
+template:setTubeDirection(4, 90):setWeaponTubeExclusiveFor(4, "HVLI"):setTubeLoadTime(4, 10)
+
 
 variation = template:copy("Schlachtschiff-I P"):setType("playership")
+variation:setCombatManeuver(100, 100)
 variation:setRepairCrewCount(4)
 --				--, |, -, |
 variation:addRoomSystem(0, 2, 1, 4, "Impulse");
@@ -79,21 +99,27 @@ variation:addDoor(6, 3, true);
 variation:addDoor(6, 5, true);
 
 template = ShipTemplate():setName("Schlachtschiff-II"):setClass("Dreadnaught", "Battleship"):setModel("terra_schlachtschiff2")
+template:setRadarTrace("radar_schlachtschiff.png")
 template:setHull(400)
+template:setWarpSpeed(800)
 template:setShields(200, 200, 200)
 template:setSpeed(60, 6, 15)
 template:setBeam(0, 90, 90, 1200, 30, 100)
-template:setBeam(2, 90, -90, 1200, 30, 100)
-template:setBeam(5, 90, 0, 1200, 30, 100)
-template:setTubes(4, 14.0)
-template:setWeaponStorage("Nuke", 4)
+template:setBeam(1, 90, -90, 1200, 30, 100)
+template:setBeam(2, 90, 0, 1200, 30, 120)
+template:setTubes(5, 14.0)
+template:setWeaponStorage("Nuke", 5)
 template:setWeaponStorage("Homing", 30)
-template:setTubeDirection(1, 90):setWeaponTubeExclusiveFor(1, "Nuke")
-template:setTubeDirection(2,-90):setWeaponTubeExclusiveFor(2, "Nuke")
-template:setTubeDirection(3, 70):setWeaponTubeExclusiveFor(3, "Homing")
-template:setTubeDirection(4,-70):setWeaponTubeExclusiveFor(4, "Homing")
+template:setWeaponStorage("HVLI", 30)
+template:setTubeDirection(0, 0):setWeaponTubeExclusiveFor(0, "Nuke"):setTubeLoadTime(0, 60)
+template:setTubeDirection(1,-70):setWeaponTubeExclusiveFor(1, "Homing"):setTubeLoadTime(1, 14)
+template:setTubeDirection(2, 70):setWeaponTubeExclusiveFor(2, "Homing"):setTubeLoadTime(2, 14)
+template:setTubeDirection(3,-90):setWeaponTubeExclusiveFor(3, "HVLI"):setTubeLoadTime(3, 10)
+template:setTubeDirection(4, 90):setWeaponTubeExclusiveFor(4, "HVLI"):setTubeLoadTime(4, 10)
+
 
 variation = template:copy("Schlachtschiff-II P"):setType("playership")
+variation:setCombatManeuver(100, 100)
 variation:setRepairCrewCount(4)
 --				--, |, -, |
 variation:addRoomSystem(0, 2, 1, 4, "Impulse");
@@ -121,20 +147,23 @@ variation:addDoor(6, 5, true);
 
 -- Schlachtkreuzer -- 2
 template = ShipTemplate():setName("Schlachtkreuzer-I"):setClass("Dreadnaught", "Battlecruiser"):setModel("terra_schlachtkreuzer")
+template:setRadarTrace("radar_schlachtkreuzer.png")
 template:setHull(300)
+template:setWarpSpeed(800)
 template:setShields(150, 150, 150)
 template:setSpeed(70, 8, 17)
 template:setBeam(0, 90, 90, 1200, 24, 70)
-template:setBeam(2, 90, -90, 1200, 24, 70)
-template:setBeam(5, 90, 0, 1200, 24, 70)
+template:setBeam(1, 90, -90, 1200, 24, 70)
+template:setBeam(2, 90, 0, 1200, 24, 80)
 template:setTubes(4, 12.0)
-template:setWeaponStorage("Homing", 32)
-template:setTubeDirection(1, 50):setWeaponTubeExclusiveFor(1, "Homing")
+template:setWeaponStorage("Homing", 40)
+template:setTubeDirection(0, 50):setWeaponTubeExclusiveFor(0, "Homing")
+template:setTubeDirection(1, 70):setWeaponTubeExclusiveFor(1, "Homing")
 template:setTubeDirection(2,-50):setWeaponTubeExclusiveFor(2, "Homing")
-template:setTubeDirection(3, 70):setWeaponTubeExclusiveFor(3, "Homing")
-template:setTubeDirection(4,-70):setWeaponTubeExclusiveFor(4, "Homing")
+template:setTubeDirection(3,-70):setWeaponTubeExclusiveFor(3, "Homing")
 
 variation = template:copy("Schlachtkreuzer-I P"):setType("playership")
+variation:setCombatManeuver(100, 100)
 variation:setRepairCrewCount(4)
 --				--, |, -, |
 variation:addRoomSystem(0, 1, 1, 4, "Impulse");
@@ -165,20 +194,23 @@ variation:addDoor(5, 1, true);
 variation:addDoor(5, 5, true);
 
 template = ShipTemplate():setName("Schlachtkreuzer-II"):setClass("Dreadnaught", "Battlecruiser"):setModel("terra_schlachtkreuzer2")
+template:setRadarTrace("radar_schlachtkreuzer.png")
 template:setHull(300)
+template:setWarpSpeed(800)
 template:setShields(150, 150, 150)
 template:setSpeed(70, 8, 17)
 template:setBeam(0, 90, 90, 1200, 24, 70)
-template:setBeam(2, 90, -90, 1200, 24, 70)
-template:setBeam(5, 90, 0, 1200, 24, 70)
+template:setBeam(1, 90, -90, 1200, 24, 70)
+template:setBeam(2, 90, 0, 1200, 24, 80)
 template:setTubes(4, 12.0)
-template:setWeaponStorage("Homing", 32)
-template:setTubeDirection(1, 50):setWeaponTubeExclusiveFor(1, "Homing")
+template:setWeaponStorage("Homing", 40)
+template:setTubeDirection(0, 50):setWeaponTubeExclusiveFor(0, "Homing")
+template:setTubeDirection(1, 70):setWeaponTubeExclusiveFor(1, "Homing")
 template:setTubeDirection(2,-50):setWeaponTubeExclusiveFor(2, "Homing")
-template:setTubeDirection(3, 70):setWeaponTubeExclusiveFor(3, "Homing")
-template:setTubeDirection(4,-70):setWeaponTubeExclusiveFor(4, "Homing")
+template:setTubeDirection(3,-70):setWeaponTubeExclusiveFor(3, "Homing")
 
 variation = template:copy("Schlachtkreuzer-II P"):setType("playership")
+variation:setCombatManeuver(100, 100)
 variation:setRepairCrewCount(4)
 --				--, |, -, |
 variation:addRoomSystem(0, 1, 1, 4, "Impulse");
@@ -209,21 +241,24 @@ variation:addDoor(5, 1, true);
 
 -- Kreuzer -- 1
 template = ShipTemplate():setName("Kreuzer"):setClass("Dreadnaught", "Cruiser"):setModel("terra_kreuzer")
+template:setRadarTrace("radar_kreuzer.png")
 template:setHull(200)
+template:setWarpSpeed(800)
 template:setShields(120, 120)
 template:setSpeed(80, 8, 20)
 template:setBeam(0, 90, 90, 1200, 24, 65)
-template:setBeam(2, 90, -90, 1200, 24, 65)
-template:setBeam(5, 90, 0, 1200, 24, 65)
+template:setBeam(1, 90, -90, 1200, 24, 65)
+template:setBeam(2, 90, 0, 1200, 24, 70)
 template:setTubes(4, 10.0)
-template:setWeaponStorage("HVLI", 26)
-template:setWeaponStorage("Homing", 16)
-template:setTubeDirection(1, 60):setWeaponTubeExclusiveFor(1, "HVLI")
-template:setTubeDirection(2,-60):setWeaponTubeExclusiveFor(2, "HVLI")
-template:setTubeDirection(3, 60):setWeaponTubeExclusiveFor(3, "Homing")
-template:setTubeDirection(4,-60):setWeaponTubeExclusiveFor(4, "Homing")
+template:setWeaponStorage("HVLI", 30)
+template:setWeaponStorage("Homing", 20)
+template:setTubeDirection(0, 60):setWeaponTubeExclusiveFor(0, "HVLI")
+template:setTubeDirection(1,-60):setWeaponTubeExclusiveFor(1, "HVLI")
+template:setTubeDirection(2, 60):setWeaponTubeExclusiveFor(2, "Homing")
+template:setTubeDirection(3,-60):setWeaponTubeExclusiveFor(3, "Homing")
 
 variation = template:copy("Kreuzer P"):setType("playership")
+variation:setCombatManeuver(100, 100)
 variation:setRepairCrewCount(4)
 --				--, |, -, |
 variation:addRoomSystem(0, 1, 1, 3, "Impulse");
@@ -253,14 +288,17 @@ variation:addDoor(6, 4, true);
 -- "Mittlere-Kampfschiffe" --
 -- Zerstörer -- 2
 template = ShipTemplate():setName("Zerstörer-I"):setClass("Frigate", "Destroyer"):setModel("terra_zerstoerer")
+template:setRadarTrace("radar_zerstoerer.png")
 template:setHull(150)
+template:setWarpSpeed(900)
 template:setShields(75, 75)
 template:setSpeed(85, 9, 22)
 template:setBeam(0, 60, 90, 1100, 12, 32)
-template:setBeam(2, 60, -90, 1100, 12, 32)
-template:setBeam(4, 60, 0, 1100, 12, 32)
+template:setBeam(1, 60, -90, 1100, 12, 32)
+template:setBeam(2, 60, 0, 1100, 12, 40)
 
 variation = template:copy("Zerstörer-I P"):setType("playership")
+variation:setCombatManeuver(200, 200)
 variation:setRepairCrewCount(3)
 --				--, |, -, |
 variation:addRoomSystem(0, 1, 1, 2, "Impulse");
@@ -285,14 +323,17 @@ variation:addDoor(2, 2, true);
 variation:addDoor(4, 3, true);
 
 template = ShipTemplate():setName("Zerstörer-II"):setClass("Frigate", "Destroyer"):setModel("terra_zerstoerer2")
+template:setRadarTrace("radar_zerstoerer.png")
 template:setHull(150)
+template:setWarpSpeed(900)
 template:setShields(75, 75)
 template:setSpeed(85, 9, 22)
 template:setBeam(0, 60, 90, 1100, 12, 32)
-template:setBeam(2, 60, -90, 1100, 12, 32)
-template:setBeam(4, 60, 0, 1100, 12, 32)
+template:setBeam(1, 60, -90, 1100, 12, 32)
+template:setBeam(2, 60, 0, 1100, 12, 40)
 
 variation = template:copy("Zerstörer-II P"):setType("playership")
+variation:setCombatManeuver(200, 200)
 variation:setRepairCrewCount(3)
 --				--, |, -, |
 variation:addRoomSystem(0, 0, 1, 2, "Impulse");
@@ -318,21 +359,24 @@ variation:addDoor(9, 0, false);
 
 -- Fregatte -- 1
 template = ShipTemplate():setName("Fregatte"):setClass("Frigate", "Frigate"):setModel("terra_fregatte")
+template:setRadarTrace("radar_fregatte.png")
 template:setHull(120)
+template:setWarpSpeed(900)
 template:setShields(60, 60)
 template:setSpeed(80, 9, 20)
 template:setBeam(0, 60, 90, 1100, 12, 25)
-template:setBeam(2, 60, -90, 1100, 12, 25)
-template:setBeam(4, 60, 0, 1100, 12, 25)
+template:setBeam(1, 60, -90, 1100, 12, 25)
+template:setBeam(2, 60, 0, 1100, 12, 30)
 template:setTubes(4, 12.0)
 template:setWeaponStorage("HVLI", 20)
 template:setWeaponStorage("Homing", 10)
-template:setTubeDirection(1, 60):setWeaponTubeExclusiveFor(1, "HVLI")
-template:setTubeDirection(2,-60):setWeaponTubeExclusiveFor(2, "HVLI")
-template:setTubeDirection(3, 60):setWeaponTubeExclusiveFor(3, "Homing")
-template:setTubeDirection(4,-60):setWeaponTubeExclusiveFor(4, "Homing")
+template:setTubeDirection(0, 60):setWeaponTubeExclusiveFor(0, "HVLI")
+template:setTubeDirection(1,-60):setWeaponTubeExclusiveFor(1, "HVLI")
+template:setTubeDirection(2, 60):setWeaponTubeExclusiveFor(2, "Homing")
+template:setTubeDirection(3,-60):setWeaponTubeExclusiveFor(3, "Homing")
 
 variation = template:copy("Fregatte P"):setType("playership")
+variation:setCombatManeuver(150, 100)
 variation:setRepairCrewCount(3)
 --				--, |, -, |
 variation:addRoomSystem(0, 1, 1, 2, "Impulse");
@@ -358,20 +402,23 @@ variation:addDoor(8, 1, false);
 
 -- Korvette -- 1
 template = ShipTemplate():setName("Korvette"):setClass("Corvette", "Corvette"):setModel("terra_korvette")
+template:setRadarTrace("radar_korvette.png")
 template:setHull(100)
+template:setWarpSpeed(900)
 template:setShields(50, 50)
 template:setSpeed(70, 9, 17)
 template:setTubes(1, 12.0)
 template:setWeaponStorage("HVLI", 10)
 template:setWeaponStorage("Homing", 5)
-template:setTubeDirection(1, 0)
+template:setTubeDirection(0, 0)
 template:setBeam(0, 60, 70, 1000, 6, 12)
 template:setBeam(1, 60, 110, 1000, 6, 12)
 template:setBeam(2, 60, -70, 1000, 6, 12)
 template:setBeam(3, 60, -110, 1000, 6, 12)
-template:setBeam(4, 60, 0, 1000, 6, 10)
+template:setBeam(4, 60, 0, 1000, 6, 20)
 
 variation = template:copy("Korvette P"):setType("playership")
+variation:setCombatManeuver(150, 100)
 variation:setRepairCrewCount(3)
 --				--, |, -, |
 variation:addRoomSystem(0, 0, 1, 3, "Impulse");
@@ -398,15 +445,20 @@ variation:addDoor(6, 1, false);
 -- "Kleinere-Kampfschiffe" --
 -- Kanonenboot -- 1
 template = ShipTemplate():setName("Kanonenboot"):setClass("Corvette", "Cannonboat"):setModel("terra_kanonenboot")
+template:setRadarTrace("radar_ktlitan_worker.png")
 template:setHull(75)
+template:setWarpSpeed(900)
 template:setShields(75)
-template:setSpeed(50, 9, 15)
-template:setBeam(0, 60, 70, 750, 6, 8)
-template:setBeam(1, 60, 110, 750, 6, 8)
-template:setBeam(2, 60, -70, 750, 6, 8)
-template:setBeam(3, 60, -110, 750, 6, 8)
+template:setSpeed(50, 10, 20)
+template:setBeam(0, 60, 70, 800, 6, 10)
+template:setBeam(1, 60, 110, 800, 6, 10)
+template:setBeam(2, 60, -70, 800, 6, 10)
+template:setBeam(3, 60, -110, 800, 6, 10)
+template:setBeam(4, 60, -90, 800, 4, 4)
+template:setBeam(5, 60, 90, 800, 4, 4)
 
 variation = template:copy("Kanonenboot P"):setType("playership")
+variation:setCombatManeuver(200, 150)
 variation:setRepairCrewCount(2)
 --				--, |, -, |
 variation:addRoomSystem(0, 0, 1, 2, "Impulse");
@@ -424,15 +476,18 @@ variation:addDoor(3, 2, false);
 
 -- Minenleger -- 1
 template = ShipTemplate():setName("Minenleger"):setClass("Corvette", "Minelayer"):setModel("terra_minenleger")
+template:setRadarTrace("radar_missile_cruiser.png")
 template:setHull(50)
+template:setWarpSpeed(900)
 template:setShields(75)
 template:setSpeed(50, 9, 15)
 template:setTubes(2, 12.0)
-template:setWeaponStorage("Mine", 10)
-template:setTubeDirection(1, 160):setWeaponTubeExclusiveFor(1, "Mine")
-template:setTubeDirection(2,-160):setWeaponTubeExclusiveFor(2, "Mine")
+template:setWeaponStorage("Mine", 30)
+template:setTubeDirection(0, 160):setWeaponTubeExclusiveFor(0, "Mine")
+template:setTubeDirection(1,-160):setWeaponTubeExclusiveFor(1, "Mine")
 
 variation = template:copy("Minenleger P"):setType("playership")
+variation:setCombatManeuver(100, 100)
 variation:setRepairCrewCount(2)
 --				--, |, -, |
 variation:addRoomSystem(0, 0, 1, 2, "Impulse");
@@ -441,7 +496,7 @@ variation:addRoomSystem(0, 5, 1, 2, "Maneuver");
 variation:addRoomSystem(1, 1, 1, 5, "Warp");
 variation:addRoomSystem(2, 2, 2, 3, "Reactor");
 variation:addRoomSystem(4, 2, 1, 3, "FrontShield");
-variation:addRoom(5, 2, 1, 3);
+variation:addRoomSystem(5, 2, 1, 3, "BeamWeapons");
 
 variation:addDoor(1, 1, false);
 variation:addDoor(1, 3, false);
@@ -453,13 +508,16 @@ variation:addDoor(5, 3, false);
 
 -- Tarnschiff -- 1
 template = ShipTemplate():setName("Tarnschiff"):setClass("Corvette", "Stealthship"):setModel("terra_tarnschiff")
+template:setRadarTrace("empty.png")
 template:setHull(40)
+template:setWarpSpeed(1000)
 template:setShields(40)
-template:setSpeed(85, 9, 22)
-template:setBeam(0, 10, 0, 750, 6, 8)
-template:setBeam(1, 10, 0, 750, 6, 8)
+template:setSpeed(85, 10, 25)
+template:setBeam(0, 20, 0, 800, 6, 10)
+template:setBeam(1, 20, 0, 800, 6, 10)
 
 variation = template:copy("Tarnschiff P"):setType("playership")
+variation:setCombatManeuver(400, 150)
 variation:setRepairCrewCount(2)
 --				--, |, -, |
 variation:addRoom(0, 0, 1, 3);
@@ -487,16 +545,20 @@ variation:addDoor(7, 4, false);
 -- "Jäger" --
 -- Bomber -- 1
 template = ShipTemplate():setName("Bomber"):setClass("Starfighter", "Bomber"):setModel("terra_bomber")
+template:setRadarTrace("radar_ktlitan_scout.png")
 template:setHull(20)
+template:setWarpSpeed(0)
 template:setShields(20)
-template:setSpeed(110, 10, 25)
-template:setTubes(2, 8.0)
+template:setSpeed(110, 15, 35)
+template:setBeam(0, 20, 0, 800, 4, 10)
+template:setTubes(2, 15.0)
 template:setDefaultAI('fighter')
 template:setWeaponStorage("Homing", 6)
-template:setTubeDirection(1, 1):setWeaponTubeExclusiveFor(1, "Homing")
-template:setTubeDirection(2,-1):setWeaponTubeExclusiveFor(2, "Homing")
+template:setTubeDirection(0, 1):setWeaponTubeExclusiveFor(0, "Homing")
+template:setTubeDirection(1,-1):setWeaponTubeExclusiveFor(1, "Homing")
 
 variation = template:copy("Bomber P"):setType("playership")
+variation:setCombatManeuver(500, 200)
 variation:setRepairCrewCount(1)
 --				--, |, -, |
 variation:addRoomSystem(0, 3, 1, 2, "Impulse");
@@ -521,14 +583,17 @@ variation:addDoor(5, 3, false);
 
 -- Jäger -- 1
 template = ShipTemplate():setName("Jäger"):setClass("Starfighter", "Interceptor"):setModel("terra_jaeger")
+template:setRadarTrace("radar_ktlitan_fighter.png")
 template:setHull(20)
+template:setWarpSpeed(0)
 template:setShields(20)
-template:setSpeed(120, 10, 25)
-template:setBeam(0, 10, 0, 500, 4, 6)
-template:setBeam(1, 10, 0, 500, 4, 6)
+template:setSpeed(120, 20, 40)
+template:setBeam(0, 20, 0, 800, 4, 10)
+template:setBeam(1, 20, 0, 800, 4, 10)
 template:setDefaultAI('fighter')
 
 variation = template:copy("Jäger P"):setType("playership")
+variation:setCombatManeuver(600, 300)
 variation:setRepairCrewCount(1)
 --				--, |, -, |
 variation:addRoomSystem(0, 0, 1, 2, "Impulse");
@@ -544,14 +609,17 @@ variation:addDoor(4, 0, false);
 
 -- Aufklärer -- 1
 template = ShipTemplate():setName("Aufklärer"):setClass("Starfighter", "Scout"):setModel("terra_aufklaerer")
+template:setRadarTrace("radar_fighter.png")
 template:setHull(10)
+template:setWarpSpeed(0)
 template:setShields(10)
-template:setSpeed(125, 10, 25)
+template:setSpeed(125, 25, 50)
 --                  Arc, Dir, Range, CycleTime, Dmg
-template:setBeam(0, 10, 0, 500, 4, 6)
+template:setBeam(0, 20, 0, 800, 4, 10)
 template:setDefaultAI('fighter')
 
 variation = template:copy("Aufklärer P"):setType("playership")
+variation:setCombatManeuver(800, 400)
 variation:setRepairCrewCount(1)
 --				--, |, -, |
 variation:addRoom(0, 2, 1, 2);
@@ -570,12 +638,16 @@ variation:addDoor(4, 2, false);
 variation:addDoor(5, 2, false);
 
 
+
 -- "Hilfs-Schiffe" --
 -- Tender -- 1
 template = ShipTemplate():setName("Tender"):setClass("Dreadnaught", "Auxilliar"):setModel("terra_tender")
+template:setRadarTrace("radar_tender.png")
 template:setHull(150)
+template:setWarpSpeed(700)
 template:setShields(150)
 template:setSpeed(60, 8, 15)
+template:setDockClasses("Starfighter", "Frigates", "Corvette","Dreadnaught")
 
 
 -- "Zivile-Schiffe" --
