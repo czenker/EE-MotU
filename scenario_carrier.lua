@@ -33,7 +33,7 @@ function init()
 	bomberkic1_04:destroy()
 end
 
-function update(delta)
+function ki_carrier()
 	if carrier_01:areEnemiesInRange(4000) then
 		xjc_01,yjc_01 = carrier_01:getPosition()
 		if carrier_01.fighterkic1_01carrier == 1 then
@@ -142,4 +142,8 @@ function update(delta)
 	carrier_01:setWarpDrive(true)
 	carrier_01.warp = 1
 	end
+end
+
+function update(delta)
+	ki_carrier()
 end
