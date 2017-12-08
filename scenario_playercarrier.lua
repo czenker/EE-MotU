@@ -1,6 +1,10 @@
 function init()
 player = PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Träger P"):setPosition(0, 0):setCallSign("TN Majestic"):setRotation(0)
-		-- Spieler Träger --
+player_carrier_prep()
+end
+
+function player_carrier_prep()
+-- Spieler Träger --
 		carrier()
 		fighter_01=	CpuShip():setFaction(player:getFaction()):setTemplate("Jäger"):setCallSign("TNJ 01"):setScanned(true):setPosition(player:getPosition()):orderDefendTarget(player)
 		fighter_02=	CpuShip():setFaction(player:getFaction()):setTemplate("Jäger"):setCallSign("TNJ 02"):setScanned(true):setPosition(player:getPosition()):orderDefendTarget(player)
@@ -45,7 +49,7 @@ player = PlayerSpaceship():setFaction("Terranische Navy"):setTemplate("Träger P"
 		-- Spieler Träger Ende--
 end
 
-function carrier()
+function player_carrier()
 
 	player.fighter_01carrier = 1
 	player.fighter_02carrier = 1
@@ -492,8 +496,6 @@ function carrier()
 		end)
 	end)
 end
-
-
 
 function update(delta)
 end
