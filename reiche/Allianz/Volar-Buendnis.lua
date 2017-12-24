@@ -17,7 +17,155 @@ volar_goldtrader1()
 volar_powertrader1()
 volar_midshiptrade1()
 volar_storagetrader1()
+patroullien_schiffe()
 --- Volar Bündnis Ende ---
+patrol1_stat = 1
+patrol2_stat = 1
+patrol3_stat = 1
+patrol4_stat = 1
+patrol5_stat = 1
+end
+
+function patroullien_schiffe()
+	pat_1 = CpuShip():setFaction("Callidus-Gilde"):setTemplate("Kanonenboot"):setCallSign("VK169"):setPosition(-32571, -258429)
+    pat_2 = CpuShip():setFaction("Cadia-Liga"):setTemplate("Kanonenboot"):setCallSign("CV168"):setPosition(-26169, -254810)
+    pat_3 = CpuShip():setFaction("Volar-Bündnis"):setTemplate("Kanonenboot"):setCallSign("VBS Krillt"):setPosition(-27221, -249227) -- Volar Bündnis Schiff = VBS
+    pat_4 = CpuShip():setFaction("Volar-Bündnis"):setTemplate("Kanonenboot"):setCallSign("VBS Lorakas"):setPosition(-33721, -250604) -- Volar Bündnis Schiff = VBS
+	
+	pat_5 = CpuShip():setFaction("Callidus-Gilde"):setTemplate("Kanonenboot"):setCallSign("VS170"):setPosition(88515, -334977)
+    pat_6 = CpuShip():setFaction("Cadia-Liga"):setTemplate("Kanonenboot"):setCallSign("CCN167"):setPosition(94917, -334420)
+    pat_7 = CpuShip():setFaction("Volar-Bündnis"):setTemplate("Kanonenboot"):setCallSign("VBS Onart"):setPosition(94085, -330132) -- Volar Bündnis Schiff = VBS
+    pat_8 = CpuShip():setFaction("Volar-Bündnis"):setTemplate("Kanonenboot"):setCallSign("VBS Firosla"):setPosition(86848, -327627) -- Volar Bündnis Schiff = VBS
+
+	pat_9 = CpuShip():setFaction("Volar-Bündnis"):setTemplate("Kanonenboot"):setCallSign("VBS Elerat"):setPosition(172025, -485734) -- Volar Bündnis Schiff = VBS
+    pat_10 = CpuShip():setFaction("Callidus-Gilde"):setTemplate("Kanonenboot"):setCallSign("CCN171"):setPosition(177589, -485290)
+    pat_11 = CpuShip():setFaction("Volar-Bündnis"):setTemplate("Kanonenboot"):setCallSign("VBS Sartas"):setPosition(177035, -492693) -- Volar Bündnis Schiff = VBS
+    pat_12 = CpuShip():setFaction("Cadia-Liga"):setTemplate("Kanonenboot"):setCallSign("CSS166"):setPosition(173135, -491414)
+
+	pat_13 = CpuShip():setFaction("Volar-Bündnis"):setTemplate("Kanonenboot"):setCallSign("VBS Jotana"):setPosition(92136, -634099) -- Volar Bündnis Schiff = VBS
+    pat_14 = CpuShip():setFaction("Callidus-Gilde"):setTemplate("Kanonenboot"):setCallSign("NC172"):setPosition(91855, -627253)
+    pat_15 = CpuShip():setFaction("Volar-Bündnis"):setTemplate("Kanonenboot"):setCallSign("VBS Golra"):setPosition(86848, -626026) -- Volar Bündnis Schiff = VBS
+    pat_16 = CpuShip():setFaction("Cadia-Liga"):setTemplate("Kanonenboot"):setCallSign("BR165"):setPosition(84896, -632541)
+
+	pat_17 = CpuShip():setFaction("Callidus-Gilde"):setTemplate("Kanonenboot"):setCallSign("NC173"):setPosition(-27004, -745833)
+    pat_18 = CpuShip():setFaction("Cadia-Liga"):setTemplate("Kanonenboot"):setCallSign("VK164"):setPosition(-33963, -752235)
+    pat_19 = CpuShip():setFaction("Volar-Bündnis"):setTemplate("Kanonenboot"):setCallSign("VBS Inlis"):setPosition(-26722, -752122) -- Volar Bündnis Schiff = VBS
+    pat_20 = CpuShip():setFaction("Volar-Bündnis"):setTemplate("Kanonenboot"):setCallSign("VBS Piltoran"):setPosition(-33960, -746277) -- Volar Bündnis Schiff = VBS
+end
+
+function patrol1()
+	if not pat_1:areEnemiesInRange(5000) or pat_1:isValid() ~= true and not pat_2:areEnemiesInRange(5000) or pat_2:isValid() ~= true and not pat_3:areEnemiesInRange(5000) or pat_3:isValid() ~= true and not pat_4:areEnemiesInRange(5000) or pat_4:isValid() ~= true then 
+		if patrol1_stat == 1 then
+			pat_1:orderFlyTowards(-30000,-250000)
+			pat_2:orderFlyTowards(-30000,-250000)
+			pat_3:orderFlyTowards(-30000,-250000)
+			pat_4:orderFlyTowards(-30000,-250000)
+			if (pat_1:getSectorName() == "zs3" or pat_1:isValid() ~= true) and (pat_2:getSectorName() == "zs3" or pat_2:isValid() ~= true) and (pat_3:getSectorName() == "zs3" or pat_3:isValid() ~= true) and (pat_4:getSectorName() == "zs3" or pat_4:isValid() ~= true) then
+				patrol1_stat = 2
+			end
+		end
+		if patrol1_stat == 2 then
+			pat_1:orderFlyTowards(90000,-330000)
+			pat_2:orderFlyTowards(90000,-330000)
+			pat_3:orderFlyTowards(90000,-330000)
+			pat_4:orderFlyTowards(90000,-330000)
+			if (pat_1:getSectorName() == "zo9" or pat_1:isValid() ~= true) and (pat_2:getSectorName() == "zo9" or pat_2:isValid() ~= true) and (pat_3:getSectorName() == "zo9" or pat_3:isValid() ~= true) and (pat_4:getSectorName() == "zo9" or pat_4:isValid() ~= true) then
+				patrol1_stat = 1
+			end
+		end
+	end
+end
+
+function patrol2()
+	if not pat_5:areEnemiesInRange(5000) or pat_5:isValid() ~= true and not pat_6:areEnemiesInRange(5000) or pat_6:isValid() ~= true and not pat_7:areEnemiesInRange(5000) or pat_7:isValid() ~= true and not pat_8:areEnemiesInRange(5000) or pat_8:isValid() ~= true then 
+		if patrol2_stat == 1 then
+			pat_5:orderFlyTowards(90000,-330000)
+			pat_6:orderFlyTowards(90000,-330000)
+			pat_7:orderFlyTowards(90000,-330000)
+			pat_8:orderFlyTowards(90000,-330000)
+			if (pat_5:getSectorName() == "zo9" or pat_5:isValid() ~= true) and (pat_6:getSectorName() == "zo9" or pat_6:isValid() ~= true) and (pat_7:getSectorName() == "zo9" or pat_7:isValid() ~= true) and (pat_8:getSectorName() == "zo9" or pat_8:isValid() ~= true) then
+				patrol2_stat = 2
+			end
+		end
+		if patrol2_stat == 2 then
+			pat_5:orderFlyTowards(170000,-470000)
+			pat_6:orderFlyTowards(170000,-470000)
+			pat_7:orderFlyTowards(170000,-470000)
+			pat_8:orderFlyTowards(170000,-470000)
+			if (pat_5:getSectorName() == "zh13" or pat_5:isValid() ~= true) and (pat_6:getSectorName() == "zh13" or pat_6:isValid() ~= true) and (pat_7:getSectorName() == "zh13" or pat_7:isValid() ~= true) and (pat_8:getSectorName() == "zh13" or pat_8:isValid() ~= true) then
+				patrol2_stat = 1
+			end
+		end
+	end
+end
+
+function patrol3()
+	if not pat_9:areEnemiesInRange(5000) or pat_9:isValid() ~= true and not pat_10:areEnemiesInRange(5000) or pat_10:isValid() ~= true and not pat_11:areEnemiesInRange(5000) or pat_11:isValid() ~= true and not pat_12:areEnemiesInRange(5000) or pat_12:isValid() ~= true then 
+		if patrol3_stat == 1 then
+			pat_9:orderFlyTowards(170000,-490000)
+			pat_10:orderFlyTowards(170000,-490000)
+			pat_11:orderFlyTowards(170000,-490000)
+			pat_12:orderFlyTowards(170000,-490000)
+			if (pat_9:getSectorName() == "yg13" or pat_9:isValid() ~= true) and (pat_10:getSectorName() == "yg13" or pat_10:isValid() ~= true) and (pat_11:getSectorName() == "yg13" or pat_11:isValid() ~= true) and (pat_12:getSectorName() == "yg13" or pat_12:isValid() ~= true) then
+				patrol3_stat = 2
+			end
+		end
+		if patrol3_stat == 2 then
+			pat_9:orderFlyTowards(89000,-630000)
+			pat_10:orderFlyTowards(89000,-630000)
+			pat_11:orderFlyTowards(89000,-630000)
+			pat_12:orderFlyTowards(89000,-630000)
+			if (pat_9:getSectorName() == "yz9" or pat_9:isValid() ~= true) and (pat_10:getSectorName() == "yz9" or pat_10:isValid() ~= true) and (pat_11:getSectorName() == "yz9" or pat_11:isValid() ~= true) and (pat_12:getSectorName() == "yz9" or pat_12:isValid() ~= true) then
+				patrol3_stat = 1
+			end
+		end
+	end
+end
+
+function patrol4()
+	if not pat_13:areEnemiesInRange(5000) or pat_13:isValid() ~= true and not pat_14:areEnemiesInRange(5000) or pat_14:isValid() ~= true and not pat_15:areEnemiesInRange(5000) or pat_15:isValid() ~= true and not pat_16:areEnemiesInRange(5000) or pat_16:isValid() ~= true then 
+		if patrol4_stat == 1 then
+			pat_13:orderFlyTowards(89000,-630000)
+			pat_14:orderFlyTowards(89000,-630000)
+			pat_15:orderFlyTowards(89000,-630000)
+			pat_16:orderFlyTowards(89000,-630000)
+			if (pat_13:getSectorName() == "yz9" or pat_13:isValid() ~= true) and (pat_14:getSectorName() == "yz9" or pat_14:isValid() ~= true) and (pat_15:getSectorName() == "yz9" or pat_15:isValid() ~= true) and (pat_16:getSectorName() == "yz9" or pat_16:isValid() ~= true) then
+				patrol4_stat = 2
+			end
+		end
+		if patrol4_stat == 2 then
+			pat_13:orderFlyTowards(-30000,-750000)
+			pat_14:orderFlyTowards(-30000,-750000)
+			pat_15:orderFlyTowards(-30000,-750000)
+			pat_16:orderFlyTowards(-30000,-750000)
+			if (pat_13:getSectorName() == "yt3" or pat_13:isValid() ~= true) and (pat_14:getSectorName() == "yt3" or pat_14:isValid() ~= true) and (pat_15:getSectorName() == "yt3" or pat_15:isValid() ~= true) and (pat_16:getSectorName() == "yt3" or pat_16:isValid() ~= true) then
+				patrol4_stat = 1
+			end
+		end
+	end
+end
+
+function patrol5()
+	if not pat_17:areEnemiesInRange(5000) or pat_17:isValid() ~= true and not pat_18:areEnemiesInRange(5000) or pat_18:isValid() ~= true and not pat_19:areEnemiesInRange(5000) or pat_19:isValid() ~= true and not pat_20:areEnemiesInRange(5000) or pat_20:isValid() ~= true then 
+		if patrol5_stat == 1 then
+			pat_17:orderFlyTowards(-30000,-750000)
+			pat_18:orderFlyTowards(-30000,-750000)
+			pat_19:orderFlyTowards(-30000,-750000)
+			pat_20:orderFlyTowards(-30000,-750000)
+			if (pat_17:getSectorName() == "yt3" or pat_17:isValid() ~= true) and (pat_18:getSectorName() == "yt3" or pat_18:isValid() ~= true) and (pat_19:getSectorName() == "yt3" or pat_19:isValid() ~= true) and (pat_20:getSectorName() == "yt3" or pat_20:isValid() ~= true) then
+				patrol5_stat = 2
+			end
+		end
+		if patrol5_stat == 2 then
+			pat_17:orderFlyTowards(-170000,-870000)
+			pat_18:orderFlyTowards(-170000,-870000)
+			pat_19:orderFlyTowards(-170000,-870000)
+			pat_20:orderFlyTowards(-170000,-870000)
+			if (pat_17:getSectorName() == "yn96" or pat_17:isValid() ~= true) and (pat_18:getSectorName() == "yn96" or pat_18:isValid() ~= true) and (pat_19:getSectorName() == "yn96" or pat_19:isValid() ~= true) and (pat_20:getSectorName() == "yn96" or pat_20:isValid() ~= true) then
+				patrol5_stat = 1
+			end
+		end
+	end
 end
 
 function korsa_system()
@@ -843,4 +991,9 @@ end
 
 function update(delta)
 Cron.tick(delta)
+patrol1()
+patrol2()
+patrol3()
+patrol4()
+patrol5()
 end

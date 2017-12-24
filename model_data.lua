@@ -252,6 +252,18 @@ model:setRadius(650)
 model:setCollisionBox(1200, 400)
 model:addEngineEmitter(-4.5, 0, 0,  0.0, 0.5, 2.0, 3)
 
+-- "Zivil-Schiffstypen" --
+model = ModelData()
+model:setName("terra_erzfarmer")
+model:setMesh("terra_erzfarmer.obj")
+model:setTexture("terra_erzfarmer.png")
+model:setScale(50)
+model:setRadius(220)
+model:setCollisionBox(200, 200)
+model:addEngineEmitter(-2.8, 0, -0.5,  2.5, 2.5, 0.45, 2.5)
+model:addEngineEmitter(0, 1.9, 0,  2.5, 2.5, 0.45, 1)
+model:addEngineEmitter(0, -1.9, 0,  2.5, 2.5, 0.45, 1)
+
 -- NEU BECKER
 
 model = ModelData()

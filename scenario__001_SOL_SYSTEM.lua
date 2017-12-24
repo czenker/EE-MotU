@@ -28,6 +28,7 @@ function init()
 			--player:commandSetSystemPowerRequest(system, 0.0)
 		end
 		player_carrier_prep()
+		player_carrier()
 	end
 
 	require("utils.lua")
@@ -440,7 +441,6 @@ end
 
 function player_carrier_prep()
 -- Spieler Träger --
-		carrier()
 		fighter_01=	CpuShip():setFaction(player:getFaction()):setTemplate("Jäger"):setCallSign("TNJ 01"):setScanned(true):setPosition(player:getPosition()):orderDefendTarget(player)
 		fighter_02=	CpuShip():setFaction(player:getFaction()):setTemplate("Jäger"):setCallSign("TNJ 02"):setScanned(true):setPosition(player:getPosition()):orderDefendTarget(player)
 		fighter_03=	CpuShip():setFaction(player:getFaction()):setTemplate("Jäger"):setCallSign("TNJ 03"):setScanned(true):setPosition(player:getPosition()):orderDefendTarget(player)
@@ -485,7 +485,6 @@ function player_carrier_prep()
 end
 
 function player_carrier()
-
 	player.fighter_01carrier = 1
 	player.fighter_02carrier = 1
 	player.fighter_03carrier = 1
@@ -497,7 +496,8 @@ function player_carrier()
 	player.bomber_03carrier = 1
 	player.bomber_04carrier = 1
 	
-	player:addCustomButton("relay","SchiSta","Schiffe Starten", function()	
+	player:addCustomButton("relay","SchiSta","Schiffe Starten", function()
+	if player:getAlertLevel() == "RED ALERT" then
 	player:addCustomButton("relay","jaggo","Jäger Starten", function()
 		if player.fighter_01carrier == 1 then
 		fighter_01=	CpuShip():setFaction(player:getFaction()):setTemplate("Jäger"):setCallSign("TNJ 01"):setScanned(true):setPosition(player:getPosition()):orderDefendTarget(player):setWarpDrive(false)
@@ -577,10 +577,13 @@ function player_carrier()
 		player:removeCustom("jaggo")
 		player:removeCustom("bomgo")
 	end)
-	
+	else
+		player:addCustomMessage("relay","alertlvl","Alarmstufe nicht auf Rot! Mannschaften nicht auf Posten.")
+	end
 	end)
 	
 	player:addCustomButton("relay","hangartakein","Schiffe Aufnehmen", function()
+		if player:getAlertLevel() == "YELLOW ALERT" then
 			if fighter_01:isDocked(player) then
 				fighter_01:destroy()
 				player.fighter_01carrier = 1
@@ -651,7 +654,10 @@ function player_carrier()
 				playerbomber_04:destroy()
 				player.bomber_04carrier = 3
 			end
-		end)
+		else
+		player:addCustomMessage("relay","alertlvl2","Alarmstufe nicht auf Gelb! Einmannschiffe können nur bei gelber Alarmstufe aufgenommen werden.")
+		end
+	end)
 	
 	player:addCustomButton("relay","dockingorder","Docking Befehl", function()
 		fighter_01:orderDock(player)
@@ -664,8 +670,6 @@ function player_carrier()
 		bomber_02:orderDock(player)
 		bomber_03:orderDock(player)
 		bomber_04:orderDock(player)
-		
-		
 	end)
 	
 	player:addCustomButton("relay","aendern","Besatzung", function()
@@ -2640,49 +2644,89 @@ end
 
 function coolant_f() -- Kühlmittel Trick --
 -- Kühlmittel Ausstoß --
-	--player:addCustomButton("engineering", "Coolant_Venting", "EKA", function() -- Engineering muss Science die Erlaubnis erteilen Kühlmittel abzulassen.
 	coolant = 0 -- Werte für das Kühlmittelscript am Ende
 	coolant_lvl = nil
-
-	player:addCustomButton("science", "Coolant_Override", "Kühlmittel ausstoßen", function()
-		if coolant == nil then coolant = 0 end
-		coolant = coolant + 1
-		if coolant == 1 then					
-			for _, system in ipairs({"reactor", "beamweapons", "missilesystem", "maneuver", "impulse", "warp", "jumpdrive", "frontshield", "rearshield"}) do
-			player:setSystemHeat(system, 0.0)
+	player:addCustomMessage("engineering","erklarungEKA","EKA = Erlaubnis Kühlmittel Ausstoßung. Die Erlaubnis muss nach jedem Ausßtoß erneut erlaubt werden.")
+	player:addCustomButton("engineering", "Coolant_Venting", "EKA", function() -- Engineering muss Science die Erlaubnis erteilen Kühlmittel abzulassen.
+		player:addCustomButton("science", "Coolant_Override", "Kühlmittel ausstoßen", function()
+			if coolant == nil then coolant = 0 end
+			coolant = coolant + 1
+			if coolant == 1 then					
+				for _, system in ipairs({"reactor", "beamweapons", "missilesystem", "maneuver", "impulse", "warp", "jumpdrive", "frontshield", "rearshield"}) do
+				player:setSystemHeat(system, 0.0)
+				end
+				player:removeCustom("Coolant_Info0")
+				player:addCustomInfo("engineering","Coolant_Info1","Coolant: 70%")
+				x_player, y_player = player:getPosition()
+				neb1 = Nebula():setPosition(x_player, y_player)
+				coolant_lvl = 3
 			end
-			player:removeCustom("Coolant_Info0")
-			player:addCustomInfo("engineering","Coolant_Info1","Coolant: 70%")
-			x_player, y_player = player:getPosition()
-			neb1 = Nebula():setPosition(x_player, y_player)
-			coolant_lvl = 3
-		end
-			--player:removeCustom("Coolant_Override")
-		if coolant == 2 then
-			coolant_lvl = 6
-			for _, system in ipairs({"reactor", "beamweapons", "missilesystem", "maneuver", "impulse", "warp", "jumpdrive", "frontshield", "rearshield"}) do
-			player:setSystemHeat(system, 0.0)
+				player:removeCustom("Coolant_Override")
+			if coolant == 2 then
+				coolant_lvl = 6
+				for _, system in ipairs({"reactor", "beamweapons", "missilesystem", "maneuver", "impulse", "warp", "jumpdrive", "frontshield", "rearshield"}) do
+				player:setSystemHeat(system, 0.0)
+				end
+				player:removeCustom("Coolant_Info1")
+				player:addCustomInfo("engineering","Coolant_Info2","Coolant: 40%")
+				x_player, y_player = player:getPosition()
+				neb2 = Nebula():setPosition(x_player, y_player)
+				player:removeCustom("Coolant_Override")
 			end
-			player:removeCustom("Coolant_Info1")
-			player:addCustomInfo("engineering","Coolant_Info2","Coolant: 40%")
-			x_player, y_player = player:getPosition()
-			neb2 = Nebula():setPosition(x_player, y_player)
-			--player:removeCustom("Coolant_Override")
-		end
-		if coolant == 3 then
-			coolant_lvl = 9
-			for _, system in ipairs({"reactor", "beamweapons", "missilesystem", "maneuver", "impulse", "warp", "jumpdrive", "frontshield", "rearshield"}) do
-			player:setSystemHeat(system, 0.0)
+			if coolant == 3 then
+				coolant_lvl = 9
+				for _, system in ipairs({"reactor", "beamweapons", "missilesystem", "maneuver", "impulse", "warp", "jumpdrive", "frontshield", "rearshield"}) do
+				player:setSystemHeat(system, 0.0)
+				end
+				player:removeCustom("Coolant_Info2")
+				player:addCustomInfo("engineering","Coolant_Info3","Coolant: 10%")
+				x_player, y_player = player:getPosition()
+				neb3 = Nebula():setPosition(x_player, y_player)
+				player:removeCustom("Coolant_Override")
 			end
-			player:removeCustom("Coolant_Info2")
-			player:addCustomInfo("engineering","Coolant_Info3","Coolant: 10%")
-			x_player, y_player = player:getPosition()
-			neb3 = Nebula():setPosition(x_player, y_player)
-			--player:removeCustom("Coolant_Override")
-		end
+		end)
 	end)
-	--end)
 -- Ende Kühlmittel Ausstoß --
+end
+
+function coolentdecisiontaker()
+	-- Entscheidung welches "nicht vorhandene" Schiffssystem zum Kühlmittel abzug benutzt wird. --
+	if coolant_lvl ~= nil then
+		if player:hasJumpDrive() then
+		player:commandSetSystemCoolantRequest("warp", coolant_lvl)
+		else
+		player:commandSetSystemCoolantRequest("jumpdrive", coolant_lvl)
+		end
+	end	
+	-- Ende der Entscheidung --
+end
+
+function kuehlmittelaufnahme()
+-- Kühlmittel aufnahme --
+	if coolant ~= nil and coolant > 0 then
+		local x0,y0 = player:getPosition()
+		local dummy_station = 0
+		for _, obj in ipairs(getObjectsInRadius(x0,y0,1500)) do
+			if obj.typeName == "SpaceStation" then 
+				dummy_station = 1
+				dockstation = obj
+			end
+		end
+		if dummy_station == 1 and player:isDocked(dockstation) then
+			player:addCustomButton("relay","Coolant_Intake", "Kühlmittel aufnehmen", function()
+				player:removeCustom("Coolant_Info1")
+				player:removeCustom("Coolant_Info2")
+				player:removeCustom("Coolant_Info3")
+				player:addCustomInfo("engineering","Coolant_Info0","Coolant: 100%")
+				coolant = 0
+				coolant_lvl = nil
+				player:removeCustom("Coolant_Intake")
+			end)
+		else
+			player:removeCustom("Coolant_Intake")
+		end
+	end
+	-- Ende Kühlmittel aufnahme --
 end
 
 function aliencomms() -- Abhandlung des Treffens mit den Aliens --
@@ -3840,33 +3884,30 @@ Wir sind beeindruckt von ihrer Karperfahrt. Sollten sie jemals unsere Unterstütz
 	end
 -- Ende Alienschiff--
 
-	-- Entscheidung welches "nicht vorhandene" Schiffssystem zum Kühlmittel abzug benutzt wird. --
-	if coolant_lvl ~= nil then
-		if player:hasJumpDrive() then
-		player:commandSetSystemCoolantRequest("warp", coolant_lvl)
-		else
-		player:commandSetSystemCoolantRequest("jumpdrive", coolant_lvl)
-		end
-	end	
-	-- Ende der Entscheidung --
-	
+	coolentdecisiontaker()
 	-- Tarnnebelvernichtung --
 	if coolant_lvl == 3 then
 		if timer_neb1 == nil then timer_neb1 = 0 end
+	elseif coolant_lvl == 6 then
+			if timer_neb2 == nil then timer_neb2 = 0 end
+	elseif coolant_lvl == 9 then
+			if timer_neb3 == nil then timer_neb3 = 0 end
+	end
+	if timer_neb1 ~= nil then
 		timer_neb1 = timer_neb1 + delta
 		if timer_neb1 > 10 then
 			neb1:destroy()
 			timer_neb1 = nil
 		end
-	elseif coolant_lvl == 6 then
-			if timer_neb2 == nil then timer_neb2 = 0 end
+	end
+	if timer_neb2 ~= nil then
 		timer_neb2 = timer_neb2 + delta
 		if timer_neb2 > 10 then
 			neb2:destroy()
 			timer_neb2 = nil
 		end
-	elseif coolant_lvl == 9 then
-			if timer_neb3 == nil then timer_neb3 = 0 end
+	end
+	if timer_neb3 ~= nil then
 		timer_neb3 = timer_neb3 + delta
 		if timer_neb3 > 10 then
 			neb3:destroy()
@@ -3874,25 +3915,5 @@ Wir sind beeindruckt von ihrer Karperfahrt. Sollten sie jemals unsere Unterstütz
 		end
 	end
 	-- Ende Tarnnebelvernichtung --
-	
-	-- Kühlmittel aufnahme --
-	if coolant ~= nil and coolant > 0 then
-		local x0,y0 = player:getPosition()
-		local dummy_station = 0
-		for _, obj in ipairs(getObjectsInRadius(x0,y0,1000)) do
-			if obj.typeName == "SpaceStation" then dummy_station = 1 end
-		end
-		if dummy_station == 1 then
-			player:addCustomButton("relay","Coolant_Intake", "Kühlmittel aufnehmen", function()
-				player:removeCustom("Coolant_Info1")
-				player:removeCustom("Coolant_Info2")
-				player:removeCustom("Coolant_Info3")
-				player:addCustomInfo("engineering","Coolant_Info0","Coolant: 100%")
-				coolant = 0
-				coolant_lvl = nil
-				player:removeCustom("Coolant_Intake")
-			end)
-		end
-	end
-	-- Ende Kühlmittel aufnahme --
+	kuehlmittelaufnahme()
 end
