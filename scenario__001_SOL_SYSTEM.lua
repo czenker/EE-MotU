@@ -138,7 +138,7 @@ function init()
 	Transport_11=	CpuShip():setFaction("Unabhängige"):setTemplate("Transport3x2"):setCallSign("UH SJ-11"):setPosition(172131, -34223):orderFlyTowards(78674, 3085):setCommsFunction(SJ_11_11_call)
 		Transport_11:setScanningParameters(0, 0):setDescription("Typ: Erzschürfer \nZerbeult und an vielen Stellen verrostet.")
 		Transport_11.Gescannt = 0
-	Transport_12=	CpuShip():setFaction("Unabhängige"):setTemplate("Transport3x3"):setCallSign("UH PU-06"):setPosition(145055, -30750):orderRoaming():setCommsFunction(PU_06_12_call)
+	Transport_12=	CpuShip():setFaction("Unabhängige"):setTemplate("Transport3x3"):setCallSign("UH PU-06"):setPosition(145055, -30750):orderDock(neptunstation1):setCommsFunction(PU_06_12_call)
 		Transport_12:setScanningParameters(0, 0):setDescription("Typ: Eisschürfer \nHohe Masseanzeigen deuten auf einen gut gefüllten Laderaum.")
 		Transport_12.Gescannt = 0
 	Transport_13=   CpuShip():setFaction("Unabhängige"):setTemplate("Transport5x1"):setCallSign("UH LE-05"):setPosition(112552,48942):setCommsFunction(LE_05_13_call):setBeamWeapon(0, 46, 0, 2000, 5, 4)

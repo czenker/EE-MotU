@@ -30,43 +30,61 @@ patrol4_stat = 1
 patrol5_stat = 1
 patrol6_stat = 1
 patrol7_stat = 1
+defence_battlefleet_one()
+end
+
+function defence_battlefleet_one()
+	kons_battleship_01 = CpuShip():setFaction("Konsortium"):setTemplate("Schlachtschiff-II"):setCallSign("KS 0109056"):setPosition(-266136, -224943):setWeaponStorage("Homing", 40):setWeaponStorage("Nuke", 5) -- Konsortiums Sicherheitsflotte
+	kons_battlecruiser_01 = CpuShip():setFaction("Konsortium"):setTemplate("Schlachtkreuzer-II"):setCallSign("KS 0108139"):setPosition(-267180, -223613):setWeaponStorage("Homing", 30):setWeaponStorage("HVLI", 40) -- Konsortiums Sicherheitsflotte
+	kons_cruiser_01 = CpuShip():setFaction("Konsortium"):setTemplate("Kreuzer"):setCallSign("KS 0107143"):setPosition(-265205, -224078):setWeaponStorage("Homing", 20):setWeaponStorage("HVLI", 30) -- Konsortiums Sicherheitsflotte
+	kons_destroyer_01 = CpuShip():setFaction("Konsortium"):setTemplate("Zerstörer-II"):setCallSign("KS 0106421"):setPosition(-263134, -223551) -- Konsortiums Sicherheitsflotte
+	kons_fregate_01 = CpuShip():setFaction("Konsortium"):setTemplate("Fregatte"):setCallSign("KS 0105984"):setPosition(-269572, -224554):setWeaponStorage("Homing", 9):setWeaponStorage("HVLI", 19) -- Konsortiums Sicherheitsflotte
+	kons_corvett_01 = CpuShip():setFaction("Konsortium"):setTemplate("Korvette"):setCallSign("KS 01044115"):setPosition(-264583, -223175):setWeaponStorage("HVLI", 9) -- Konsortiums Sicherheitsflotte
+    kons_corvett_02 = CpuShip():setFaction("Konsortium"):setTemplate("Korvette"):setCallSign("KS 01044116"):setPosition(-268298, -224566):setWeaponStorage("HVLI", 9) -- Konsortiums Sicherheitsflotte
+    kons_cannonboat_01 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 010324576"):setPosition(-262023, -221144):orderDefendTarget(kons_battleship_01) -- Konsortiums Sicherheitsflotte
+    kons_cannonboat_02 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 010324577"):setPosition(-263941, -221594):orderDefendTarget(kons_battlecruiser_01) -- Konsortiums Sicherheitsflotte
+    kons_cannonboat_03 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 010324578"):setPosition(-263297, -221139):orderDefendTarget(kons_cruiser_01) -- Konsortiums Sicherheitsflotte
+    kons_cannonboat_04 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 010324579"):setPosition(-267844, -222165):orderDefendTarget(kons_destroyer_01) -- Konsortiums Sicherheitsflotte
+    kons_cannonboat_05 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 010324580"):setPosition(-267649, -222823):orderDefendTarget(kons_fregate_01) -- Konsortiums Sicherheitsflotte
+    kons_cannonboat_06 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 010324581"):setPosition(-265131, -221207):orderDefendTarget(kons_corvett_01) -- Konsortiums Sicherheitsflotte
+    kons_cannonboat_07 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 010324582"):setPosition(-266525, -220635):orderDefendTarget(kons_corvett_02) -- Konsortiums Sicherheitsflotte
 end
 
 function patroullien_schiffe()
-    patnebel_1 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("CV127"):setPosition(-193143, 110298)
-    patnebel_2 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("CSS128"):setPosition(-191194, 111968)
-    patnebel_3 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("NC137"):setPosition(-190359, 103617)
-    patnebel_4 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("NC138"):setPosition(-185905, 107792)
+    patnebel_1 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 000324583"):setPosition(-193143, 110298) -- Konsortiums Sicherheitsflotte
+    patnebel_2 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 000324584"):setPosition(-191194, 111968) -- Konsortiums Sicherheitsflotte
+    patnebel_3 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 000324585"):setPosition(-190359, 103617) -- Konsortiums Sicherheitsflotte
+    patnebel_4 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 000324586"):setPosition(-185905, 107792) -- Konsortiums Sicherheitsflotte
 	
-	patnebel_5 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("NC135"):setPosition(-169241, 10021)
-    patnebel_6 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("UTI130"):setPosition(-165066, 4175)
-    patnebel_7 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("SS136"):setPosition(-164509, 8351)
-    patnebel_8 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("CSS129"):setPosition(-171468, 5289)
+	patnebel_5 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 000324587"):setPosition(-169241, 10021) -- Konsortiums Sicherheitsflotte
+    patnebel_6 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 000324588"):setPosition(-165066, 4175) -- Konsortiums Sicherheitsflotte
+    patnebel_7 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 000324589"):setPosition(-164509, 8351) -- Konsortiums Sicherheitsflotte
+    patnebel_8 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 000324590"):setPosition(-171468, 5289) -- Konsortiums Sicherheitsflotte
     
-	pat_1 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("NC140"):setPosition(-185665, -111900)
-    pat_2 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("VK132"):setPosition(-189005, -116075)
-    pat_3 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("CCN139"):setPosition(-191232, -109395)
-    pat_4 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("BR131"):setPosition(-194294, -115519)
+	pat_1 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 000324591"):setPosition(-185665, -111900) -- Konsortiums Sicherheitsflotte
+    pat_2 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 000324592"):setPosition(-189005, -116075) -- Konsortiums Sicherheitsflotte
+    pat_3 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 000324593"):setPosition(-191232, -109395) -- Konsortiums Sicherheitsflotte
+    pat_4 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 000324594"):setPosition(-194294, -115519) -- Konsortiums Sicherheitsflotte
 	
-	pat_5 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("CCN141"):setPosition(-177390, -254791)
-    pat_6 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("VK142"):setPosition(-172927, -253635)
-    pat_7 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("CV133"):setPosition(-171985, -246242)
-    pat_8 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("VS134"):setPosition(-165442, -245367)
+	pat_5 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 000324595"):setPosition(-177390, -254791) -- Konsortiums Sicherheitsflotte
+    pat_6 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 000324596"):setPosition(-172927, -253635) -- Konsortiums Sicherheitsflotte
+    pat_7 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 000324597"):setPosition(-171985, -246242) -- Konsortiums Sicherheitsflotte
+    pat_8 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 000324598"):setPosition(-165442, -245367) -- Konsortiums Sicherheitsflotte
 	
-	pat_9 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("VS146"):setPosition(-106889, -368546)
-    pat_10 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("VK144"):setPosition(-107168, -374670)
-    pat_11 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("CSS145"):setPosition(-112456, -371608)
-    pat_12 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("BR143"):setPosition(-114962, -376896)
+	pat_9 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 000324599"):setPosition(-106889, -368546) -- Konsortiums Sicherheitsflotte
+    pat_10 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 000324600"):setPosition(-107168, -374670) -- Konsortiums Sicherheitsflotte
+    pat_11 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 000324601"):setPosition(-112456, -371608) -- Konsortiums Sicherheitsflotte
+    pat_12 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 000324602"):setPosition(-114962, -376896) -- Konsortiums Sicherheitsflotte
 	
-	pat_13 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("UTI154"):setPosition(-26166, -527766)
-    pat_14 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("CV153"):setPosition(-33681, -527766)
-    pat_15 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("VK152"):setPosition(-33681, -535839)
-    pat_16 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("S151"):setPosition(-27001, -535282)
+	pat_13 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 000324603"):setPosition(-26166, -527766) -- Konsortiums Sicherheitsflotte
+    pat_14 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 000324604"):setPosition(-33681, -527766) -- Konsortiums Sicherheitsflotte
+    pat_15 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 000324605"):setPosition(-33681, -535839) -- Konsortiums Sicherheitsflotte
+    pat_16 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 000324606"):setPosition(-27001, -535282) -- Konsortiums Sicherheitsflotte
 	
-	pat_17 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("VS155"):setPosition(-148086, -655533)
-    pat_18 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("SS156"):setPosition(-154767, -654976)
-    pat_19 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("CCN157"):setPosition(-155045, -647182)
-    pat_20 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("UTI158"):setPosition(-149478, -646347)
+	pat_17 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 000324607"):setPosition(-148086, -655533) -- Konsortiums Sicherheitsflotte
+    pat_18 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 000324608"):setPosition(-154767, -654976) -- Konsortiums Sicherheitsflotte
+    pat_19 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 000324609"):setPosition(-155045, -647182) -- Konsortiums Sicherheitsflotte
+    pat_20 = CpuShip():setFaction("Konsortium"):setTemplate("Kanonenboot"):setCallSign("KS 000324610"):setPosition(-149478, -646347) -- Konsortiums Sicherheitsflotte
 end
 
 function patrol1()
@@ -200,7 +218,7 @@ function patrol6()
 			pat_14:orderFlyTowards(-30000,-530000)
 			pat_15:orderFlyTowards(-30000,-530000)
 			pat_16:orderFlyTowards(-30000,-530000)
-			if (pat_13:getSectorName() == "ye3" or pat_13:isValid() ~= true) and (pat_14:getSectorName() == "ye3" or pat_14:isValid() ~= true) and (pat_15:getSectorName() == "ye3" or pat_15:isValid() ~= true) and (pat_16:getSectorName() == "ye3" or pat_16:isValid() ~= true) then
+			if (pat_13:getSectorName() == "ze3" or pat_13:isValid() ~= true) and (pat_14:getSectorName() == "ze3" or pat_14:isValid() ~= true) and (pat_15:getSectorName() == "ze3" or pat_15:isValid() ~= true) and (pat_16:getSectorName() == "ze3" or pat_16:isValid() ~= true) then
 				patrol6_stat = 1
 			end
 		end

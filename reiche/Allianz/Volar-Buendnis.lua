@@ -106,7 +106,7 @@ function patrol3()
 			pat_10:orderFlyTowards(170000,-490000)
 			pat_11:orderFlyTowards(170000,-490000)
 			pat_12:orderFlyTowards(170000,-490000)
-			if (pat_9:getSectorName() == "yg13" or pat_9:isValid() ~= true) and (pat_10:getSectorName() == "yg13" or pat_10:isValid() ~= true) and (pat_11:getSectorName() == "yg13" or pat_11:isValid() ~= true) and (pat_12:getSectorName() == "yg13" or pat_12:isValid() ~= true) then
+			if (pat_9:getSectorName() == "zg13" or pat_9:isValid() ~= true) and (pat_10:getSectorName() == "zg13" or pat_10:isValid() ~= true) and (pat_11:getSectorName() == "zg13" or pat_11:isValid() ~= true) and (pat_12:getSectorName() == "zg13" or pat_12:isValid() ~= true) then
 				patrol3_stat = 2
 			end
 		end

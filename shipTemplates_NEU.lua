@@ -728,3 +728,17 @@ template:setShields(50)
 template:setSpeed(40, 10, 15)
 template:setWarpSpeed(500)
 template:setBeam(0, 40, 0, 2000, 4, 2)
+
+-- Waffenplattform A1
+template = ShipTemplate():setName("Waffenplattform"):setModel("space_cruiser_4")
+template:setRadarTrace("radartrace_mediumstation.png")
+--                  Arc, Dir, Range, CycleTime, Dmg
+template:setBeam(0, 30,   0, 4000.0, 4, 20)
+template:setBeam(1, 30,  60, 4000.0, 4, 20)
+template:setBeam(2, 30, 120, 4000.0, 4, 20)
+template:setBeam(3, 30, 180, 4000.0, 4, 20)
+template:setBeam(4, 30, 240, 4000.0, 4, 20)
+template:setBeam(5, 30, 300, 4000.0, 4, 20)
+template:setHull(70)
+template:setShields(120, 120, 120, 120, 120, 120)
+template:setSpeed(0, 0.5, 0)

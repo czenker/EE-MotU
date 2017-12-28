@@ -72,6 +72,8 @@ volb:setDescription([[Spezies: Humanoid
 Das Volar-Bündnis ist eine Verbund von Sternen die unter einer einheitlichen Regierung mit Sitz im Volar Doppelsternsystem exisistieren. Es handelt sich dabei um ein stark Demokratisches System. 
 
 Die Volar, ebenso wie alle anderen Allianz-Mitglieder haben einen sehr starken Drang ihrer Ehre geltung zu machen. Sie zögern nicht sich in eine Schlach gegen ihre Feinde zu stürzen auch wenn es Taktisch höchst fragwürdig wäre. Die besten Offiziere erhalten die schnellsten Schiffe und die schlechtesten Offiziere erhalten die am besten gepanzerten Schiffe um deren unzulänglichkeiten auszugleichen. Das bedeutet jedoch das die besten als erstes Sterben und die schlechtesten Admiräle werden weil sie überleben...]])
+volb:setEnemy(pirat)
+volb:setEnemy(pirat1)
 
 cadl = FactionInfo():setName("Cadia-Liga")
 cadl:setGMColor(255, 150, 80)
@@ -83,6 +85,8 @@ Die Mitlgiedschaft in der Cadia-Liga ist entgültig. Jeder versuch aus ihr auszut
 
 Was das Militär angeht, haben sie die selbe vorstellung von Ehre wie die restlichen Allianz-Mitglieder. Man muss jedoch erwähnen das die Cadia-Liga am militaristischsten der Allianz-Mitglieder ist.]])
 cadl:setFriendly(volb)
+cadl:setEnemy(pirat)
+cadl:setEnemy(pirat1)
 
 calg = FactionInfo():setName("Callidus-Gilde")
 calg:setGMColor(255, 255, 110)
@@ -93,6 +97,8 @@ Die Callidus Gilde ist eine Händler-Gilde die ein sehr offene Wirtschaft führen.
 Das Militär sieht sich als außerordentlich Ehrenvoll und steht den anderen Allianz-Mitgliedern in nichts nach was die vergeudung der besten Offiziere angeht.]])
 calg:setFriendly(volb)
 calg:setFriendly(cadl)
+calg:setEnemy(pirat)
+calg:setEnemy(pirat1)
 
 konsorts = FactionInfo():setName("Konsortium")
 konsorts:setGMColor(255, 0, 0)
@@ -104,6 +110,8 @@ Sie scheinen Militärisch gesehen die selbe vorstellung von Einsatz von guten sow
 konsorts:setEnemy(volb)
 konsorts:setEnemy(cadl)
 konsorts:setEnemy(calg)
+konsorts:setEnemy(pirat)
+konsorts:setEnemy(pirat1)
 
 baras = FactionInfo():setName("Baras")
 baras:setGMColor( 65, 255, 56)

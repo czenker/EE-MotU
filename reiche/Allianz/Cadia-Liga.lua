@@ -332,7 +332,7 @@ function station_ships_cadia()
 	erzrafffab_cadia = SpaceStation():setTemplate("Small Station"):setFaction("Cadia-Liga"):setCallSign("CNS Erzraffinerie"):setPosition(1035753, -679433) -- Cadianische Navy Station
 	deutrafffab_cadia = SpaceStation():setTemplate("Medium Station"):setFaction("Cadia-Liga"):setCallSign("CNS Deuteriumraffinerie"):setPosition(969758, -558808) -- Cadianische Navy Station
 	powerfab_cadia = SpaceStation():setTemplate("Small Station"):setFaction("Cadia-Liga"):setCallSign("CNS Energiezellenfabrik"):setPosition(973256, -561704) -- Cadianische Navy Station
-	prozessfab_cadia =     SpaceStation():setTemplate("Small Station"):setFaction("Cadia-Liga"):setCallSign("CNS Militär-CPU-Cadia"):setPosition(972725, -552662) -- Cadianische Navy Station
+	prozessfab_cadia = SpaceStation():setTemplate("Small Station"):setFaction("Cadia-Liga"):setCallSign("CNS Militär-CPU-Cadia"):setPosition(972725, -552662) -- Cadianische Navy Station
 	midwerft_cadia = SpaceStation():setTemplate("Medium Station"):setFaction("Cadia-Liga"):setCallSign("CNS Mittleres Space Dock"):setPosition(979439, -561564) -- Cadianische Navy Station
 	hullfab_cadia = SpaceStation():setTemplate("Medium Station"):setFaction("Cadia-Liga"):setCallSign("CNS Plaststahl-Schmelze"):setPosition(978206, -556124) -- Cadianische Navy Station
 	eisfarmer_cadia1 = CpuShip():setFaction("Cadia-Liga"):setTemplate("Erzfarmer"):setCallSign("CN IceCrawler 01"):setPosition(966771, -558062):orderIdle():setWarpDrive(true) -- Cadianische Navy

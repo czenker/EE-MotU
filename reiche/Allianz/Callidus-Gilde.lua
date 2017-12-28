@@ -1,20 +1,292 @@
 
 function init()
---- Callidus Gilde ---
-perseus_system()
-callidus_system()
-gemini_system()
-gemini_stationen_und_schiffe()
-gemini_mining1()
-gemini_mining2()
-gemini_steeltrader1()
-gemini_goldtrader1()
-gemini_storagetrader1()
-gemini_powertrader1()
-gemini_midshiptrader1()
---- Callidus Gilde ---
+	--- Callidus Gilde ---
+	player = getPlayerShip(-1)
+	PSHIPNAME = player:getCallSign()
+	perseus_system()
+	callidus_system()
+	gemini_system()
+	gemini_stationen_und_schiffe()
+	gemini_mining1()
+	gemini_mining2()
+	gemini_steeltrader1()
+	gemini_goldtrader1()
+	gemini_storagetrader1()
+	gemini_powertrader1()
+	gemini_midshiptrader1()
+	--- Callidus Gilde ---
+	piratenbasis()
+	piratenschiffe()
+	ostmission_01()
+	poldest = 0
+	plitikstat = 0
+	taler_stat = 0
+	pkc01 = 1
+	pkc02 = 1
+	pkc03 = 1
+	pkc04 = 1
+	pkc05 = 1
+	pkc06 = 1
+	pkc07 = 1
+	pkc08 = 1
+	pkc09 = 1
+	pkc10 = 1
+	pircount = 0
+	missionstatcal = 1
+	--- GMSHITTERY ---
+	addGMFunction("Callidusstuff",function()
+		addGMFunction("Call.Notsignal",function()
+			globalMessage("Notsignal von Sektor zz31.")
+			hunterpirat_01:orderAttack(politik_ship)
+			hunterpirat_02:orderAttack(politik_ship)
+			removeGMFunction("Call.Notsignal")
+			politik_ship:openCommsTo(player)
+		end)
+		addGMFunction("Callidus-Gilde Freund", function()
+			calg:setFriendly(tn)
+		end)
+		addGMFunction("CallidusOptRemove",function()
+			removeGMFunction("Call.Notsignal")
+			removeGMFunction("calldusgmremover")
+		end)
+	end)
 end
 
+function politcomms()
+	if plitikstat == 0 then
+		setCommsMessage([[Wir werden von zwei Piraten-Schiffen angegriffen! Sie werden uns innerhalb der nächsten 30 Sekunden erreichen! An Bord befinden sich Politiker sowie hochrangige Geschäftsführer! Kommen sie uns zur Hilfe!
+
+Vernichten sie die verdammten Piraten!
+Sollten wir vernichtet werden hier noch eine Information, die Rettungskapseln sind nur für einige Minuten aus... >> VERBINDUNG UNTERBROCHEN <<]])
+		plitikstat = 1
+	end
+	if plitikstat == 1 then
+		politik_ship:setCommsScript("")
+	end
+end
+
+function politlifecheck()
+	if RetKap_02:isValid() ~= true and RetKap_02politiker == 0 and missionstatcal == 1 then
+		player:addCustomInfo("engineering","politikeronboard1","Toter Politiker an Bord.")
+		missionstatcal = 0
+	end
+	if RetKap_02:isValid() ~= true and RetKap_02politiker == 1 and missionstatcal == 1 then
+		player:addCustomInfo("engineering","politikeronboard2","Lebender Politiker an Bord.")
+		missionstatcal = 0
+	end
+end
+
+function piratenbasis()
+    pirbasmittel_01 = SpaceStation():setTemplate("Medium Station"):setFaction("Piraten"):setCallSign("Port Royal"):setPosition(435114, -186561)
+    pirwp_01 = CpuShip():setFaction("Piraten"):setTemplate("Waffenplattform"):setCallSign("Port-Batterie"):setPosition(434160, -188658):orderDefendLocation(434160, -188658)
+    pirwp_02 = CpuShip():setFaction("Piraten"):setTemplate("Waffenplattform"):setCallSign("Royal-Batterie"):setPosition(436668, -184322):orderDefendLocation(436668, -184322)
+end
+
+function destruction_Aurora()
+	if poldest == 1 then
+		RetKap_01 = Artifact():setModel("SensorBuoyMKIII"):setPosition(529846, -101894):allowPickup(true):setCallSign("Rettungskapsel"):setRadarSignatureInfo(0.1, 0.9, 0)
+		RetKap_02 = Artifact():setModel("SensorBuoyMKIII"):setPosition(529627, -102446):allowPickup(true):setCallSign("Rettungskapsel"):setRadarSignatureInfo(0.1, 0.5, 1)
+		RetKap_03 = Artifact():setModel("SensorBuoyMKIII"):setPosition(530121, -102142):allowPickup(true):setCallSign("Rettungskapsel"):setRadarSignatureInfo(0.1, 0.9, 0)
+		RetKap_02politiker = 1
+		RetKap_02timer = 0
+		Artifact():setModel("artifact5"):setPosition(529552, -101794)
+		Artifact():setModel("artifact6"):setPosition(529945, -101497)
+		hunterpirat_01:orderFlyTowardsBlind(433503, -187445)
+		hunterpirat_02:orderFlyTowardsBlind(434830, -184857)
+		poldest = 2
+	end
+end
+
+function backtodefencepir()
+	if poldest == 2 and hunterpirat_01:getSectorName() == "zv26" and hunterpirat_02:getSectorName() == "zv26" then
+		hunterpirat_01:orderDefendLocation(433503, -187445)
+		hunterpirat_02:orderDefendLocation(434830, -184857)
+		poldest = nil
+	end
+end
+
+function piratenschiffe()
+    pirdefender_01 = CpuShip():setFaction("Piraten"):setTemplate("Jäger"):setCallSign("Shoranto"):setPosition(437461, -185970):orderDefendLocation(437541, -186000)
+    pirdefender_02 = CpuShip():setFaction("Piraten"):setTemplate("Jäger"):setCallSign("Pladik"):setPosition(437568, -184727):orderDefendLocation(437634, -184780)
+    pirdefender_03 = CpuShip():setFaction("Piraten"):setTemplate("Kanonenboot"):setCallSign("Lemaruk"):setPosition(437516, -187889):orderDefendLocation(439417, -188850)
+    pirdefender_04 = CpuShip():setFaction("Piraten"):setTemplate("Jäger"):setCallSign("Musil"):setPosition(436699, -187925):orderDefendLocation(436684, -187841)
+    pirdefender_05 = CpuShip():setFaction("Piraten"):setTemplate("Jäger"):setCallSign("Paalatok"):setPosition(437110, -186851):orderDefendLocation(437177, -186903)
+    pirdefender_06 = CpuShip():setFaction("Piraten"):setTemplate("Kanonenboot"):setCallSign("Nuuur"):setPosition(438652, -187511):orderDefendLocation(440579, -188428)
+    pirdefender_07 = CpuShip():setFaction("Piraten"):setTemplate("Jäger"):setCallSign("Oklas"):setPosition(436341, -188512):orderDefendLocation(436368, -188592)
+    pirdefender_08 = CpuShip():setFaction("Piraten"):setTemplate("Jäger"):setCallSign("Weetzu"):setPosition(436005, -189275):orderDefendLocation(436086, -189249)
+end
+
+function ostmission_01()
+    politik_ship = CpuShip():setFaction("Callidus-Gilde"):setTemplate("Personnel Freighter 3"):setCallSign("CPTU Aurora"):setPosition(529846, -101894):orderIdle():setCommsFunction(politcomms) -- Callidus Personal Transport Unternehmen
+    hunterpirat_01 = CpuShip():setFaction("Piraten"):setTemplate("Korvette"):setCallSign("Opuutz"):setPosition(525166, -111123):setWeaponStorage("HVLI", 10):orderIdle()
+    hunterpirat_02 = CpuShip():setFaction("Piraten"):setTemplate("Kanonenboot"):setCallSign("Etzota"):setPosition(525686, -110235):orderIdle()
+end
+
+function talercomms()
+	if taler_stat == 0 then
+		setCommsMessage([[Hier spricht der oberste Verwalter der Kommandozentrale des Talers. Herold Marn mein Name.
+
+Identifizieren sie sich.]])
+		addCommsReply("Wir sind die ".. PSHIPNAME .." von Terra, aus dem Sol-System... übertragen Daten.", function()
+			taler_stat = 1
+			setCommsMessage("Empfange Daten,... das ist im Westen des Regierungsbereiches der Callidus-Gilde. Sie sind nicht teil des Konsortiums?")
+			addCommsReply("Konsortium?",function()
+				setCommsMessage("Das Konsortium ist ein autokrate form der Olligarchie, das im gegensatz zu unserere Demokratischen Marktwirtschaft wo der einzelne noch eine Bedeutung hat. Sol ist laut unseren Daten noch nicht eingenommen worden. Sie haben Glück.")
+				addCommsReply("Verstanden.",function()
+					setCommsMessage("Nun da dies geklärt ist. Willkommen im Einflussbereich der Callidus-Gilde. Wir wünschen gute Geschäfte.")
+					taler_stat = 1
+				end)
+			end)
+			addCommsReply("Nein.",function()
+				setCommsMessage("Gut, nun da dies geklärt ist. Willkommen im Einflussbereich der Callidus-Gilde. Wir wünschen gute Geschäfte. Melden sie sich erneut falls sie noch etwas möchten.")
+				taler_stat = 1
+			end)
+		end)
+		
+	end
+	
+	if taler_stat == 1 and RetKap_02politiker == 1 then
+		setCommsMessage("Was gibt es denn ".. PSHIPNAME .."?")
+		addCommsReply("Wir hätten da etwas was ihnen gehört. Politiker U.Merhalin.",function()
+			player:removeCustom("politikeronboard2")
+			taler_stat = 2
+			setCommsMessage("Habt vielen Dank! Gewiss wird er in der Allianz für eure Aufnahme sprechen wenn ihr es Wünscht.")
+			addCommsReply("Nichts zu Danken.", function() 
+				setCommsMessage("Dennoch erhaltet ihr 10000 Rep. für eure Hilfe.")
+				player:addReputationPoints(10000)
+			end)
+			addCommsReply("Allianz?", function() 
+				setCommsMessage([[Die Allianz kämpft gegen das Konsortium. Es besteht aus 3 größeren Regierungen die sich Verbündet haben um nicht deil der autokratie des Konsortiums zu werden. Die Cadia-Liga, das Volar-Bündnis und unser Reich die Callidus Gilde.
+
+Ihr habt bewiesen das ihr nicht unsere Feinde seit. Wir werden euch Daten über unser Gebiet übermitteln wenn ihr so Freundlich während uns von den Piraten zu befreien die bei Myria ihre Basis haben. Für jedes Vernichtete Piratenschiff erhaltet ihr 1000 Rep. wenn ihr uns Benachrichtigt.
+Für die Rettung des Politikers erhaltet ihr 10000 Rep. habt Dank für eure Hilfe.]])
+				player:addReputationPoints(10000)
+				addCommsReply("Wie lange geht der Krieg und warum habt ihr hier nur Handelsschiffe?",function()
+					setCommsMessage("Der Krieg? Er dauert schon über 100 Jahre,... das einzige was für uns zählt ist die Ehre, und da das Konsortium den Krieg begonnen hat haben wir das recht unserer Ehre genug zu tun und sie dafür Zahlen zu lassen. Alle Militär-Schiffe die wir haben, entsenden wir zum Volar-Bündnis, wo sie in die Flotten und Patrioullen geschickt werden um gegen das Konsortium zu kämpfen. Deshalb haben wir hier kaum eigene Einheiten. Was ist nun mit den Piraten?")
+					addCommsReply("Wir kümmern uns drum.",function()
+						setCommsMessage("Hervorragend! Melden sie sich wenn sie die Piraten dezimiert haben.")
+						taler_stat = 3
+					end)
+					addCommsReply("Wir müssen leider erstmal unserem Oberkommando rückmeldung erstatten.",function()
+						setCommsMessage("Vielleicht bekommen wir das Problem bis dahin selbst geregelt. Gute Reise!")
+					end)
+				end)
+			end)
+		end)
+	end
+	
+	if taler_stat == 1 and RetKap_02politiker == 0 then
+		setCommsMessage("Was gibt es denn ".. PSHIPNAME .."?")
+		addCommsReply("Wir bedauern ihnen den Leichnahm von Politiker U.Merhalin übergeben zu müssen.",function()
+		player:removeCustom("politikeronboard1")
+			taler_stat = 2
+			setCommsMessage("Das ist sehr bedauernswert für die Callidus-Gilde und die Allianz. Habt dennoch Dank für die Bergung.")
+			addCommsReply("Nichts zu Danken.", function() 
+				setCommsMessage("Dennoch erhaltet ihr 2000 Rep. für eure Hilfe.")
+				player:addReputationPoints(2000)
+			end)
+			addCommsReply("Allianz?", function() 
+				setCommsMessage([[Die Allianz kämpft gegen das Konsortium. Es besteht aus 3 größeren Regierungen die sich Verbündet haben um nicht deil der autokratie des Konsortiums zu werden. Die Cadia-Liga, das Volar-Bündnis und unser Reich die Callidus Gilde.
+
+Ihr habt bewiesen das ihr nicht unsere Feinde seit. Wir werden euch Daten über unser Gebiet übermitteln wenn ihr so Freundlich während uns von den Piraten zu befreien die bei Myria ihre Basis haben. Für jedes Vernichtete Piratenschiff erhaltet ihr 1000 Rep. wenn ihr uns Benachrichtigt.
+Für die Bergung des Leichnahms erhaltet ihr 2000 Rep. habt Dank für eure Hilfe.]])
+				player:addReputationPoints(2000)
+				addCommsReply("Wie lange geht der Krieg und warum habt ihr hier nur Handelsschiffe?",function()
+					setCommsMessage("Der Krieg? Er dauert schon über 100 Jahre,... das einzige was für uns zählt ist die Ehre, und da das Konsortium den Krieg begonnen hat haben wir das recht unserer Ehre genug zu tun und sie dafür Zahlen zu lassen. Alle Militär-Schiffe die wir haben, entsenden wir zum Volar-Bündnis, wo sie in die Flotten und Patrioullen geschickt werden um gegen das Konsortium zu kämpfen. Deshalb haben wir hier kaum eigene Einheiten. Was ist nun mit den Piraten?")
+					addCommsReply("Wir kümmern uns drum.",function()
+						setCommsMessage("Hervorragend! Melden sie sich wenn sie die Piraten dezimiert haben.")
+						taler_stat = 3
+					end)
+					addCommsReply("Wir müssen leider erstmal unserem Oberkommando rückmeldung erstatten.",function()
+						setCommsMessage("Vielleicht bekommen wir das Problem bis dahin selbst geregelt. Gute Reise!")
+					end)
+				end)
+				addCommsReply("Wir kümmern uns drum.",function()
+					setCommsMessage("Hervorragend! Melden sie sich wenn sie die Piraten dezimiert haben.")
+					taler_stat = 3
+				end)
+			end)
+		end)
+	end
+	
+	if taler_stat == 2 then
+	callidus_mainstation:setCommsScript("comms_station.lua")
+	end
+	
+	if taler_stat == 3 and pircount >= 1 then
+		setCommsMessage("Haben Verifizierungsdaten erhalten, ihr Lohn wird übertragen.")
+		belohnung = 1000 * pircount
+		player:addReputationPoints(belohnung)
+		pircount = 0
+	elseif taler_stat == 3 and pircount == 0 then
+		setCommsMessage("Offensichtlich habt ihr keine weiteren Piraten erledigt. Was können wir für euch tun?")
+		addCommsReply("Wir möchten gern unser Arsenal auffüllen.",function()
+			callidus_mainstation:setCommsScript("comms_station.lua")
+			setCommsMessage("Verstanden. Wir starten die Handelssysteme, melden Sie sich einfach nochmal bei uns.")
+		end)
+	end
+end
+
+function piratkillcounter()
+	if pirdefender_01:isValid() ~= true and pkc01 ~= nil then
+	pkc01 = nil
+	pircount = pircount + 1
+	callidus_mainstation:setCommsFunction(talercomms)
+	end
+	
+	if pirdefender_02:isValid() ~= true and pkc02 ~= nil then
+	pkc02 = nil
+	pircount = pircount + 1
+	callidus_mainstation:setCommsFunction(talercomms)
+	end
+	
+	if pirdefender_03:isValid() ~= true and pkc03 ~= nil then
+	pkc03 = nil
+	pircount = pircount + 1
+	callidus_mainstation:setCommsFunction(talercomms)
+	end
+	
+	if pirdefender_04:isValid() ~= true and pkc04 ~= nil then
+	pkc04 = nil
+	pircount = pircount + 1
+	callidus_mainstation:setCommsFunction(talercomms)
+	end
+	
+	if pirdefender_05:isValid() ~= true and pkc05 ~= nil then
+	pkc05 = nil
+	pircount = pircount + 1
+	callidus_mainstation:setCommsFunction(talercomms)
+	end
+	
+	if pirdefender_06:isValid() ~= true and pkc06 ~= nil then
+	pkc06 = nil
+	pircount = pircount + 1
+	callidus_mainstation:setCommsFunction(talercomms)
+	end
+	
+	if pirdefender_07:isValid() ~= true and pkc07 ~= nil then
+	pkc07 = nil
+	pircount = pircount + 1
+	callidus_mainstation:setCommsFunction(talercomms)
+	end
+	
+	if pirdefender_08:isValid() ~= true and pkc08 ~= nil then
+	pkc08 = nil
+	pircount = pircount + 1
+	end
+	
+	if hunterpirat_01:isValid() ~= true and pkc09 ~= nil then
+	pkc09 = nil
+	pircount = pircount + 1
+	callidus_mainstation:setCommsFunction(talercomms)
+	end
+	
+	if hunterpirat_02:isValid() ~= true and pkc10 ~= nil then
+	pkc10 = nil
+	pircount = pircount + 1
+	callidus_mainstation:setCommsFunction(talercomms)
+	end
+end
 
 function perseus_system()
 -- Perseus System --
@@ -435,6 +707,8 @@ function gemini_system()
 end
 
 function gemini_stationen_und_schiffe()
+	callidus_mainstation = SpaceStation():setTemplate("Large Station"):setFaction("Callidus-Gilde"):setCallSign("Der Taler"):setPosition(523530, 14854):setCommsFunction(talercomms)
+
 	erz_raf_gem = SpaceStation():setTemplate("Medium Station"):setFaction("Callidus-Gilde"):setCallSign("Erz-Raffinerie-Gemini"):setPosition(499913, 359991)
 	hull_fab_gem = SpaceStation():setTemplate("Medium Station"):setFaction("Callidus-Gilde"):setCallSign("Plaststahl-Fabrik-Gemini"):setPosition(619873,316550)
 	proces_fab_gem = SpaceStation():setTemplate("Small Station"):setFaction("Callidus-Gilde"):setCallSign("Prozessor-Fabrik-Gemini"):setPosition(625779,325280)
@@ -745,5 +1019,22 @@ function gemini_midshiptrader1()
 end
 
 function update(delta)
-Cron.tick(delta)
+	Cron.tick(delta)
+	if politik_ship:isValid() ~= true and poldest == 0 then
+		poldest = 1
+	end
+	
+	piratkillcounter()
+	destruction_Aurora()
+	backtodefencepir()
+	politlifecheck()
+	
+	if RetKap_02:isValid() == true and RetKap_02timer ~= nil then
+		RetKap_02timer = RetKap_02timer + delta
+	end
+	
+	if RetKap_02timer >= 180 then
+		RetKap_02politiker = 0
+		RetKap_02:setRadarSignatureInfo(0.1, 0.3, 0)
+	end
 end
