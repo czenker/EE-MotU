@@ -8,41 +8,43 @@
 -- HOW TO USE: Put require("mods/coolantexe.lua") and Script():run("mods/coolantexe.lua") into your init function of your game and have this Script in a mods folder inside of your scrips folder.
 
 function init()
-	player = getPlayerShip(-1) -- Playership detection.
+	player = getPlayerShip(-1) -- Spielerschiff erfassen.
 
-	--addGMFunction("Coolant", function() -- GM Funktion - Coolant allowed/disallowed.
-	--	addGMFunction("Coolant allowed", function() -- Coolant allowed
-	--		coolant_f()
-	--		removeGMFunction("Coolant allowed")
-	--		removeGMFunction("Coolant disallowed")
-	--		removeGMFunction("Coolant reset")
-	--	end)
-	--	addGMFunction("Coolant disallowed", function() -- Coolant disallowed
-	--		player:removeCustom("Coolant_Override")
-	--		removeGMFunction("Coolant allowed")
-	--		removeGMFunction("Coolant disallowed")
-	--		removeGMFunction("Coolant reset")
-	--	end)		
-	--	addGMFunction("Coolant reset", function() -- Reset Coolant stats
-	--		coolant = 0
-	--		coolant_lvl = nil
-	--		removeGMFunction("Coolant allowed")
-	--		removeGMFunction("Coolant disallowed")
-	--		removeGMFunction("Coolant reset")
-	--	end)		
-	--end)
-coolant_f()
+	addGMFunction("Kühlmittel", function() -- GM Funktion - Kühlmittel auswurf erlauben/verweigern
+		addGMFunction("KMA erlauben", function()
+			coolant_f()
+			removeGMFunction("KMA erlauben")
+			removeGMFunction("KMA verweigern")
+			removeGMFunction("KMA Reset")
+		end) -- Kühlmittel auswurf erlauben
+		addGMFunction("KMA verweigern", function() -- Kühlmittel auswurf verweigern
+			player:removeCustom("Coolant_Override")
+			removeGMFunction("KMA erlauben")
+			removeGMFunction("KMA verweigern")
+			removeGMFunction("KMA Reset")
+		end)		
+		addGMFunction("KMA Reset", function() -- Reset Kühlmittel
+			coolant = 0
+			coolant_lvl = nil
+			removeGMFunction("KMA erlauben")
+			removeGMFunction("KMA verweigern")
+			removeGMFunction("KMA Reset")
+		end)		
+	end)
+  
+	
+	--coolant_f()
 end
 
-function coolant_f() -- Coolant trick --
--- Coolant ejection --
-	coolant = 0 -- Value of coolant status // 0 = no coolant ejected // 1 = 30% coolent ejected // 2 = 60% coolent ejected // 3 = 90% coolent ejected
+function coolant_f() -- Kühlmittel Trick --
+-- Kühlmittel ausstoß --
+	coolant = 0 -- Coolant Wert // 0 = Kein Kühlmittel ausgestoßen // 1 = 30% Kühlmittel ausgestoßen // 2 = 60% Kühlmittel ausgestoßen // 3 = 90% Kühlmittel ausgestoßen
 	coolant_lvl = nil
 	if coolantinfotext == nil then
-		player:addCustomMessage("engineering","informationCE","In case of coolant ejection you lose each time 30% of you maximum coolant.") -- Information for Engineering
+		player:addCustomMessage("engineering","informationCE","Bei auslass von Kühlmittel wird jedesmal 30% der Maximalmenge abgestoßen.") -- Information für den Ingenieur
 		coolantinfotext = 1
 	end
-	player:addCustomButton("engineering", "Coolant_Override", "Eject Coolant", function() -- Coolant ejection Button.
+	player:addCustomButton("engineering", "Coolant_Override", "Kühlmittel ausstoßen", function() -- Kühlmittel ausstoß Knopf.
 		if coolant == nil then coolant = 0 end
 		coolant = coolant + 1
 		if coolant == 1 then
@@ -50,7 +52,7 @@ function coolant_f() -- Coolant trick --
 			player:setSystemHeat(system, 0.0)
 			end
 			player:removeCustom("Coolant_Info0")
-			player:addCustomInfo("engineering","Coolant_Info1","Coolant: 70%")
+			player:addCustomInfo("engineering","Coolant_Info1","Kühlmittelstand: 70%")
 			x_player, y_player = player:getPosition()
 			neb1 = Nebula():setPosition(x_player, y_player)
 			coolant_lvl = 3
@@ -61,7 +63,7 @@ function coolant_f() -- Coolant trick --
 			player:setSystemHeat(system, 0.0)
 			end
 			player:removeCustom("Coolant_Info1")
-			player:addCustomInfo("engineering","Coolant_Info2","Coolant: 40%")
+			player:addCustomInfo("engineering","Coolant_Info2","Kühlmittelstand: 40%")
 			x_player, y_player = player:getPosition()
 			neb2 = Nebula():setPosition(x_player, y_player)
 		end
@@ -71,17 +73,17 @@ function coolant_f() -- Coolant trick --
 			player:setSystemHeat(system, 0.0)
 			end
 			player:removeCustom("Coolant_Info2")
-			player:addCustomInfo("engineering","Coolant_Info3","Coolant: 10%")
+			player:addCustomInfo("engineering","Coolant_Info3","Kühlmittelstand: 10%")
 			x_player, y_player = player:getPosition()
 			neb3 = Nebula():setPosition(x_player, y_player)
-			player:removeCustom("Coolant_Override") -- Coolant ejection Button will be removed after reaching 10% on coolant.
+			player:removeCustom("Coolant_Override") -- Kühlmittel Knopf wird bei erreichen von 10% Restkühlmittel, gelöscht.
 		end
 	end)
--- End Coolant ejection --
+-- Ende Kühlmittel ausstoß --
 end
 
 function coolentdecisiontaker()
-	-- Decision which "not taken" Shipsystem will be taken to "soak up" the "lost" coolant --
+	-- Entscheidung welches System zum abzug des Kühlmittels genommen wird. Das jeweils nicht von den Spielern genutzte System wird benutzt. Warp/Jump --
 	if coolant_lvl ~= nil then
 		if player:hasJumpDrive() then
 		player:commandSetSystemCoolantRequest("warp", coolant_lvl)
@@ -89,11 +91,11 @@ function coolentdecisiontaker()
 		player:commandSetSystemCoolantRequest("jumpdrive", coolant_lvl)
 		end
 	end	
-	-- End decision --
+	-- Ende Entscheidung --
 end
 
 function coolantintake()
--- Refill coolant --
+-- Kühlmittel auffüllung --
 	if coolant ~= nil and coolant > 0 then
 		local x0,y0 = player:getPosition()
 		local dummy_station = 0
@@ -104,12 +106,12 @@ function coolantintake()
 			end
 		end
 		if dummy_station == 1 and player:isDocked(dockstation) then
-			player:addCustomButton("relay","Coolant_Intake", "Refill coolant", function()
+			player:addCustomButton("relay","Coolant_Intake", "Kühlmittel auffüllen", function()
 				player:removeCustom("Coolant_Info1")
 				player:removeCustom("Coolant_Info2")
 				player:removeCustom("Coolant_Info3")
-				coolant_f() -- Coolant ejection Button is back if removed thorugh reaching 10% coolant.
-				player:addCustomInfo("engineering","Coolant_Info0","Coolant: 100%")
+				coolant_f() -- Kühlmittel ausstoß Knopf erscheint wieder, falls es entfernt wurde bei erreichen der 10% Restkühlmittel grenze.
+				player:addCustomInfo("engineering","Coolant_Info0","Kühlmittelstand: 100%")
 				coolant = 0
 				coolant_lvl = nil
 				player:removeCustom("Coolant_Intake")
@@ -118,12 +120,12 @@ function coolantintake()
 			player:removeCustom("Coolant_Intake")
 		end
 	end
-	-- End refill coolant --
+	-- Ende Kühlmittel auffüllung --
 end
 
 function update (delta)
 	coolentdecisiontaker()
-	-- Stat Nebula --
+	-- Nebel erzeugung --
 	if coolant_lvl == 3 then
 		if timer_neb1 == nil then timer_neb1 = 0 end
 	elseif coolant_lvl == 6 then
@@ -152,6 +154,6 @@ function update (delta)
 			timer_neb3 = nil
 		end
 	end
-	-- End Nebula --
+	-- Ende Nebelerzeugung --
 	coolantintake()
 end
